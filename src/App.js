@@ -1,9 +1,9 @@
-import "./App.css";
-
+import classes from "./App.module.css";
+import Navigation from "./Templates/Navigation";
 function App() {
   return (
-    <div className="App">
-      <h1>Test</h1>
+    <div className={classes.mainContainer}>
+      <Navigation />
     </div>
   );
 }

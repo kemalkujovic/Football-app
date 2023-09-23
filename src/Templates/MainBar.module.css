@@ -1,0 +1,54 @@
+.logo {
+  max-width: 100px;
+  height: auto;
+  padding: 15px;
+  cursor: pointer;
+}
+.mainGrid {
+  background-color: #001e28;
+}
+.searchIcon {
+  width: auto;
+  height: 40px;
+  padding: 10px;
+  align-items: center;
+  background-color: #0f2d37;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  margin-right: 10px;
+  color: white;
+}
+.searchIcon:hover {
+  color: #6c98a8;
+}
+.searchIcon svg {
+  font-size: 30px;
+}
+.mainBar {
+  display: flex;
+  flex-direction: "row";
+  justify-content: space-between;
+}
+.linkButtonWrapper {
+  color: white;
+  display: flex;
+  padding: 15px;
+}
+.linkWrapper {
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.linkButtonWrapper span {
+  margin-right: 20px;
+}
+.linkWrapper:hover {
+  color: #6c98a8;
+}
+.active {
+  color: #6c98a8;
+}
