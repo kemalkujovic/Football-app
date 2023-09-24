@@ -7,6 +7,7 @@ import Countrys from "../../components/Countrys/Countrys";
 const Sidebar = () => {
   const [country, setCountry] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     async function fetchCountrys() {
       const data = await dispatch(getFootball(request.getCountrys));

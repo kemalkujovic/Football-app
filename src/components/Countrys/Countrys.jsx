@@ -1,17 +1,28 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { getLeague } from "../../app/footballSlice";
 const Countrys = () => {
+  /// lige
+  const dispatch = useDispatch();
+  const onClickHandler = (id) => {
+    dispatch(getLeague(id));
+  };
+  ////////
   const [more, setMore] = useState(false);
-  const selector = useSelector((state) => state.football.data);
-  const data = selector.slice(0, 10);
+  const selector = useSelector((state) => state.football.footballData);
+  const country = selector.slice(0, 10);
   const dataCountrys = selector.slice(10, 40);
   return (
     <div>
-      {data.map((el, index) => {
+      {country.map((el, index) => {
         return (
-          <div className={classes.countryWrapper}>
+          <div
+            onClick={() => onClickHandler(el.country_id)}
+            key={index}
+            className={classes.countryWrapper}
+          >
             <img src={el.country_logo} />
             <p>{el.country_name}</p>
           </div>
@@ -26,9 +37,13 @@ const Countrys = () => {
         ""
       )}
       {more
-        ? dataCountrys.map((el) => {
+        ? dataCountrys.map((el, index) => {
             return (
-              <div className={classes.countryWrapper}>
+              <div
+                onClick={() => onClickHandler(el.country_id)}
+                key={index}
+                className={classes.countryWrapper}
+              >
                 <img src={el.country_logo} />
                 <p>{el.country_name}</p>
               </div>
