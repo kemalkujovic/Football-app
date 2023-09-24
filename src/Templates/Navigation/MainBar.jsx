@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../../assets/images/logo.png";
 import classes from "./MainBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 
-const MainBar = () => {
+const MainBar = (title, icons) => {
   return (
     <>
       <div className={classes.mainBar}>
