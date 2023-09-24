@@ -4,6 +4,7 @@ const baseURL = "https://apiv3.apifootball.com/";
 
 const request = {
   getCountrys: `${baseURL}?action=get_countries&APIkey=${APIkey}`,
+  get_leagues: `${baseURL}?action=get_leagues&country_id=6&${APIkey}`,
 };
 
 export default request;

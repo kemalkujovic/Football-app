@@ -6,10 +6,10 @@ import { Grid } from "@mui/material";
 const Main = () => {
   return (
     <Grid lg={12} item container direction="row">
-      <Grid lg={3} item>
+      <Grid lg={2} item>
         <Sidebar />
       </Grid>
-      <Grid lg={9} item>
+      <Grid lg={10} item>
         <Layout />
       </Grid>
     </Grid>

@@ -1,0 +1,20 @@
+.countryWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+.countryWrapper img {
+  width: 20px;
+  height: 20px;
+}
+.loadWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+.loadWrapper svg {
+  margin-top: 3px;
+}
