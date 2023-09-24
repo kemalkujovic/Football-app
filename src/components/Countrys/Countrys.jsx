@@ -70,12 +70,32 @@ const Countrys = () => {
         ? dataCountrys.map((el, index) => {
             return (
               <div
-                onClick={() => onClickHandler(el.country_id)}
+                onClick={() => onClickHandler(el.country_id, index)}
                 key={index}
                 className={classes.countryWrapper}
               >
                 <img src={el.country_logo} />
                 <p>{el.country_name}</p>
+                {selector2 && isOpen.includes(index) && (
+                  <div>
+                    {selector2.map((item) => {
+                      return (
+                        +item.country_id === +el.country_id && (
+                          <div key={item.league_id}>
+                            {console.log(item)}
+                            <img
+                              src={item.league_logo}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = item.country_logo;
+                              }}
+                            />
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             );
           })
