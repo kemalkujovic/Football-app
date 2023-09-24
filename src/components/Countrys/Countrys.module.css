@@ -1,9 +1,9 @@
 .countryWrapper {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 14px;
-  margin-left: 10px;
+  font-size: 12px;
+  padding: 7px;
+  justify-content: space-between;
 }
 .countryWrapper img {
   width: 20px;
@@ -17,4 +17,20 @@
 }
 .loadWrapper svg {
   margin-top: 3px;
+}
+.countryWrapper:hover {
+  background-color: gray;
+}
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.arrowIcon svg {
+  font-size: 17px;
+}
+.arrowIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

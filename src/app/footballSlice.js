@@ -23,7 +23,6 @@ export const getLeague = createAsyncThunk(
       const { data } = await axios.get(
         `${baseURL}?action=get_leagues&country_id=${api}&APIkey=${APIkey}`
       );
-      console.log(data);
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -59,7 +58,14 @@ const footballSlice = createSlice({
       })
       .addCase(getLeague.fulfilled, (state, action) => {
         state.loading = false;
-        state.leagueData = action.payload;
+        const newLeagueData = action.payload.filter(
+          (newDataItem) =>
+            !state.leagueData.some(
+              (existingDataItem) =>
+                existingDataItem.country_id === newDataItem.country_id
+            )
+        );
+        state.leagueData = [...state.leagueData, ...newLeagueData];
       })
       .addCase(getLeague.rejected, (state, action) => {
         state.loading = false;
