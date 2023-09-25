@@ -25,6 +25,7 @@ const Countrys = () => {
   const country = selector.slice(0, 10);
   const dataCountrys = selector.slice(10, 40);
   const [isOpen, setIsOpen] = useState([]);
+  console.log(selector2);
   return (
     <div>
       {country.map((el, index) => {
