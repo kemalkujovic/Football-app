@@ -1,23 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-const League = () => {
-  const selector = useSelector((state) => state.football.leagueData);
+const League = (props) => {
+  const { league_id, league_logo, country_logo, league_name } = props;
   return (
-    <div>
-      {selector?.map((league, index) => {
-        return (
-          <div key={index}>
-            <img
-              src={league.league_logo}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = league.country_logo;
-              }}
-            />
-          </div>
-        );
-      })}
+    <div key={league_id}>
+      <img
+        src={league_logo}
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = country_logo;
+        }}
+      />
+      <p>{league_name}</p>
     </div>
   );
 };
