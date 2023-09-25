@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { lastDays } from "../util/helper";
+const days = lastDays();
+
 const APIkey =
   "8e65fed9ff5ee695c483f88affb3575f58e67eaa9cdc096d6ceb9bd36e166691";
 const baseURL = "https://apiv3.apifootball.com/";
@@ -35,7 +38,7 @@ export const leagueResults = createAsyncThunk(
   async (api, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `https://apiv3.apifootball.com/?action=get_events&from=2023-09-05&to=2023-09-25&league_id=${api}&APIkey=${APIkey}`
+        `https://apiv3.apifootball.com/?action=get_events&from=${days.jucerasnjiDatum}&to=${days.danasnjiDatum}&league_id=${api}&APIkey=${APIkey}`
       );
       return data;
     } catch (error) {

@@ -1,7 +1,9 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import classes from "./ResultTabel.module.css";
+import { lastDays } from "../../util/helper";
 const ResultTabel = (props) => {
+  const days = lastDays();
   const {
     countryLogo,
     matchDate,
@@ -17,7 +19,13 @@ const ResultTabel = (props) => {
   } = props;
   return (
     <div className={classes.mainContainer}>
-      <Grid width="70%" container item justifyContent="space-between">
+      <Grid
+        marginLeft="20px"
+        width="70%"
+        container
+        item
+        justifyContent="space-between"
+      >
         <div className={classes.timeLogoWrapper}>
           <div className={classes.timeZoneWrapper}>
             <p>{matchDate}</p>
@@ -33,7 +41,9 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-              <p>{homeName}</p>
+              <p className={homeGoal > awayGoal ? classes.winner : ""}>
+                {homeName}
+              </p>
             </span>
             <span>
               <img
@@ -44,7 +54,9 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-              <p>{awayName}</p>
+              <p className={awayGoal > homeGoal ? classes.winner : ""}>
+                {awayName}
+              </p>
             </span>
           </div>
         </div>
