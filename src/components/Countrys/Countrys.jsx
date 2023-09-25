@@ -4,14 +4,22 @@ import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { getLeague } from "../../app/footballSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
-const Countrys = (league_id, league_logo, country_logo, league_name) => {
+const Countrys = () => {
+  const [iconStates, setIconStates] = useState({});
+  const onClickHandler2 = (index) => {
+    setIconStates((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index],
+    }));
+  };
   /// lige
   const selector2 = useSelector((state) => state.football.leagueData);
   const dispatch = useDispatch();
   const onClickHandler = (id, index) => {
     dispatch(getLeague(id));
-
+    onClickHandler2(index);
     setIsOpen((isOpen) => {
       if (isOpen.includes(index)) {
         return isOpen.filter((i) => i !== index);
@@ -24,9 +32,8 @@ const Countrys = (league_id, league_logo, country_logo, league_name) => {
   const [more, setMore] = useState(false);
   const selector = useSelector((state) => state.football.footballData);
   const country = selector.slice(0, 10);
-  const dataCountrys = selector.slice(10, 40);
+  const dataCountrys = selector.slice(10, 70);
   const [isOpen, setIsOpen] = useState([]);
-  console.log(selector2);
   return (
     <div>
       {country.map((el, index) => {
@@ -41,7 +48,7 @@ const Countrys = (league_id, league_logo, country_logo, league_name) => {
                 <img src={el.country_logo} />
                 <p>{el.country_name}</p>
               </div>
-              <ArrowDropDownIcon />
+              {iconStates[index] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
             </div>
 
             {selector2 && isOpen.includes(index) && (
@@ -85,7 +92,11 @@ const Countrys = (league_id, league_logo, country_logo, league_name) => {
                     <img src={el.country_logo} />
                     <p>{el.country_name}</p>
                   </div>
-                  <ArrowDropDownIcon />
+                  {iconStates[index] ? (
+                    <ArrowDropUpIcon />
+                  ) : (
+                    <ArrowDropDownIcon />
+                  )}
                 </div>
                 {selector2 && isOpen.includes(index) && (
                   <div className={classes.leagueWrapper}>
