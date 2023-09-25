@@ -10,6 +10,7 @@ const League = (props) => {
           e.target.onerror = null;
           e.target.src = country_logo;
         }}
+        alt="logo"
       />
       <p>{league_name}</p>
     </div>

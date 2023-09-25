@@ -45,7 +45,7 @@ const Countrys = () => {
           >
             <div className={classes.logoWrapper}>
               <div className={classes.nameLeague}>
-                <img src={el.country_logo} />
+                <img src={el.country_logo} alt="logo" />
                 <p>{el.country_name}</p>
               </div>
               {iconStates[index] ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
@@ -89,7 +89,7 @@ const Countrys = () => {
               >
                 <div className={classes.logoWrapper}>
                   <div className={classes.nameLeague}>
-                    <img src={el.country_logo} />
+                    <img src={el.country_logo} alt="logo" />
                     <p>{el.country_name}</p>
                   </div>
                   {iconStates[index] ? (

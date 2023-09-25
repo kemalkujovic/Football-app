@@ -13,6 +13,10 @@
   display: flex;
   align-items: center;
   padding-bottom: 10px;
+  margin-left: 8px;
+}
+.loadWrapper:hover {
+  color: gray;
 }
 .loadWrapper svg {
   margin-top: 3px;
@@ -25,6 +29,7 @@
   align-items: center;
   gap: 8px;
   justify-content: space-between;
+  margin-left: 5px;
 }
 .arrowIcon svg {
   font-size: 17px;
@@ -46,6 +51,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-left: 5px;
 }
 .leagueWrapper div:hover {
   background-color: #cccccc;
