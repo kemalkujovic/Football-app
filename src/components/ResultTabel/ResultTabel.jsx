@@ -2,34 +2,60 @@ import { Grid } from "@mui/material";
 import React from "react";
 import classes from "./ResultTabel.module.css";
 const ResultTabel = (props) => {
+  const {
+    countryLogo,
+    matchDate,
+    matchTime,
+    homeLogo,
+    awayLogo,
+    homeName,
+    awayName,
+    homeGoal,
+    awayGoal,
+    homeHalfGoal,
+    awayHalfGoal,
+  } = props;
   return (
-    <div>
-      <Grid container item>
-        <div className={classes.countryWrapper}>
-          <p>ALBANIJA: SuperLiga</p>
-        </div>
-        <div className={classes.timeZoneWrapper}>
-          <p>23.09</p>
-          <p>15:00</p>
-        </div>
-        <div className={classes.clubsWrapper}>
-          <span>
-            <img src="" alt="Logo1" />
-            <p>Liverpool</p>
-          </span>
-          <span>
-            <img src="" alt="Logo1" />
-            <p>Arsenal</p>
-          </span>
+    <div className={classes.mainContainer}>
+      <Grid width="70%" container item justifyContent="space-between">
+        <div className={classes.timeLogoWrapper}>
+          <div className={classes.timeZoneWrapper}>
+            <p>{matchDate}</p>
+            <p>{matchTime}</p>
+          </div>
+          <div className={classes.clubsWrapper}>
+            <span>
+              <img
+                src={homeLogo}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = countryLogo;
+                }}
+                alt="Logo1"
+              />
+              <p>{homeName}</p>
+            </span>
+            <span>
+              <img
+                src={awayLogo}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = countryLogo;
+                }}
+                alt="Logo1"
+              />
+              <p>{awayName}</p>
+            </span>
+          </div>
         </div>
         <div className={classes.resultsWrapper}>
           <div>
-            <p>1</p>
-            <p>0</p>
+            <p>{homeGoal}</p>
+            <p>{awayGoal}</p>
           </div>
           <div>
-            <p>(2)</p>
-            <p>(0)</p>
+            <p>({homeHalfGoal})</p>
+            <p>({awayHalfGoal})</p>
           </div>
         </div>
       </Grid>
