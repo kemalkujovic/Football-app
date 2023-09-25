@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { getLeague } from "../../app/footballSlice";
+import { getLeague, leagueResults } from "../../app/footballSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
@@ -28,8 +28,8 @@ const Countrys = () => {
       }
     });
   };
-  function resultsHandler() {
-    console.log("radi");
+  function resultsHandler(id) {
+    dispatch(leagueResults(+id));
   }
 
   ////////
@@ -38,6 +38,7 @@ const Countrys = () => {
   const country = selector.slice(0, 10);
   const dataCountrys = selector.slice(10, 70);
   const [isOpen, setIsOpen] = useState([]);
+
   return (
     <div>
       {country.map((el, index) => {
@@ -66,7 +67,7 @@ const Countrys = () => {
                         league_id={item.league_id}
                         league_name={item.league_name}
                         country_logo={item.country_logo}
-                        onClick={resultsHandler}
+                        onClick={() => resultsHandler(item.league_id)}
                       />
                     )
                   );
@@ -114,6 +115,7 @@ const Countrys = () => {
                             league_id={item.league_id}
                             league_name={item.league_name}
                             country_logo={item.country_logo}
+                            onClick={() => resultsHandler(item.league_id)}
                           />
                         )
                       );

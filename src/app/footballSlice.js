@@ -35,9 +35,13 @@ export const leagueResults = createAsyncThunk(
   async (api, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `https://apiv3.apifootball.com/?action=get_events&from=2023-04-05&to=2023-04-05&league_id=${api}&APIkey=${APIkey}`
+        `https://apiv3.apifootball.com/?action=get_events&from=2023-09-05&to=2023-09-25&league_id=${api}&APIkey=${APIkey}`
       );
-    } catch (error) {}
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
   }
 );
 

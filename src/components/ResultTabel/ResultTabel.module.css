@@ -1,0 +1,27 @@
+.countryWrapper {
+  display: flex;
+  width: 100%;
+  background-color: gray;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.timeZoneWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.clubsWrapper span {
+  display: flex;
+  margin: 10px 30px;
+  gap: 10px;
+  align-items: center;
+}
+.resultsWrapper {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  justify-content: end;
+  gap: 15px;
+}
