@@ -5,6 +5,7 @@
   align-items: center;
   gap: 10px;
   color: white;
+  border-radius: 5px;
 }
 .countryWrapper img {
   width: 50px;
@@ -33,8 +34,15 @@
   justify-content: end;
   gap: 15px;
 }
+.resultsWrapper .finalResult p {
+  color: black;
+  font-weight: 700;
+}
 .mainContainer {
   border-bottom: 1px solid gray;
+}
+.mainContainer:last-child {
+  border: none;
 }
 .timeLogoWrapper {
   display: flex;

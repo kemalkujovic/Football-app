@@ -40,7 +40,8 @@ const Countrys = () => {
   const [isOpen, setIsOpen] = useState([]);
 
   return (
-    <div>
+    <div className={classes.mainCointainer}>
+      <h1>ZEMLJE</h1>
       {country.map((el, index) => {
         return (
           <div

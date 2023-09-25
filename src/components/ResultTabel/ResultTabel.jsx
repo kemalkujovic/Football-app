@@ -1,9 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import classes from "./ResultTabel.module.css";
-import { lastDays } from "../../util/helper";
 const ResultTabel = (props) => {
-  const days = lastDays();
   const {
     countryLogo,
     matchDate,
@@ -61,7 +59,7 @@ const ResultTabel = (props) => {
           </div>
         </div>
         <div className={classes.resultsWrapper}>
-          <div>
+          <div className={classes.finalResult}>
             <p>{homeGoal}</p>
             <p>{awayGoal}</p>
           </div>
