@@ -28,6 +28,10 @@ const Countrys = () => {
       }
     });
   };
+  function resultsHandler() {
+    console.log("radi");
+  }
+
   ////////
   const [more, setMore] = useState(false);
   const selector = useSelector((state) => state.football.footballData);
@@ -62,6 +66,7 @@ const Countrys = () => {
                         league_id={item.league_id}
                         league_name={item.league_name}
                         country_logo={item.country_logo}
+                        onClick={resultsHandler}
                       />
                     )
                   );

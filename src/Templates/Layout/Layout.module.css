@@ -1,3 +1,6 @@
 .layourWrapper {
   background-color: #fff;
 }
+.layourWrapper p {
+  margin: 0;
+}

@@ -30,11 +30,23 @@ export const getLeague = createAsyncThunk(
   }
 );
 
+export const leagueResults = createAsyncThunk(
+  "football/leagueResults",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_events&from=2023-04-05&to=2023-04-05&league_id=${api}&APIkey=${APIkey}`
+      );
+    } catch (error) {}
+  }
+);
+
 const footballSlice = createSlice({
   name: "football",
   initialState: {
     footballData: [],
     leagueData: [],
+    leagueResults: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -42,6 +54,7 @@ const footballSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Get Coutrys
       .addCase(getFootball.pending, (state) => {
         state.loading = true;
       })
@@ -53,6 +66,7 @@ const footballSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
+      // Get Country Leagues
       .addCase(getLeague.pending, (state) => {
         state.loading = true;
       })
@@ -68,6 +82,18 @@ const footballSlice = createSlice({
         state.leagueData = [...state.leagueData, ...newLeagueData];
       })
       .addCase(getLeague.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // League Reulsts
+      .addCase(leagueResults.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(leagueResults.fulfilled, (state, action) => {
+        state.loading = false;
+        state.leagueResults = action.payload;
+      })
+      .addCase(leagueResults.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
