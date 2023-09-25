@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { getLeague } from "../../app/footballSlice";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 const Countrys = () => {
   /// lige
   const selector2 = useSelector((state) => state.football.leagueData);
@@ -33,15 +34,20 @@ const Countrys = () => {
             onClick={() => onClickHandler(el.country_id, index)}
             className={classes.countryWrapper}
           >
-            <img src={el.country_logo} />
-            <p>{el.country_name}</p>
+            <div className={classes.logoWrapper}>
+              <div className={classes.nameLeague}>
+                <img src={el.country_logo} />
+                <p>{el.country_name}</p>
+              </div>
+              <ArrowDropDownIcon />
+            </div>
+
             {selector2 && isOpen.includes(index) && (
-              <div>
+              <div className={classes.leagueWrapper}>
                 {selector2.map((item) => {
                   return (
                     +item.country_id === +el.country_id && (
                       <div key={item.league_id}>
-                        {console.log(item)}
                         <img
                           src={item.league_logo}
                           onError={(e) => {
@@ -49,6 +55,7 @@ const Countrys = () => {
                             e.target.src = item.country_logo;
                           }}
                         />
+                        <p>{item.league_name}</p>
                       </div>
                     )
                   );
@@ -70,19 +77,23 @@ const Countrys = () => {
         ? dataCountrys.map((el, index) => {
             return (
               <div
+                key={el.country_id}
                 onClick={() => onClickHandler(el.country_id, index)}
-                key={index}
                 className={classes.countryWrapper}
               >
-                <img src={el.country_logo} />
-                <p>{el.country_name}</p>
+                <div className={classes.logoWrapper}>
+                  <div className={classes.nameLeague}>
+                    <img src={el.country_logo} />
+                    <p>{el.country_name}</p>
+                  </div>
+                  <ArrowDropDownIcon />
+                </div>
                 {selector2 && isOpen.includes(index) && (
-                  <div>
+                  <div className={classes.leagueWrapper}>
                     {selector2.map((item) => {
                       return (
                         +item.country_id === +el.country_id && (
                           <div key={item.league_id}>
-                            {console.log(item)}
                             <img
                               src={item.league_logo}
                               onError={(e) => {
@@ -90,6 +101,7 @@ const Countrys = () => {
                                 e.target.src = item.country_logo;
                               }}
                             />
+                            <p>{item.league_name}</p>
                           </div>
                         )
                       );

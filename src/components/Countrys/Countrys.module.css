@@ -1,9 +1,9 @@
 .countryWrapper {
-  display: flex;
+  /* display: flex;
   align-items: center;
   font-size: 12px;
   padding: 7px;
-  justify-content: space-between;
+  justify-content: space-between; */
 }
 .countryWrapper img {
   width: 20px;
@@ -11,7 +11,6 @@
 }
 .loadWrapper {
   display: flex;
-  justify-content: center;
   align-items: center;
   padding-bottom: 10px;
 }
@@ -25,6 +24,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  justify-content: space-between;
 }
 .arrowIcon svg {
   font-size: 17px;
@@ -33,4 +33,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.nameLeague {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.leagueWrapper {
+  background-color: #b2b2b2;
+}
+.leagueWrapper div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.leagueWrapper div:hover {
+  background-color: #cccccc;
 }
