@@ -4,7 +4,8 @@ import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { getLeague } from "../../app/footballSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-const Countrys = () => {
+import League from "../League/League";
+const Countrys = (league_id, league_logo, country_logo, league_name) => {
   /// lige
   const selector2 = useSelector((state) => state.football.leagueData);
   const dispatch = useDispatch();
@@ -48,16 +49,13 @@ const Countrys = () => {
                 {selector2.map((item) => {
                   return (
                     +item.country_id === +el.country_id && (
-                      <div key={item.league_id}>
-                        <img
-                          src={item.league_logo}
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = item.country_logo;
-                          }}
-                        />
-                        <p>{item.league_name}</p>
-                      </div>
+                      <League
+                        key={item.league_id}
+                        league_logo={item.league_logo}
+                        league_id={item.league_id}
+                        league_name={item.league_name}
+                        country_logo={item.country_logo}
+                      />
                     )
                   );
                 })}
@@ -94,16 +92,13 @@ const Countrys = () => {
                     {selector2.map((item) => {
                       return (
                         +item.country_id === +el.country_id && (
-                          <div key={item.league_id}>
-                            <img
-                              src={item.league_logo}
-                              onError={(e) => {
-                                e.target.onerror = null;
-                                e.target.src = item.country_logo;
-                              }}
-                            />
-                            <p>{item.league_name}</p>
-                          </div>
+                          <League
+                            key={item.league_id}
+                            league_logo={item.league_logo}
+                            league_id={item.league_id}
+                            league_name={item.league_name}
+                            country_logo={item.country_logo}
+                          />
                         )
                       );
                     })}
