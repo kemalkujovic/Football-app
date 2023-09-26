@@ -4,6 +4,7 @@ import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
   getLeague,
+  leagueFixtures,
   leagueResults,
   leagueStandings,
 } from "../../app/footballSlice";
@@ -35,6 +36,7 @@ const Countrys = () => {
   function resultsHandler(id) {
     dispatch(leagueResults(+id));
     dispatch(leagueStandings(+id));
+    dispatch(leagueFixtures(+id));
   }
 
   ////////

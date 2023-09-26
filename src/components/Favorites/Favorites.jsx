@@ -3,12 +3,17 @@ import { leagues } from "../../util/helper";
 import League from "../League/League";
 import classes from "./Favorites.module.css";
 import { useDispatch } from "react-redux";
-import { leagueResults, leagueStandings } from "../../app/footballSlice";
+import {
+  leagueFixtures,
+  leagueResults,
+  leagueStandings,
+} from "../../app/footballSlice";
 const Favorites = () => {
   const dispatch = useDispatch();
   function resultsHandler(id) {
     dispatch(leagueResults(+id));
     dispatch(leagueStandings(+id));
+    dispatch(leagueFixtures(+id));
   }
   return (
     <div className={classes.mainContainer}>

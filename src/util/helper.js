@@ -30,16 +30,17 @@ export function lastDays() {
   // Oduzimanje jednog dana od trenutnog datuma da biste dobili jučerašnji datum
   let jucerasnjiDatum = new Date(danasnjiDatum);
   jucerasnjiDatum.setDate(danasnjiDatum.getDate() - 6);
-
+  let sledeciSedamDana = new Date(danasnjiDatum);
+  sledeciSedamDana.setDate(danasnjiDatum.getDate() + 6);
   // Formatiranje datuma za današnji datum
   let danasnjiGodina = danasnjiDatum.getFullYear();
   let danasnjiMesec = danasnjiDatum.getMonth() + 1;
   let danasnjiDan = danasnjiDatum.getDate();
   let danasnjiFormatiranDatum =
     danasnjiGodina +
-    "/" +
+    "-" +
     (danasnjiMesec < 10 ? "0" + danasnjiMesec : danasnjiMesec) +
-    "/" +
+    "-" +
     (danasnjiDan < 10 ? "0" + danasnjiDan : danasnjiDan);
 
   // Formatiranje datuma za jučerašnji datum
@@ -52,11 +53,21 @@ export function lastDays() {
     (jucerasnjiMesec < 10 ? "0" + jucerasnjiMesec : jucerasnjiMesec) +
     "-" +
     (jucerasnjiDan < 10 ? "0" + jucerasnjiDan : jucerasnjiDan);
-
+  // Sledecih 7 dana
+  let sledecihGodina = sledeciSedamDana.getFullYear();
+  let sledeciMesec = sledeciSedamDana.getMonth() + 1;
+  let sledeciDan = sledeciSedamDana.getDate();
+  let sledeciFormatiranDatum =
+    sledecihGodina +
+    "-" +
+    (sledeciMesec < 10 ? "0" + sledeciMesec : sledeciMesec) +
+    "-" +
+    (sledeciDan < 10 ? "0" + sledeciDan : sledeciDan);
   // Vraćanje datuma u nizu ili objektu
   return {
     danasnjiDatum: danasnjiFormatiranDatum,
     jucerasnjiDatum: jucerasnjiFormatiranDatum,
+    sledeciDan: sledeciFormatiranDatum,
   };
 }
 export const leagues = [

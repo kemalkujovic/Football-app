@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { lastDays } from "../util/helper";
 const days = lastDays();
-
 const APIkey =
   "8e65fed9ff5ee695c483f88affb3575f58e67eaa9cdc096d6ceb9bd36e166691";
 const baseURL = "https://apiv3.apifootball.com/";
@@ -59,6 +58,20 @@ export const leagueStandings = createAsyncThunk(
     }
   }
 );
+export const leagueFixtures = createAsyncThunk(
+  "football/leagueFixtures",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_events&from=${days.danasnjiDatum}&to=${days.sledeciDan}&league_id=${api}&APIkey=${APIkey}`
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const footballSlice = createSlice({
   name: "football",
@@ -67,6 +80,7 @@ const footballSlice = createSlice({
     leagueData: [],
     leagueResults: [],
     leagueStandings: [],
+    fixtureMatches: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -126,6 +140,18 @@ const footballSlice = createSlice({
         state.leagueStandings = action.payload;
       })
       .addCase(leagueStandings.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Fixture matches
+      .addCase(leagueFixtures.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(leagueFixtures.fulfilled, (state, action) => {
+        state.loading = false;
+        state.fixtureMatches = action.payload;
+      })
+      .addCase(leagueFixtures.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

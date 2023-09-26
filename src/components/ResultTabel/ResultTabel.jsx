@@ -61,12 +61,27 @@ const ResultTabel = (props) => {
         </div>
         <div className={classes.resultsWrapper}>
           <div className={classes.finalResult}>
-            <p>{homeGoal}</p>
-            <p>{awayGoal}</p>
+            {homeGoal.length > 0 ? (
+              <span>
+                <p>{homeGoal}</p>
+                <p>{awayGoal}</p>
+              </span>
+            ) : (
+              <span>
+                <p>-</p>
+                <p>-</p>
+              </span>
+            )}
           </div>
           <div>
-            <p>({homeHalfGoal})</p>
-            <p>({awayHalfGoal})</p>
+            {homeHalfGoal.length > 0 ? (
+              <span>
+                <p>({homeHalfGoal})</p>
+                <p>({awayHalfGoal})</p>
+              </span>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </Grid>
