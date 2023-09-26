@@ -1,0 +1,13 @@
+.countryWrapper {
+  display: flex;
+  background-color: #eef7ff;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  border-radius: 5px;
+}
+.countryWrapper img {
+  width: 30px;
+  height: 30px;
+}
