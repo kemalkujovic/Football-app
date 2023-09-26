@@ -3,9 +3,9 @@ import TableCard from "./TableCard";
 
 const Table = () => {
   return (
-    <div>
+    <section>
       <TableCard />
-    </div>
+    </section>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   leagueResults,
   leagueStandings,
 } from "../../app/footballSlice";
+import TurnedInIcon from "@mui/icons-material/TurnedIn";
 const Favorites = () => {
   const dispatch = useDispatch();
   function resultsHandler(id) {
@@ -17,6 +18,10 @@ const Favorites = () => {
   }
   return (
     <div className={classes.mainContainer}>
+      <div className={classes.favouritesWrapper}>
+        <TurnedInIcon />
+        <p>FAVOURITES</p>
+      </div>
       {leagues?.map((item, index) => {
         return (
           <div className={classes.favoritesDiv} key={index}>

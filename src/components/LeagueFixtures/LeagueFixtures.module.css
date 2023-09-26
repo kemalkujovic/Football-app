@@ -1,7 +1,7 @@
 .countryWrapper {
   display: flex;
   background-color: #eef7ff;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   align-items: center;
   gap: 10px;
   color: black;
@@ -10,4 +10,13 @@
 .countryWrapper img {
   width: 30px;
   height: 30px;
+}
+section {
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 20px 0px;
+}
+.headerTittle h1 {
+  margin: 0;
+  padding: 10px 0px 10px 15px;
 }

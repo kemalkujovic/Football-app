@@ -8,6 +8,7 @@
   overflow-x: auto;
   margin: 0 auto;
   margin-top: 30px;
+  border-radius: 15px !important;
 }
 .relegationWrapper {
   background-color: rgb(189, 0, 0);

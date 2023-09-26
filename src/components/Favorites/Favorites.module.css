@@ -13,3 +13,13 @@
   width: 30px;
   height: 30px;
 }
+.favouritesWrapper {
+  margin: 0;
+  font-size: 16px;
+  padding-top: 20px;
+  border-bottom: 1px solid gray;
+  margin: 0px 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

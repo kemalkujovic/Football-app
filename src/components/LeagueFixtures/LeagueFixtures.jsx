@@ -11,8 +11,8 @@ const LeagueFixtures = () => {
         "No matches found"
       ) : (
         <>
-          <div>
-            <h3>Fixtures Matches</h3>
+          <div className={classes.headerTittle}>
+            <h1>Fixtures Matches</h1>
           </div>
           <div className={classes.countryWrapper}>
             <img
