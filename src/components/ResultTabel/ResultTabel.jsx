@@ -19,10 +19,11 @@ const ResultTabel = (props) => {
     <div className={classes.mainContainer}>
       <Grid
         marginLeft="20px"
-        width="70%"
+        width="72%"
         container
         item
         justifyContent="space-between"
+        className={classes.responsiveContainer}
       >
         <div className={classes.timeLogoWrapper}>
           <div className={classes.timeZoneWrapper}>

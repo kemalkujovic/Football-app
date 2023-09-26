@@ -52,3 +52,12 @@
   color: black;
   font-weight: 600;
 }
+@media only screen and (max-width: 1200px) {
+  .resultsWrapper {
+    width: 0px;
+  }
+  .responsiveContainer {
+    margin: 0px !important;
+    width: 100% !important;
+  }
+}

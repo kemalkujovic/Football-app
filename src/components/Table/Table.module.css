@@ -9,3 +9,21 @@
   margin: 0 auto;
   margin-top: 30px;
 }
+.relegationWrapper {
+  background-color: rgb(189, 0, 0);
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 1px;
+}
+.promotionWrapper {
+  display: flex;
+  background: rgb(0, 70, 130);
+  color: white;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 1px;
+}

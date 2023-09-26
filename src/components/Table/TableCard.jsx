@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 const TableCard = () => {
   const selector = useSelector((state) => state.football.leagueStandings);
+  console.log(selector);
+
   let brojac = 0;
   const mappedData = [];
   if (selector.length > 0) {
@@ -48,7 +50,20 @@ const TableCard = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row" width="5px">
-                  {team.overall_league_position}.
+                  <span
+                    className={
+                      team.overall_promotion.split(" ")[0] === "Relegation"
+                        ? classes.relegationWrapper
+                        : team.overall_promotion.split(" ")[0] === "Promotion"
+                        ? classes.promotionWrapper
+                        : team.overall_promotion.split(" ")[0] ===
+                          "Championship"
+                        ? classes.promotionWrapper
+                        : ""
+                    }
+                  >
+                    {team.overall_league_position}.
+                  </span>
                 </TableCell>
                 <TableCell component="th" scope="row">
                   <div className={classes.wrapperLogo}>
