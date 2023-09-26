@@ -4,6 +4,22 @@ import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
+  let sortedData;
+  if (selector.length > 0) {
+    sortedData = [...selector]?.sort((a, b) => {
+      if (a.match_date < b.match_date) return -1;
+
+      if (a.match_date > b.match_date) return 1;
+
+      if (a.match_date == b.match_date) {
+        if (a.match_time < b.match_time) return -1;
+
+        if (a.match_time > b.match_time) return 1;
+
+        return 0;
+      }
+    });
+  }
   return (
     <>
       {selector.error === 404 ? (
@@ -27,7 +43,7 @@ const ResultsCard = () => {
               <p> {selector[0]?.league_name}</p>
             </div>
             {selector.length > 0 &&
-              selector?.map((item) => {
+              sortedData?.map((item) => {
                 if (item.match_status === "Finished") {
                   return (
                     <ResultTabel

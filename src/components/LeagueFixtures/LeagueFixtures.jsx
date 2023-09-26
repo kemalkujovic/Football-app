@@ -5,6 +5,22 @@ import classes from "./LeagueFixtures.module.css";
 const LeagueFixtures = () => {
   const selector = useSelector((state) => state.football.fixtureMatches);
   console.log(selector);
+  let sortedData;
+  if (selector.length > 0) {
+    sortedData = [...selector]?.sort((a, b) => {
+      if (a.match_date < b.match_date) return -1;
+
+      if (a.match_date > b.match_date) return 1;
+
+      if (a.match_date == b.match_date) {
+        if (a.match_time < b.match_time) return -1;
+
+        if (a.match_time > b.match_time) return 1;
+
+        return 0;
+      }
+    });
+  }
   return (
     <div>
       {selector.error === 404 ? (
@@ -27,7 +43,7 @@ const LeagueFixtures = () => {
             <p> {selector[0]?.league_name}</p>
           </div>
           {selector.length > 0 &&
-            selector?.map((item) => {
+            sortedData?.map((item) => {
               if (item.match_status.length === 0) {
                 return (
                   <ResultTabel
