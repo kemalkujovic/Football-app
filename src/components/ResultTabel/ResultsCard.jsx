@@ -4,7 +4,6 @@ import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
-  console.log(selector);
   return (
     <>
       {selector.error === 404 ? (

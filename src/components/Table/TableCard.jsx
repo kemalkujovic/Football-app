@@ -1,43 +1,64 @@
-import { Grid } from "@mui/material";
-import React from "react";
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 const TableCard = () => {
+  const selector = useSelector((state) => state.football.leagueStandings);
+  console.log(selector);
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.tableHeader}>
-        <div className={classes.teamWrapper}>
-          <p>#</p>
-          <p>TIM</p>
-        </div>
-        <div className={classes.infoWrapper}>
-          <p>P</p>
-          <p>N</p>
-          <p>I</p>
-          <p>G</p>
-          <p>B</p>
-        </div>
-      </div>
-      <div className={classes.positionWrapper}>
-        <div className={classes.teamWrapper}>
-          <span>1.</span>
-          <span>
-            <img
-              src="https://static.flashscore.com/res/image/data/0vgscFU0-lQuhqN8N.png"
-              alt="Logo"
-            />
-            <p>Liverpool</p>
-          </span>
-        </div>
-        <div className={classes.resultsWrapper}>
-          <p>5</p>
-          <p>1</p>
-          <p>0</p>
-          <p>16:3</p>
-          <p>18</p>
-        </div>
-      </div>
-    </div>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>#</TableCell>
+            <TableCell>Team</TableCell>
+            <TableCell align="right">G</TableCell>
+            <TableCell align="right">P</TableCell>
+            <TableCell align="right">N</TableCell>
+            <TableCell align="right">I</TableCell>
+            <TableCell align="right">B</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {selector.length > 0 &&
+            selector?.map((team, index) => (
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row" width="5px">
+                  {team.overall_league_position}.
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <div className={classes.wrapperLogo}>
+                    <img
+                      width="30px"
+                      src={team.team_badge}
+                      alt=""
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = team.country_logo;
+                      }}
+                    />
+                    <p>{team.team_name}</p>
+                  </div>
+                </TableCell>
+                <TableCell align="right">{team.overall_league_payed}</TableCell>
+                <TableCell align="right">{team.overall_league_W}</TableCell>
+                <TableCell align="right">{team.overall_league_D}</TableCell>
+                <TableCell align="right">{team.overall_league_L}</TableCell>
+                <TableCell align="right">{team.overall_league_PTS}</TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
-
 export default TableCard;

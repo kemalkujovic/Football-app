@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { getLeague, leagueResults } from "../../app/footballSlice";
+import {
+  getLeague,
+  leagueResults,
+  leagueStandings,
+} from "../../app/footballSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
 const Countrys = () => {
   const [iconStates, setIconStates] = useState({});
-  const onClickHandler2 = (index) => {
+  const onClickIcons = (index) => {
     setIconStates((prevState) => ({
       ...prevState,
       [index]: !prevState[index],
@@ -19,7 +23,7 @@ const Countrys = () => {
   const dispatch = useDispatch();
   const onClickHandler = (id, index) => {
     dispatch(getLeague(id));
-    onClickHandler2(index);
+    onClickIcons(index);
     setIsOpen((isOpen) => {
       if (isOpen.includes(index)) {
         return isOpen.filter((i) => i !== index);
@@ -30,6 +34,7 @@ const Countrys = () => {
   };
   function resultsHandler(id) {
     dispatch(leagueResults(+id));
+    dispatch(leagueStandings(+id));
   }
 
   ////////
