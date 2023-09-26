@@ -1,0 +1,43 @@
+.positionWrapper span {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  font-size: 12px;
+  font-weight: 700;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+  background-color: rgb(0, 70, 130);
+  color: white;
+  padding: 2px;
+}
+
+.headerContainer {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  align-items: center;
+}
+.resultsContainer {
+  display: flex;
+  gap: 25px;
+}
+.resultsWrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.logoContainer img {
+  width: 25px;
+  height: 25px;
+}
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

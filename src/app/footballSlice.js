@@ -46,6 +46,19 @@ export const leagueResults = createAsyncThunk(
     }
   }
 );
+export const leagueStandings = createAsyncThunk(
+  "football/leagueStandings",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_standings&league_id=${api}&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const footballSlice = createSlice({
   name: "football",
@@ -53,6 +66,7 @@ const footballSlice = createSlice({
     footballData: [],
     leagueData: [],
     leagueResults: [],
+    leagueStandings: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -100,6 +114,18 @@ const footballSlice = createSlice({
         state.leagueResults = action.payload;
       })
       .addCase(leagueResults.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // League Standings (tablea)
+      .addCase(leagueStandings.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(leagueStandings.fulfilled, (state, action) => {
+        state.loading = false;
+        state.leagueStandings = action.payload;
+      })
+      .addCase(leagueStandings.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
