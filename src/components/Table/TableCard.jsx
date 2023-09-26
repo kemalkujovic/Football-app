@@ -59,7 +59,7 @@ const TableCard = () => {
                         : team.overall_promotion.split(" ")[0] ===
                           "Championship"
                         ? classes.promotionWrapper
-                        : ""
+                        : classes.obicno
                     }
                   >
                     {team.overall_league_position}.

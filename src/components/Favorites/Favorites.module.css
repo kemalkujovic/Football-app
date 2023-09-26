@@ -1,0 +1,15 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+.favoritesDiv div {
+  margin: 0px 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.favoritesDiv img {
+  width: 30px;
+  height: 30px;
+}

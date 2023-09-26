@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getFootball } from "../../app/footballSlice";
 import request from "../../axios/Request";
 import Countrys from "../../components/Countrys/Countrys";
+import Favorites from "../../components/Favorites/Favorites";
 const Sidebar = () => {
   const [country, setCountry] = useState([]);
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Sidebar = () => {
 
   return (
     <div className={classes.sideBarWrapper}>
+      <Favorites />
       <Countrys />
     </div>
   );

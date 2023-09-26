@@ -11,7 +11,14 @@ const ResultsCard = () => {
       ) : (
         <>
           <div className={classes.countryWrapper}>
-            <img src={selector[0]?.country_logo} alt="" />
+            <img
+              src={
+                selector[0]?.country_logo
+                  ? selector[0]?.country_logo
+                  : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
+              }
+              alt=""
+            />
             <p> {selector[0]?.league_name}</p>
           </div>
           {selector.length > 0 &&
