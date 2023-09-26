@@ -10,9 +10,24 @@ import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 const TableCard = () => {
   const selector = useSelector((state) => state.football.leagueStandings);
-  console.log(selector);
+  let brojac = 0;
+  const mappedData = [];
+  if (selector.length > 0) {
+    for (const item of selector) {
+      if (
+        brojac === 2 ||
+        (+item.overall_league_position === 1 && brojac === 1)
+      ) {
+        break;
+      }
+      mappedData.push(item);
+      if (+item.overall_league_position === 1) {
+        brojac++;
+      }
+    }
+  }
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.mainContainer}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -27,7 +42,7 @@ const TableCard = () => {
         </TableHead>
         <TableBody>
           {selector.length > 0 &&
-            selector?.map((team, index) => (
+            mappedData?.map((team, index) => (
               <TableRow
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -39,7 +54,7 @@ const TableCard = () => {
                   <div className={classes.wrapperLogo}>
                     <img
                       width="30px"
-                      src={team.team_badge}
+                      src={team?.team_badge}
                       alt=""
                       onError={(e) => {
                         e.target.onerror = null;
