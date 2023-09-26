@@ -28,7 +28,7 @@ const ResultsCard = () => {
             </div>
             {selector.length > 0 &&
               selector?.map((item) => {
-                if (item.match_status.length > 0) {
+                if (item.match_status === "Finished") {
                   return (
                     <ResultTabel
                       matchDate={item.match_date}
