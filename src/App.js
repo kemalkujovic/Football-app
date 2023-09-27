@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./Screens/Root";
 import HomePage from "./Screens/HomePage";
 import LeaguePage from "./Screens/LeaguePage";
+import Fudbal from "./Screens/Fudbal";
 function App() {
   const router = createBrowserRouter([
     {

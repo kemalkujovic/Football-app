@@ -39,6 +39,7 @@ export const leagueResults = createAsyncThunk(
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_events&from=${days.jucerasnjiDatum}&to=${days.danasnjiDatum}&league_id=${api}&APIkey=${APIkey}`
       );
+      console.log(data);
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -52,6 +53,7 @@ export const leagueStandings = createAsyncThunk(
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_standings&league_id=${api}&APIkey=${APIkey}`
       );
+
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -65,7 +67,6 @@ export const leagueFixtures = createAsyncThunk(
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_events&from=${days.danasnjiDatum}&to=${days.sledeciDan}&league_id=${api}&APIkey=${APIkey}`
       );
-      console.log(data);
       return data;
     } catch (error) {
       rejectWithValue(error.response.data);
@@ -126,6 +127,7 @@ const footballSlice = createSlice({
       .addCase(leagueResults.fulfilled, (state, action) => {
         state.loading = false;
         state.leagueResults = action.payload;
+        console.log(action.payload);
       })
       .addCase(leagueResults.rejected, (state, action) => {
         state.loading = false;

@@ -5,7 +5,7 @@ import classes from "./ResultTabel.module.css";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
   let sortedData;
-  if (selector.length > 0) {
+  if (selector?.length > 0) {
     sortedData = [...selector]?.sort((a, b) => {
       if (a.match_date < b.match_date) return -1;
 
@@ -22,7 +22,7 @@ const ResultsCard = () => {
   }
   return (
     <>
-      {selector.error === 404 ? (
+      {selector?.error === 404 ? (
         <p>No Data for This League</p>
       ) : (
         <>
@@ -37,12 +37,12 @@ const ResultsCard = () => {
                     ? selector[0]?.country_logo
                     : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
                 }
-                alt=""
+                alt="Logo"
               />
               <p>{selector[0]?.country_name}:</p>
               <p> {selector[0]?.league_name}</p>
             </div>
-            {selector.length > 0 &&
+            {selector?.length > 0 &&
               sortedData?.map((item) => {
                 if (item.match_status === "Finished") {
                   return (
@@ -65,7 +65,6 @@ const ResultsCard = () => {
                     />
                   );
                 }
-                // Ako uslov nije ispunjen, vratite null kako biste preskočili ovu stavku
                 return null;
               })}
           </section>

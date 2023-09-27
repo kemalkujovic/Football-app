@@ -13,7 +13,7 @@ const TableCard = () => {
 
   let brojac = 0;
   const mappedData = [];
-  if (selector.length > 0) {
+  if (selector?.length > 0) {
     for (const item of selector) {
       if (
         brojac === 2 ||
@@ -42,7 +42,7 @@ const TableCard = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {selector.length > 0 &&
+          {selector?.length > 0 &&
             mappedData?.map((team, index) => (
               <TableRow
                 key={index}

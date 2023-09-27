@@ -1,9 +1,10 @@
 import React from "react";
 
 const League = (props) => {
-  const { league_id, league_logo, country_logo, league_name, onClick } = props;
+  const { league_id, league_logo, country_logo, league_name } = props;
+
   return (
-    <div key={league_id} onClick={onClick}>
+    <div key={league_id}>
       <img
         src={league_logo}
         onError={(e) => {
