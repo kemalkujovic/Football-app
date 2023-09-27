@@ -6,11 +6,13 @@ import TurnedInIcon from "@mui/icons-material/TurnedIn";
 import { Link } from "react-router-dom";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { Button, Tooltip } from "@mui/material";
 const Favorites = () => {
   const { favorites, removeFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {
     removeFavorite(item);
   };
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.favouritesWrapper}>
@@ -30,7 +32,9 @@ const Favorites = () => {
                   country_logo={item.country_logo}
                 />
               </Link>
-              <StarBorderIcon onClick={() => handleIconClick(item)} />
+              <Tooltip title="Remove From Favorites" arrow>
+                <StarBorderIcon onClick={() => handleIconClick(item)} />
+              </Tooltip>
             </div>
           </div>
         );

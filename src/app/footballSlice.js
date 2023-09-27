@@ -59,6 +59,22 @@ export const leagueStandings = createAsyncThunk(
     }
   }
 );
+
+export const leagueTopScores = createAsyncThunk(
+  "football/leagueTopScores",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_topscorers&league_id=${api}&APIkey=${APIkey}`
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const leagueFixtures = createAsyncThunk(
   "football/leagueFixtures",
   async (api, { rejectWithValue }) => {

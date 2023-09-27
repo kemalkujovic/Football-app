@@ -9,12 +9,12 @@ import League from "../League/League";
 import { Link } from "react-router-dom";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
+import { Tooltip } from "@mui/material";
 const Countrys = () => {
   const { favorites, addFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {
     addFavorite(item);
   };
-  console.log(favorites);
   const [iconStates, setIconStates] = useState({});
   const onClickIcons = (index) => {
     setIconStates((prevState) => ({
@@ -77,9 +77,11 @@ const Countrys = () => {
                             country_logo={item.country_logo}
                           />
                         </Link>
-                        <TurnedInNotIcon
-                          onClick={() => handleIconClick(item)}
-                        />
+                        <Tooltip title="Add to Favorites" arrow>
+                          <TurnedInNotIcon
+                            onClick={() => handleIconClick(item)}
+                          />
+                        </Tooltip>
                       </div>
                     )
                   );
@@ -131,9 +133,11 @@ const Countrys = () => {
                                 country_logo={item.country_logo}
                               />
                             </Link>
-                            <TurnedInNotIcon
-                              onClick={() => handleIconClick(item)}
-                            />
+                            <Tooltip title="Add to Favorite" arrow>
+                              <TurnedInNotIcon
+                                onClick={() => handleIconClick(item)}
+                              />
+                            </Tooltip>
                           </div>
                         )
                       );

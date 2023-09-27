@@ -5,12 +5,12 @@ export const FavoriteContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
   const addFavorite = (country) => {
-    console.log(country);
     if (!favorites.includes(country)) {
       setFavorites((prevFavorites) => [...prevFavorites, country]);
     }
   };
 
+  // Funkcija za uklanjanje favorita
   const removeFavorite = (country) => {
     setFavorites((prevFavorites) =>
       prevFavorites.filter((fav) => fav !== country)
@@ -22,6 +22,9 @@ export const FavoriteContextProvider = ({ children }) => {
     if (storedFavorites && storedFavorites.length > 0) {
       setFavorites(storedFavorites);
     }
+    //  else {
+    //   setFavorites(leagues);
+    // }
   }, []);
 
   useEffect(() => {
