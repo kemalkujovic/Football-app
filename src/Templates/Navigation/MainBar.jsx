@@ -5,11 +5,13 @@ import classes from "./MainBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
-
+import ScrollToTop from "react-scroll-to-top";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 const MainBar = (title, icons) => {
   return (
     <>
       <div className={classes.mainBar}>
+        <ScrollToTop smooth component={<ArrowUpwardIcon />} />
         <Grid>
           <Link to="/">
             <img src={logo} alt="Logo" className={classes.logo} />
