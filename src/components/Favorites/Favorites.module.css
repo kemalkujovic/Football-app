@@ -27,3 +27,7 @@
 .favoritesDiv:hover {
   background-color: rgb(202, 198, 198);
 }
+a {
+  text-decoration: none;
+  color: black;
+}

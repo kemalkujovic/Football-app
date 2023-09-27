@@ -19,14 +19,16 @@ const Navigation = (title, icons) => {
 
   return (
     <>
-      <Grid className={classes.mainGrid}>
-        <MainBar />
-        <div className={classes.linkWrapper}>
-          {data.map((el, index) => {
-            return <LinkBar key={index} title={el.title} icons={el.icon} />;
-          })}
-        </div>
-      </Grid>
+      <header className={classes.headerContainer}>
+        <Grid className={classes.mainGrid}>
+          <MainBar />
+          <div className={classes.linkWrapper}>
+            {data.map((el, index) => {
+              return <LinkBar key={index} title={el.title} icons={el.icon} />;
+            })}
+          </div>
+        </Grid>
+      </header>
     </>
   );
 };

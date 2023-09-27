@@ -14,7 +14,6 @@ const ResultTabel = (props) => {
     awayGoal,
     homeHalfGoal,
     awayHalfGoal,
-    matchStatus,
   } = props;
   return (
     <div className={classes.mainContainer}>

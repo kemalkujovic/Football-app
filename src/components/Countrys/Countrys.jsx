@@ -11,6 +11,7 @@ import {
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
+import { Link } from "react-router-dom";
 const Countrys = () => {
   const [iconStates, setIconStates] = useState({});
   const onClickIcons = (index) => {
@@ -69,14 +70,16 @@ const Countrys = () => {
                 {selector2.map((item) => {
                   return (
                     +item.country_id === +el.country_id && (
-                      <League
-                        key={item.league_id}
-                        league_logo={item.league_logo}
-                        league_id={item.league_id}
-                        league_name={item.league_name}
-                        country_logo={item.country_logo}
-                        onClick={() => resultsHandler(item.league_id)}
-                      />
+                      <Link to={`/league/${item.league_name}`}>
+                        <League
+                          key={item.league_id}
+                          league_logo={item.league_logo}
+                          league_id={item.league_id}
+                          league_name={item.league_name}
+                          country_logo={item.country_logo}
+                          onClick={() => resultsHandler(item.league_id)}
+                        />
+                      </Link>
                     )
                   );
                 })}
@@ -117,14 +120,16 @@ const Countrys = () => {
                     {selector2.map((item) => {
                       return (
                         +item.country_id === +el.country_id && (
-                          <League
-                            key={item.league_id}
-                            league_logo={item.league_logo}
-                            league_id={item.league_id}
-                            league_name={item.league_name}
-                            country_logo={item.country_logo}
-                            onClick={() => resultsHandler(item.league_id)}
-                          />
+                          <Link to={`/league/${item.league_name}`}>
+                            <League
+                              key={item.league_id}
+                              league_logo={item.league_logo}
+                              league_id={item.league_id}
+                              league_name={item.league_name}
+                              country_logo={item.country_logo}
+                              onClick={() => resultsHandler(item.league_id)}
+                            />
+                          </Link>
                         )
                       );
                     })}

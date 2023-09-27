@@ -1,13 +1,24 @@
-import classes from "./App.module.css";
-import Main from "./Templates/Main/Main";
-import Navigation from "./Templates/Navigation/Navigation";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Root from "./Screens/Root";
+import HomePage from "./Screens/HomePage";
+import LeaguePage from "./Screens/LeaguePage";
 function App() {
-  return (
-    <div className={classes.mainContainer}>
-      <Navigation />
-      <Main />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Root />,
+      errorElement: <Root />,
+      children: [
+        {
+          path: "/",
+          element: <HomePage />,
+        },
+        { path: "/league/:projectsId", element: <LeaguePage /> },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={router} />;
 }
 
 export default App;

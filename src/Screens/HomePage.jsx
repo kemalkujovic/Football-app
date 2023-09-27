@@ -1,7 +1,8 @@
 import React from "react";
 
+import Main from "../Templates/Main/Main";
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <Main />;
 };
 
 export default HomePage;

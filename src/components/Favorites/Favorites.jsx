@@ -9,6 +9,7 @@ import {
   leagueStandings,
 } from "../../app/footballSlice";
 import TurnedInIcon from "@mui/icons-material/TurnedIn";
+import { Link } from "react-router-dom";
 const Favorites = () => {
   const dispatch = useDispatch();
   function resultsHandler(id) {
@@ -25,14 +26,16 @@ const Favorites = () => {
       {leagues?.map((item, index) => {
         return (
           <div className={classes.favoritesDiv} key={index}>
-            <League
-              key={item.league_id}
-              league_logo={item.league_logo}
-              league_id={item.league_id}
-              league_name={item.league_name}
-              country_logo={item.country_logo}
-              onClick={() => resultsHandler(item.league_id)}
-            />
+            <Link to={`/league/${item.league_name}`}>
+              <League
+                key={item.league_id}
+                league_logo={item.league_logo}
+                league_id={item.league_id}
+                league_name={item.league_name}
+                country_logo={item.country_logo}
+                onClick={() => resultsHandler(item.league_id)}
+              />
+            </Link>
           </div>
         );
       })}

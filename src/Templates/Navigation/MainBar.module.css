@@ -52,3 +52,7 @@
 .active {
   color: #6c98a8;
 }
+.headerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}

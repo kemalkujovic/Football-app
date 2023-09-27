@@ -4,13 +4,16 @@ import logo from "../../assets/images/logo.png";
 import classes from "./MainBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "react-router-dom";
 
 const MainBar = (title, icons) => {
   return (
     <>
       <div className={classes.mainBar}>
         <Grid>
-          <img src={logo} alt="Logo" className={classes.logo} />
+          <Link to="/">
+            <img src={logo} alt="Logo" className={classes.logo} />
+          </Link>
         </Grid>
         <Grid display="flex" alignItems="center">
           <div className={classes.searchIcon}>

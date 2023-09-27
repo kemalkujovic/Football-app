@@ -4,7 +4,6 @@ import ResultTabel from "../ResultTabel/ResultTabel";
 import classes from "./LeagueFixtures.module.css";
 const LeagueFixtures = () => {
   const selector = useSelector((state) => state.football.fixtureMatches);
-  console.log(selector);
   let sortedData;
   if (selector.length > 0) {
     sortedData = [...selector]?.sort((a, b) => {

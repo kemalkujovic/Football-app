@@ -1,7 +1,13 @@
 import React from "react";
 
+import Main from "../Templates/Main/Main";
+
 const LeaguePage = () => {
-  return <div>LeaguePage</div>;
+  return (
+    <div>
+      <Main />
+    </div>
+  );
 };
 
 export default LeaguePage;
