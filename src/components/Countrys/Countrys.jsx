@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -7,7 +7,14 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
 import { Link } from "react-router-dom";
+import { FavoriteContext } from "../../context/FavoriteContext";
+import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 const Countrys = () => {
+  const { favorites, addFavorite } = useContext(FavoriteContext);
+  const handleIconClick = (item) => {
+    addFavorite(item);
+  };
+  console.log(favorites);
   const [iconStates, setIconStates] = useState({});
   const onClickIcons = (index) => {
     setIconStates((prevState) => ({
@@ -34,7 +41,7 @@ const Countrys = () => {
   const [more, setMore] = useState(false);
   const selector = useSelector((state) => state.football.footballData);
   const country = selector.slice(0, 10);
-  const dataCountrys = selector.slice(10, 70);
+  const dataCountrys = selector.slice(10, 140);
   const [isOpen, setIsOpen] = useState([]);
 
   return (
@@ -60,15 +67,20 @@ const Countrys = () => {
                 {selector2.map((item) => {
                   return (
                     +item.country_id === +el.country_id && (
-                      <Link to={`/league/${item.league_id}`}>
-                        <League
-                          key={item.league_id}
-                          league_logo={item.league_logo}
-                          league_id={item.league_id}
-                          league_name={item.league_name}
-                          country_logo={item.country_logo}
+                      <div>
+                        <Link to={`/league/${item.league_id}`}>
+                          <League
+                            key={item.league_id}
+                            league_logo={item.league_logo}
+                            league_id={item.league_id}
+                            league_name={item.league_name}
+                            country_logo={item.country_logo}
+                          />
+                        </Link>
+                        <TurnedInNotIcon
+                          onClick={() => handleIconClick(item)}
                         />
-                      </Link>
+                      </div>
                     )
                   );
                 })}
@@ -109,15 +121,20 @@ const Countrys = () => {
                     {selector2.map((item) => {
                       return (
                         +item.country_id === +el.country_id && (
-                          <Link to={`/league/${item.league_id}`}>
-                            <League
-                              key={item.league_id}
-                              league_logo={item.league_logo}
-                              league_id={item.league_id}
-                              league_name={item.league_name}
-                              country_logo={item.country_logo}
+                          <div>
+                            <Link to={`/league/${item.league_id}`}>
+                              <League
+                                key={item.league_id}
+                                league_logo={item.league_logo}
+                                league_id={item.league_id}
+                                league_name={item.league_name}
+                                country_logo={item.country_logo}
+                              />
+                            </Link>
+                            <TurnedInNotIcon
+                              onClick={() => handleIconClick(item)}
                             />
-                          </Link>
+                          </div>
                         )
                       );
                     })}
