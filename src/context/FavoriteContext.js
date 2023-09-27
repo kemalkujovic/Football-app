@@ -22,7 +22,7 @@ export const FavoriteContextProvider = ({ children }) => {
     if (storedFavorites && storedFavorites.length > 0) {
       setFavorites(storedFavorites);
     }
-    //  else {
+    // else {
     //   setFavorites(leagues);
     // }
   }, []);

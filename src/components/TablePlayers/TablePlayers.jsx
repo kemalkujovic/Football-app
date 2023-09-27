@@ -25,9 +25,9 @@ const TablePlayers = () => {
           </TableHead>
           <TableBody>
             {selector.length > 0 &&
-              selector?.map((row) => (
+              selector?.map((row, index) => (
                 <TableRow
-                  key={row.name}
+                  key={index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row" width="5px">
