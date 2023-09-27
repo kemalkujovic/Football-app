@@ -6,10 +6,12 @@ import {
   leagueFixtures,
   leagueResults,
   leagueStandings,
+  leagueTopScores,
 } from "../app/footballSlice";
 import Sidebar from "../Templates/Sidebar/Sidebar";
 import Layout from "../Templates/Layout/Layout";
 import { Grid } from "@mui/material";
+import TopScores from "../components/TablePlayers/TopScores";
 
 const LeaguePage = () => {
   const { projectsId } = useParams();
@@ -19,6 +21,7 @@ const LeaguePage = () => {
     dispatch(leagueResults(projectsId));
     dispatch(leagueStandings(projectsId));
     dispatch(leagueFixtures(projectsId));
+    dispatch(leagueTopScores(projectsId));
   }, [projectsId]);
   return (
     <div>
@@ -28,6 +31,7 @@ const LeaguePage = () => {
         </Grid>
         <Grid lg={10} md={9} sm={8} xs={8} item>
           <Layout />
+          <TopScores />
         </Grid>
       </Grid>
     </div>

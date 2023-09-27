@@ -97,6 +97,7 @@ const footballSlice = createSlice({
     leagueResults: [],
     leagueStandings: [],
     fixtureMatches: [],
+    leagueTopScores: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -168,6 +169,18 @@ const footballSlice = createSlice({
         state.fixtureMatches = action.payload;
       })
       .addCase(leagueFixtures.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // League Top Scores
+      .addCase(leagueTopScores.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(leagueTopScores.fulfilled, (state, action) => {
+        state.loading = false;
+        state.leagueTopScores = action.payload;
+      })
+      .addCase(leagueTopScores.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
