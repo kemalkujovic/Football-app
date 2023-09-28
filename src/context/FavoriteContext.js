@@ -3,8 +3,8 @@ import { leagues } from "../util/helper";
 export const FavoriteContext = createContext();
 
 const getInitalState = () => {
-  const team = localStorage.getItem("team");
-  return team ? JSON.parse(team) : initTeam;
+  const league = localStorage.getItem("league");
+  return league ? JSON.parse(league) : initTeam;
 };
 
 const initTeam = leagues;
@@ -21,7 +21,6 @@ export const FavoriteContextProvider = ({ children }) => {
     }
   };
 
-  // Funkcija za uklanjanje favorita
   const removeFavorite = (country) => {
     setFavorites((prevFavorites) => {
       const newLeague = prevFavorites.filter((fav) => fav !== country);
@@ -29,23 +28,8 @@ export const FavoriteContextProvider = ({ children }) => {
     });
   };
   useEffect(() => {
-    localStorage.setItem("team", JSON.stringify(favorites));
+    localStorage.setItem("league", JSON.stringify(favorites));
   }, [favorites]);
-
-  // useEffect(() => {
-  //   const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
-  //   if (storedFavorites && storedFavorites.length > 0) {
-  //     setFavorites(storedFavorites);
-  //   }
-
-  //   // else {
-  //   //   setFavorites(leagues);
-  //   // }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("favorites", JSON.stringify(favorites));
-  // }, [favorites]);
 
   return (
     <FavoriteContext.Provider
