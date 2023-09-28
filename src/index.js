@@ -6,15 +6,17 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./app/store";
 import { FavoriteContextProvider } from "./context/FavoriteContext";
-
+import { SidebarProvider } from "./context/SideBarContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <FavoriteContextProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </FavoriteContextProvider>
+    <SidebarProvider>
+      <FavoriteContextProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </FavoriteContextProvider>
+    </SidebarProvider>
   </React.StrictMode>
 );
 

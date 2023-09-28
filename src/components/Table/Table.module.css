@@ -4,10 +4,9 @@
   gap: 10px;
 }
 .mainContainer {
-  width: 90%;
+  width: 96%;
   overflow-x: auto;
   margin: 0 auto;
-  margin-top: 30px;
   border-radius: 15px !important;
 }
 .relegationWrapper {
@@ -34,4 +33,38 @@
   justify-content: center;
   border-radius: 5px;
   padding: 1px;
+}
+.buttonsWrapper {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+}
+.buttonsWrapper button {
+  align-items: center;
+  appearance: none;
+  background-color: #eee;
+  border-radius: 8px;
+  color: #555e61;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  height: 28px;
+  letter-spacing: 0.4px;
+  margin: initial;
+  padding: 0px 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+}
+.active {
+  color: white !important;
+  background-color: #ff0046 !important;
+}
+
+@media screen and (max-width: 650px) {
+  table {
+    min-width: 400px !important;
+  }
 }

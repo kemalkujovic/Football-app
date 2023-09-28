@@ -38,7 +38,7 @@ const TablePlayers = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row" width="5px">
-                      {row.player_place}
+                      {row.player_place}.
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {row.player_name}

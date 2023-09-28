@@ -12,7 +12,7 @@ import Sidebar from "../Templates/Sidebar/Sidebar";
 import Layout from "../Templates/Layout/Layout";
 import { Grid } from "@mui/material";
 import TopScores from "../components/TablePlayers/TopScores";
-
+import classes from "./HomePage.module.css";
 const LeaguePage = () => {
   const { projectsId } = useParams();
   const dispatch = useDispatch();
@@ -26,12 +26,18 @@ const LeaguePage = () => {
   return (
     <div>
       <Grid lg={12} item container direction="row">
-        <Grid lg={2} md={3} sm={4} xs={4} item>
+        <Grid lg={2} md={3} sm={3} item className={classes.responsiveContainer}>
           <Sidebar />
         </Grid>
-        <Grid lg={10} md={9} sm={8} xs={8} item>
+        <Grid
+          lg={10}
+          md={9}
+          sm={9}
+          xs={12}
+          item
+          className={classes.responsiveLayout}
+        >
           <Layout />
-          <TopScores />
         </Grid>
       </Grid>
     </div>

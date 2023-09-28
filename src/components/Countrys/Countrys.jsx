@@ -46,7 +46,7 @@ const Countrys = () => {
 
   return (
     <div className={classes.mainCointainer}>
-      <h1>ZEMLJE</h1>
+      <h1>COUNTRIES</h1>
       {country.map((el, index) => {
         return (
           <div

@@ -5,3 +5,12 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+@media screen and (max-width: 768px) {
+  .responsiveContainer {
+    display: none;
+  }
+  .responsiveLayout {
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+  }
+}
