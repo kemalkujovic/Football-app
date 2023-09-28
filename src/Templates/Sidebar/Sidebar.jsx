@@ -5,11 +5,9 @@ import { getFootball } from "../../app/footballSlice";
 import request from "../../axios/Request";
 import Countrys from "../../components/Countrys/Countrys";
 import Favorites from "../../components/Favorites/Favorites";
-import { SidebarContext } from "../../context/SideBarContext";
 const Sidebar = () => {
   const [country, setCountry] = useState([]);
   const dispatch = useDispatch();
-  const { isSidebarVisible } = useContext(SidebarContext);
   useEffect(() => {
     async function fetchCountrys() {
       const data = await dispatch(getFootball(request.getCountrys));
@@ -19,11 +17,8 @@ const Sidebar = () => {
 
     fetchCountrys();
   }, [dispatch]);
-
   return (
-    <div
-      className={`${!isSidebarVisible ? classes.hideSideBar : classes.sidebar}`}
-    >
+    <div>
       <Favorites />
       <Countrys />
     </div>

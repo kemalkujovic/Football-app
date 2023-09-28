@@ -8,11 +8,16 @@ import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Hamburger from "hamburger-react";
-const MainBar = (title, icons) => {
-  const [isOpen, setOpen] = useState(false);
-  const toggleMenuHandler = () => {
-    setOpen(false);
-  };
+import Sidebar from "../Sidebar/Sidebar";
+import { SidebarContext } from "../../context/SideBarContext";
+const MainBar = () => {
+  const { isOpen, handleClick, setOpen } = useContext(SidebarContext);
+
+  if (isOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
   return (
     <>
       <div className={classes.mainBar}>
@@ -40,6 +45,13 @@ const MainBar = (title, icons) => {
           </div>
         </Grid>
       </div>
+      {isOpen && (
+        <div className={classes["menu-container"]}>
+          <div className={classes["fade-in-text"]}>
+            <Sidebar />
+          </div>
+        </div>
+      )}
     </>
   );
 };

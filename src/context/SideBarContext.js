@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const SidebarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
+  const [isOpen, setOpen] = useState(false);
   const [isSidebarVisible, setIsSidebarVisible] = useState(
     window.innerWidth <= 768
   );
@@ -27,8 +28,14 @@ export const SidebarProvider = ({ children }) => {
     setIsSidebarVisible(!isSidebarVisible);
   }
 
+  const handleClick = () => {
+    setOpen(!isOpen);
+  };
+
   return (
-    <SidebarContext.Provider value={{ isSidebarVisible, toggleSidebar }}>
+    <SidebarContext.Provider
+      value={{ isSidebarVisible, toggleSidebar, handleClick, isOpen, setOpen }}
+    >
       {children}
     </SidebarContext.Provider>
   );
