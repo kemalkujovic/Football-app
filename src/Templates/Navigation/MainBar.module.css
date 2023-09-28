@@ -49,10 +49,28 @@
 .linkWrapper:hover {
   color: #6c98a8;
 }
-.active {
-  color: #6c98a8;
-}
+
 .headerContainer {
   max-width: 1200px;
   margin: 0 auto;
+}
+.hamburgerIcon {
+  display: none;
+  z-index: 100;
+}
+.activeMenu {
+  top: 0;
+  right: 10px;
+  z-index: 100;
+}
+@media screen and (max-width: 768px) {
+  .top-menu {
+    display: none;
+    z-index: 100;
+  }
+
+  .hamburgerIcon {
+    font-size: 35px;
+    display: block;
+  }
 }

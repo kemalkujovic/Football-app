@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import classes from "./MainBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,7 +7,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Link } from "react-router-dom";
 import ScrollToTop from "react-scroll-to-top";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import Hamburger from "hamburger-react";
 const MainBar = (title, icons) => {
+  const [isOpen, setOpen] = useState(false);
+  const toggleMenuHandler = () => {
+    setOpen(false);
+  };
   return (
     <>
       <div className={classes.mainBar}>
@@ -24,6 +29,14 @@ const MainBar = (title, icons) => {
           <div className={classes.searchIcon}>
             <PersonIcon />
             <p>Login</p>
+          </div>
+          <div className={isOpen ? classes.activeMenu : classes.hamburgerIcon}>
+            <Hamburger
+              toggled={isOpen}
+              toggle={setOpen}
+              duration={0.6}
+              color="white"
+            />
           </div>
         </Grid>
       </div>
