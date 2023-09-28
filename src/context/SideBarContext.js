@@ -29,7 +29,9 @@ export const SidebarProvider = ({ children }) => {
   }
 
   const handleClick = () => {
-    setOpen(!isOpen);
+    if (window.innerWidth < 768) {
+      setOpen(!isOpen);
+    }
   };
 
   return (

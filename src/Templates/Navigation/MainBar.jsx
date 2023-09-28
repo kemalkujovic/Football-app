@@ -11,7 +11,7 @@ import Hamburger from "hamburger-react";
 import Sidebar from "../Sidebar/Sidebar";
 import { SidebarContext } from "../../context/SideBarContext";
 const MainBar = () => {
-  const { isOpen, handleClick, setOpen } = useContext(SidebarContext);
+  const { isOpen, setOpen } = useContext(SidebarContext);
 
   if (isOpen) {
     document.body.style.overflow = "hidden";
@@ -21,7 +21,11 @@ const MainBar = () => {
   return (
     <>
       <div className={classes.mainBar}>
-        <ScrollToTop smooth component={<ArrowUpwardIcon />} />
+        <ScrollToTop
+          style={{ background: "#0f2d37", color: "white" }}
+          smooth
+          component={<ArrowUpwardIcon />}
+        />
         <Grid>
           <Link to="/">
             <img src={logo} alt="Logo" className={classes.logo} />
