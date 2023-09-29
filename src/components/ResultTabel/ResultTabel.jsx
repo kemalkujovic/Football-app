@@ -15,6 +15,7 @@ const ResultTabel = (props) => {
     homeHalfGoal,
     awayHalfGoal,
   } = props;
+  console.log(matchDate.split("-").slice(1).join("."));
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -27,7 +28,7 @@ const ResultTabel = (props) => {
       >
         <div className={classes.timeLogoWrapper}>
           <div className={classes.timeZoneWrapper}>
-            <p>{matchDate}</p>
+            <p>{matchDate.split("-").slice(1).join(".")}</p>
             <p>{matchTime}</p>
           </div>
           <div className={classes.clubsWrapper}>

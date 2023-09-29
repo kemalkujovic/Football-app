@@ -29,7 +29,7 @@ export function lastDays() {
 
   // Oduzimanje jednog dana od trenutnog datuma da biste dobili jučerašnji datum
   let jucerasnjiDatum = new Date(danasnjiDatum);
-  jucerasnjiDatum.setDate(danasnjiDatum.getDate() - 6);
+  jucerasnjiDatum.setDate(danasnjiDatum.getDate() - 7);
   let sledeciSedamDana = new Date(danasnjiDatum);
   sledeciSedamDana.setDate(danasnjiDatum.getDate() + 6);
   // Formatiranje datuma za današnji datum

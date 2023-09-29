@@ -59,6 +59,10 @@
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;
+    margin-right: 20px;
+  }
+  .timeLogoWrapper {
+    margin-left: 25px;
   }
   .responsiveContainer {
     margin: 0px !important;

@@ -26,7 +26,9 @@ const TablePlayers = () => {
                 <TableCell>#</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell align="left">TEAM</TableCell>
-                <TableCell align="right">G</TableCell>
+                <TableCell align="right" style={{ fontWeight: 600 }}>
+                  G
+                </TableCell>
                 <TableCell align="right">A</TableCell>
               </TableRow>
             </TableHead>
@@ -37,14 +39,23 @@ const TablePlayers = () => {
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row" width="5px">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      width="5px"
+                      style={{ fontWeight: 600 }}
+                    >
                       {row.player_place}.
                     </TableCell>
                     <TableCell component="th" scope="row">
                       {row.player_name}
                     </TableCell>
                     <TableCell align="left">{row.team_name}</TableCell>
-                    <TableCell align="right" width="5px">
+                    <TableCell
+                      align="right"
+                      width="5px"
+                      style={{ fontWeight: 600 }}
+                    >
                       {row.goals}
                     </TableCell>
                     <TableCell align="right" width="5px">

@@ -53,10 +53,11 @@
   height: 28px;
   letter-spacing: 0.4px;
   margin: initial;
-  padding: 0px 12px;
+  /* padding: 0px 12px; */
   text-decoration: none;
   text-transform: uppercase;
   border: none;
+  padding: 18px;
 }
 .active {
   color: white !important;
