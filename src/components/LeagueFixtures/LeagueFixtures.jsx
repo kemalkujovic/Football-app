@@ -54,7 +54,7 @@ const LeagueFixtures = () => {
                   return (
                     <React.Fragment key={index}>
                       <span className={classes.roundWrapper}>
-                        {item.match_round}. KOLO
+                        ROUND {item.match_round}
                       </span>
                       <ResultTabel
                         matchDate={item.match_date}
