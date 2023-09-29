@@ -5,27 +5,28 @@ import { Grid } from "@mui/material";
 import classes from "./MainBar.module.css";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import StarIcon from "@mui/icons-material/Star";
-const Navigation = (title, icons) => {
-  const data = [
-    {
-      title: "FAVORITI",
-      icon: <StarIcon />,
-    },
-    {
-      title: "FUDBAL",
-      icon: <SportsSoccerIcon />,
-    },
-  ];
-
+import { Link } from "react-router-dom";
+const Navigation = () => {
   return (
     <>
       <header className={classes.headerContainer}>
         <Grid className={classes.mainGrid}>
           <MainBar />
           <div className={classes.linkWrapper}>
-            {data.map((el, index) => {
-              return <LinkBar key={index} title={el.title} icons={el.icon} />;
-            })}
+            <div className={classes.linkButtonWrapper}>
+              <div className={classes.linkWrapper}>
+                <Link to="favorite">
+                  <StarIcon />
+                  <span>FAVORITI</span>
+                </Link>
+              </div>
+              <div className={classes.linkWrapper}>
+                <Link to="/">
+                  <SportsSoccerIcon />
+                  <span>FUDBAL</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </Grid>
       </header>

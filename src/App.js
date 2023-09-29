@@ -3,6 +3,7 @@ import Root from "./Screens/Root";
 import HomePage from "./Screens/HomePage";
 import LeaguePage from "./Screens/LeaguePage";
 import Fudbal from "./Screens/Fudbal";
+import FavoritePage from "./Screens/FavoritePage";
 function App() {
   const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ function App() {
         {
           path: "/",
           element: <HomePage />,
+        },
+        {
+          path: "/favorite",
+          element: <FavoritePage />,
         },
         { path: "/league/:projectsId", element: <LeaguePage /> },
       ],

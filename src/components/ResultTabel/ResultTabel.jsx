@@ -1,6 +1,8 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import classes from "./ResultTabel.module.css";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { Tooltip } from "@mui/material";
 const ResultTabel = (props) => {
   const {
     countryLogo,
@@ -15,7 +17,7 @@ const ResultTabel = (props) => {
     homeHalfGoal,
     awayHalfGoal,
   } = props;
-  console.log(matchDate.split("-").slice(1).join("."));
+
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -28,6 +30,9 @@ const ResultTabel = (props) => {
       >
         <div className={classes.timeLogoWrapper}>
           <div className={classes.timeZoneWrapper}>
+            <Tooltip title="Add to Favorites" arrow>
+              <StarBorderIcon />
+            </Tooltip>
             <p>{matchDate.split("-").slice(1).join(".")}</p>
             <p>{matchTime}</p>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./MainBar.module.css";
-const LinkBar = (props, icons) => {
+import { Link } from "react-router-dom";
+const LinkBar = (props) => {
   return (
     <>
       <div className={classes.linkButtonWrapper}>
