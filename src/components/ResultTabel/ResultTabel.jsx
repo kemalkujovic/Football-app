@@ -1,9 +1,13 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./ResultTabel.module.css";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 import { Tooltip } from "@mui/material";
+import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 const ResultTabel = (props) => {
+  const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
+  const [isFavorite, setIsFavorite] = useState(false);
   const {
     countryLogo,
     matchDate,
@@ -16,8 +20,24 @@ const ResultTabel = (props) => {
     awayGoal,
     homeHalfGoal,
     awayHalfGoal,
+    item,
   } = props;
 
+  const toggleFavorite = (item) => {
+    if (isFavorite) {
+      removeFavorite(item);
+      setIsFavorite(false);
+    } else {
+      addFavorite(item);
+      setIsFavorite(true);
+    }
+  };
+
+  useEffect(() => {
+    const matchData = JSON.parse(localStorage.getItem("match"));
+    const data = matchData?.some((el) => el?.match_id === item?.match_id);
+    setIsFavorite(data);
+  }, [item]);
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -30,10 +50,16 @@ const ResultTabel = (props) => {
       >
         <div className={classes.timeLogoWrapper}>
           <div className={classes.timeZoneWrapper}>
-            <Tooltip title="Add to Favorites" arrow>
-              <StarBorderIcon />
-            </Tooltip>
-            <p>{matchDate.split("-").slice(1).join(".")}</p>
+            {isFavorite ? (
+              <Tooltip title="Remove from Favorites" arrow>
+                <StarIcon onClick={() => toggleFavorite(item)} />
+              </Tooltip>
+            ) : (
+              <Tooltip title="Add to Favorites" arrow>
+                <StarBorderIcon onClick={() => toggleFavorite(item)} />
+              </Tooltip>
+            )}
+            <p>{matchDate?.split("-").slice(1).join(".")}</p>
             <p>{matchTime}</p>
           </div>
           <div className={classes.clubsWrapper}>
@@ -67,7 +93,7 @@ const ResultTabel = (props) => {
         </div>
         <div className={classes.resultsWrapper}>
           <div className={classes.finalResult}>
-            {homeGoal.length > 0 ? (
+            {homeGoal?.length > 0 ? (
               <span>
                 <p>{homeGoal}</p>
                 <p>{awayGoal}</p>
@@ -80,7 +106,7 @@ const ResultTabel = (props) => {
             )}
           </div>
           <div>
-            {homeHalfGoal.length > 0 ? (
+            {homeHalfGoal?.length > 0 ? (
               <span>
                 <p>({homeHalfGoal})</p>
                 <p>({awayHalfGoal})</p>
