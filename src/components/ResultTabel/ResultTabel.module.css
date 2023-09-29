@@ -56,6 +56,17 @@
   margin: 0;
   padding: 10px 0px 10px 15px;
 }
+
+.roundWrapper {
+  background: #eeeeee;
+  border-radius: 10px;
+  color: black;
+  display: flex;
+  width: 96%;
+  margin: auto;
+  padding: 7px;
+  margin-top: 10px;
+}
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;
