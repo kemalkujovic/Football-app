@@ -71,6 +71,7 @@ const LeagueFixtures = () => {
                         leagueName={item.league_name}
                         countryLogo={item.country_logo}
                         key={item.match_id}
+                        item={item}
                       />
                     </React.Fragment>
                   );
@@ -92,6 +93,7 @@ const LeagueFixtures = () => {
                       countryLogo={item.country_logo}
                       matchStatus={item.match_status}
                       key={item.match_id}
+                      item={item}
                     />
                   );
                 }

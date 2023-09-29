@@ -11,7 +11,7 @@ export const FavoriteMatchContextProvider = ({ children }) => {
 
   const addFavorite = (country) => {
     if (
-      !matchFavorit.some((favorite) => favorite.match_id === country.match_id)
+      !matchFavorit.some((favorite) => favorite?.match_id === country?.match_id)
     ) {
       setMatchFavorites((prevFavorites) => [...prevFavorites, country]);
     }

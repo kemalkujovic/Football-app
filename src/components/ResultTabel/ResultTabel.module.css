@@ -67,6 +67,12 @@
   padding: 7px;
   margin-top: 10px;
 }
+.timeZoneWrapper div {
+  display: flex;
+}
+/* .starWrapper {
+  display: flex;
+} */
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;
