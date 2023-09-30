@@ -53,12 +53,19 @@ const ResultTabel = (props) => {
           <div className={classes.timeZoneWrapper}>
             {isFavorite ? (
               <Tooltip title="Remove from Favorites" arrow>
-                <StarIcon onClick={() => toggleFavorite(item)} />
+                <div className={classes.starWrapper}>
+                  <StarIcon
+                    style={{ color: "#ffcd00" }}
+                    onClick={() => toggleFavorite(item)}
+                  />
+                </div>
               </Tooltip>
             ) : (
-              <Tooltip title="Add to Favorites" arrow>
-                <StarBorderIcon onClick={() => toggleFavorite(item)} />
-              </Tooltip>
+              <div>
+                <Tooltip title="Add to Favorites" arrow>
+                  <StarBorderIcon onClick={() => toggleFavorite(item)} />
+                </Tooltip>
+              </div>
             )}
             <p>{matchDate?.split("-").slice(1).join(".")}</p>
             <p>{matchTime}</p>
