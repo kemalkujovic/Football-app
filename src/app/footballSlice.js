@@ -87,6 +87,19 @@ export const leagueFixtures = createAsyncThunk(
     }
   }
 );
+export const getLiveMatch = createAsyncThunk(
+  "football/getLiveMatch",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_events&match_live=1&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const footballSlice = createSlice({
   name: "football",
@@ -97,6 +110,7 @@ const footballSlice = createSlice({
     leagueStandings: [],
     fixtureMatches: [],
     leagueTopScores: [],
+    liveMatch: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -180,6 +194,18 @@ const footballSlice = createSlice({
         state.leagueTopScores = action.payload;
       })
       .addCase(leagueTopScores.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Live Match
+      .addCase(getLiveMatch.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getLiveMatch.fulfilled, (state, action) => {
+        state.loading = false;
+        state.liveMatch = action.payload;
+      })
+      .addCase(getLiveMatch.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

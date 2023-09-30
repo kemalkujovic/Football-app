@@ -77,6 +77,10 @@
 .snackbarWrapper div {
   min-width: 100px;
 }
+.wrapperStatusLive {
+  color: #ff0046 !important;
+  font-weight: 700 !important;
+}
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;

@@ -21,6 +21,7 @@ const ResultTabel = (props) => {
     countryLogo,
     matchDate,
     matchTime,
+    matchStatus,
     homeLogo,
     awayLogo,
     homeName,
@@ -30,6 +31,7 @@ const ResultTabel = (props) => {
     homeHalfGoal,
     awayHalfGoal,
     item,
+    matchLive,
   } = props;
 
   useEffect(() => {
@@ -42,11 +44,11 @@ const ResultTabel = (props) => {
     if (isFavorite) {
       removeFavorite(item);
       setIsFavorite(false);
-      setSnackbarMessage("Removed from Favorites");
+      setSnackbarMessage("Removed from Favorites.");
     } else {
       addFavorite(item);
       setIsFavorite(true);
-      setSnackbarMessage("Added to Favorites");
+      setSnackbarMessage("Added to Favorites.");
     }
     setOpenSnackbar(true);
   };
@@ -93,8 +95,16 @@ const ResultTabel = (props) => {
                 </Tooltip>
               </div>
             )}
-            <p>{matchDate?.split("-").slice(1).join(".")}</p>
-            <p>{matchTime}</p>
+            {matchStatus === "Half Time" ? (
+              <p className={classes.wrapperStatusLive}>{matchStatus}</p>
+            ) : matchLive === "1" ? (
+              <p className={classes.wrapperStatusLive}>{matchStatus}'</p>
+            ) : (
+              <div>
+                <p>{matchDate?.split("-").slice(1).join(".")}</p>
+                <p>{matchTime}</p>
+              </div>
+            )}
           </div>
           <div className={classes.clubsWrapper}>
             <span>
@@ -106,6 +116,7 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
+
               <p className={homeGoal > awayGoal ? classes.winner : ""}>
                 {homeName}
               </p>
@@ -127,7 +138,12 @@ const ResultTabel = (props) => {
         </div>
         <div className={classes.resultsWrapper}>
           <div className={classes.finalResult}>
-            {homeGoal?.length > 0 ? (
+            {matchLive === "1" ? (
+              <span>
+                <p className={classes.wrapperStatusLive}>{homeGoal}</p>
+                <p className={classes.wrapperStatusLive}>{awayGoal}</p>
+              </span>
+            ) : homeGoal?.length > 0 ? (
               <span>
                 <p>{homeGoal}</p>
                 <p>{awayGoal}</p>
