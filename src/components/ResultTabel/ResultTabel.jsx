@@ -5,9 +5,31 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { Tooltip } from "@mui/material";
 import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
+import Snackbar from "@mui/material/Snackbar";
+import Slide from "@mui/material/Slide";
 const ResultTabel = (props) => {
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedElement, setSelectedElement] = useState(false);
+  const [transition, setTransition] = React.useState(undefined);
+  function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
+  }
+
+  const handleClick = () => {
+    setSelectedElement(true);
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+    setSelectedElement(false);
+  };
+
   const {
     countryLogo,
     matchDate,
@@ -38,7 +60,6 @@ const ResultTabel = (props) => {
       setIsFavorite(true);
     }
   };
-
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -53,18 +74,45 @@ const ResultTabel = (props) => {
           <div className={classes.timeZoneWrapper}>
             {isFavorite ? (
               <Tooltip title="Remove from Favorites" arrow>
-                <div className={classes.starWrapper}>
+                <div
+                  onClick={() => handleClick()}
+                  className={classes.starWrapper}
+                >
                   <StarIcon
                     style={{ color: "#ffcd00" }}
                     onClick={() => toggleFavorite(item)}
+                  />
+                  <Snackbar
+                    className={classes.snackbarWrapper}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                    onClose={handleClose}
+                    open={open}
+                    autoHideDuration={1000}
+                    message="Add from Favorite"
+                    TransitionComponent={TransitionUp}
                   />
                 </div>
               </Tooltip>
             ) : (
               <div>
                 <Tooltip title="Add to Favorites" arrow>
-                  <StarBorderIcon onClick={() => toggleFavorite(item)} />
+                  <StarBorderIcon
+                    onClick={() => {
+                      toggleFavorite(item);
+                      handleClick();
+                    }}
+                  />
                 </Tooltip>
+                <Snackbar
+                  className={classes.snackbarWrapper}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                  onClose={handleClose}
+                  open={selectedElement}
+                  direction="up"
+                  autoHideDuration={1000}
+                  message="Remove from Favorite"
+                  TransitionComponent={TransitionUp}
+                />
               </div>
             )}
             <p>{matchDate?.split("-").slice(1).join(".")}</p>
