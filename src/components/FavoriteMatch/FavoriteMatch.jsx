@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import ResultTabel from "../ResultTabel/ResultTabel";
 import { FavoriteMatchContext } from "../../context/FavoriteMatchContext";
-
+import classes from "./FavoriteMatch.module.css";
 const FavoriteMatch = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
   return (
-    <div>
+    <section>
       {matchFavorit.length > 0 &&
         matchFavorit?.map((item, index) => {
           return (
@@ -29,7 +29,7 @@ const FavoriteMatch = () => {
             />
           );
         })}
-    </div>
+    </section>
   );
 };
 
