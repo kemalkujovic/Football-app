@@ -155,7 +155,7 @@ const ResultTabel = (props) => {
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={openSnackbar}
           onClose={handleCloseSnackbar}
-          autoHideDuration={1000}
+          autoHideDuration={1500}
           message={snackbarMessage}
           TransitionComponent={TransitionUp}
         />

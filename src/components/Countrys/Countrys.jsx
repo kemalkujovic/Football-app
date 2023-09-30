@@ -64,10 +64,10 @@ const Countrys = () => {
 
             {selector2 && isOpen.includes(index) && (
               <div className={classes.leagueWrapper}>
-                {selector2.map((item) => {
+                {selector2.map((item, index) => {
                   return (
                     +item.country_id === +el.country_id && (
-                      <div>
+                      <div key={index}>
                         <Link to={`/league/${item.league_id}`}>
                           <League
                             key={item.league_id}

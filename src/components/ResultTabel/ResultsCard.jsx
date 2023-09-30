@@ -2,8 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
-import { Tooltip } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
   let sortedData;
@@ -52,7 +50,7 @@ const ResultsCard = () => {
               <p> {selector[0]?.league_name}</p>
             </div>
             {selector?.length > 0 &&
-              sortedDataRound?.map((item) => {
+              sortedDataRound?.map((item, index) => {
                 if (item.match_status === "Finished") {
                   currentMatchRound = item.match_round;
                   if (currentMatchRound !== previousMatchRound) {
@@ -85,7 +83,7 @@ const ResultsCard = () => {
                     );
                   } else {
                     return (
-                      <>
+                      <React.Fragment key={`resault=${item.match_id}`}>
                         <ResultTabel
                           matchDate={item.match_date}
                           matchTime={item.match_time}
@@ -104,7 +102,7 @@ const ResultsCard = () => {
                           key={item.match_id}
                           item={item}
                         />
-                      </>
+                      </React.Fragment>
                     );
                   }
                 }
