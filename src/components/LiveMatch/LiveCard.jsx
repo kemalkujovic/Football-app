@@ -8,13 +8,10 @@ const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
-  const data = selector
-    .slice(0, 100)
-    .filter((el) => el.match_status !== "Finished");
+  const data = selector.slice(0, 100);
 
-  const moreDate = selector
-    .slice(100)
-    .filter((el) => el.match_status !== "Finished");
+  const moreDate = selector.slice(100);
+
   useEffect(() => {
     const fetchData = () => {
       dispatch(getLiveMatch());

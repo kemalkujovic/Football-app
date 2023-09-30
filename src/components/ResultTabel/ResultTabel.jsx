@@ -8,7 +8,8 @@ import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 const ResultTabel = (props) => {
-  const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
+  const { addFavorite, removeFavorite, updateMatchInLocalStorage } =
+    useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -34,12 +35,28 @@ const ResultTabel = (props) => {
     matchLive,
   } = props;
 
+  // useEffect(() => {
+  //   const matchData = JSON.parse(localStorage.getItem("match"));
+  //   const data = matchData?.some((el) => el.match_id === item.match_id);
+  //   setIsFavorite(data);
+  // }, [item]);
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
     const data = matchData?.some((el) => el.match_id === item.match_id);
     setIsFavorite(data);
-  }, [item]);
+    const intervalId = setInterval(() => {
+      const fuad = matchData.filter((el) => {
+        if (
+          el.match_id === item.match_id &&
+          el.match_status !== item.match_status
+        ) {
+          updateMatchInLocalStorage(item.match_id, item.match_status);
+        }
+      });
+    }, 10000); // 60 sekundi
 
+    return () => clearInterval(intervalId);
+  }, [item]);
   const toggleFavorite = (item) => {
     if (isFavorite) {
       removeFavorite(item);
@@ -95,7 +112,9 @@ const ResultTabel = (props) => {
                 </Tooltip>
               </div>
             )}
-            {matchStatus === "Half Time" ? (
+            {matchLive === "1" && matchStatus === "Finished" ? (
+              <p>{matchStatus}</p>
+            ) : matchStatus === "Half Time" ? (
               <p className={classes.wrapperStatusLive}>{matchStatus}</p>
             ) : matchLive === "1" ? (
               <p className={classes.wrapperStatusLive}>{matchStatus}'</p>
@@ -145,7 +164,7 @@ const ResultTabel = (props) => {
         </div>
         <div className={classes.resultsWrapper}>
           <div className={classes.finalResult}>
-            {matchLive === "1" ? (
+            {matchLive === "1" && matchStatus !== "Finished" ? (
               <span>
                 <p className={classes.wrapperStatusLive}>{homeGoal}</p>
                 <p className={classes.wrapperStatusLive}>{awayGoal}</p>

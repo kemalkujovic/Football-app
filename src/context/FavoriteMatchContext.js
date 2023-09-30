@@ -25,14 +25,30 @@ export const FavoriteMatchContextProvider = ({ children }) => {
       return newLeague;
     });
   };
-
+  const updateMatchInLocalStorage = (matchId, newStatus) => {
+    setMatchFavorites((prevFavorites) => {
+      const updatedFavorites = prevFavorites.map((fav) => {
+        if (fav.match_id === matchId) {
+          return { ...fav, match_status: newStatus };
+        }
+        return fav;
+      });
+      localStorage.setItem("match", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  };
   useEffect(() => {
     localStorage.setItem("match", JSON.stringify(matchFavorit));
   }, [matchFavorit]);
 
   return (
     <FavoriteMatchContext.Provider
-      value={{ matchFavorit, addFavorite, removeFavorite }}
+      value={{
+        matchFavorit,
+        addFavorite,
+        removeFavorite,
+        updateMatchInLocalStorage,
+      }}
     >
       {children}
     </FavoriteMatchContext.Provider>
