@@ -19,7 +19,9 @@ export const FavoriteMatchContextProvider = ({ children }) => {
 
   const removeFavorite = (country) => {
     setMatchFavorites((prevFavorites) => {
-      const newLeague = prevFavorites.filter((fav) => fav !== country);
+      const newLeague = prevFavorites.filter(
+        (fav) => fav.match_id !== country.match_id
+      );
       return newLeague;
     });
   };

@@ -23,6 +23,12 @@ const ResultTabel = (props) => {
     item,
   } = props;
 
+  useEffect(() => {
+    const matchData = JSON.parse(localStorage.getItem("match"));
+    const data = matchData?.some((el) => el.match_id === item.match_id);
+    setIsFavorite(data);
+  }, [item]);
+
   const toggleFavorite = (item) => {
     if (isFavorite) {
       removeFavorite(item);
@@ -33,11 +39,6 @@ const ResultTabel = (props) => {
     }
   };
 
-  useEffect(() => {
-    const matchData = JSON.parse(localStorage.getItem("match"));
-    const data = matchData?.some((el) => el?.match_id === item?.match_id);
-    setIsFavorite(data);
-  }, [item]);
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -52,16 +53,12 @@ const ResultTabel = (props) => {
           <div className={classes.timeZoneWrapper}>
             {isFavorite ? (
               <Tooltip title="Remove from Favorites" arrow>
-                <div className={classes.starWrapper}>
-                  <StarIcon onClick={() => toggleFavorite(item)} />
-                </div>
+                <StarIcon onClick={() => toggleFavorite(item)} />
               </Tooltip>
             ) : (
-              <div>
-                <Tooltip title="Add to Favorites" arrow>
-                  <StarBorderIcon onClick={() => toggleFavorite(item)} />
-                </Tooltip>
-              </div>
+              <Tooltip title="Add to Favorites" arrow>
+                <StarBorderIcon onClick={() => toggleFavorite(item)} />
+              </Tooltip>
             )}
             <p>{matchDate?.split("-").slice(1).join(".")}</p>
             <p>{matchTime}</p>
