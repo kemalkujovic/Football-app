@@ -1,34 +1,21 @@
-import { Grid } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import classes from "./ResultTabel.module.css";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
-import { Tooltip } from "@mui/material";
-import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
+import Tooltip from "@mui/material/Tooltip";
+import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
+import classes from "./ResultTabel.module.css";
+import { Grid } from "@mui/material";
 const ResultTabel = (props) => {
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [selectedElement, setSelectedElement] = useState(false);
-  const [transition, setTransition] = React.useState(undefined);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+
   function TransitionUp(props) {
     return <Slide {...props} direction="up" />;
   }
-
-  const handleClick = () => {
-    setSelectedElement(true);
-    setOpen(true);
-  };
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-    setSelectedElement(false);
-  };
 
   const {
     countryLogo,
@@ -55,11 +42,23 @@ const ResultTabel = (props) => {
     if (isFavorite) {
       removeFavorite(item);
       setIsFavorite(false);
+      setSnackbarMessage("Removed from Favorites");
     } else {
       addFavorite(item);
       setIsFavorite(true);
+      setSnackbarMessage("Added to Favorites");
     }
+    setOpenSnackbar(true);
   };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
   return (
     <div className={classes.mainContainer}>
       <Grid
@@ -74,22 +73,12 @@ const ResultTabel = (props) => {
           <div className={classes.timeZoneWrapper}>
             {isFavorite ? (
               <Tooltip title="Remove from Favorites" arrow>
-                <div
-                  onClick={() => handleClick()}
-                  className={classes.starWrapper}
-                >
+                <div className={classes.starWrapper}>
                   <StarIcon
                     style={{ color: "#ffcd00" }}
-                    onClick={() => toggleFavorite(item)}
-                  />
-                  <Snackbar
-                    className={classes.snackbarWrapper}
-                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                    onClose={handleClose}
-                    open={open}
-                    autoHideDuration={1000}
-                    message="Add from Favorite"
-                    TransitionComponent={TransitionUp}
+                    onClick={() => {
+                      toggleFavorite(item);
+                    }}
                   />
                 </div>
               </Tooltip>
@@ -99,20 +88,9 @@ const ResultTabel = (props) => {
                   <StarBorderIcon
                     onClick={() => {
                       toggleFavorite(item);
-                      handleClick();
                     }}
                   />
                 </Tooltip>
-                <Snackbar
-                  className={classes.snackbarWrapper}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                  onClose={handleClose}
-                  open={selectedElement}
-                  direction="up"
-                  autoHideDuration={1000}
-                  message="Remove from Favorite"
-                  TransitionComponent={TransitionUp}
-                />
               </div>
             )}
             <p>{matchDate?.split("-").slice(1).join(".")}</p>
@@ -172,6 +150,15 @@ const ResultTabel = (props) => {
             )}
           </div>
         </div>
+        <Snackbar
+          className={classes.snackbarWrapper}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          open={openSnackbar}
+          onClose={handleCloseSnackbar}
+          autoHideDuration={1000}
+          message={snackbarMessage}
+          TransitionComponent={TransitionUp}
+        />
       </Grid>
     </div>
   );
