@@ -116,10 +116,13 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-
-              <p className={homeGoal > awayGoal ? classes.winner : ""}>
-                {homeName}
-              </p>
+              {matchLive === "1" ? (
+                <p>{homeName}</p>
+              ) : (
+                <p className={homeGoal > awayGoal ? classes.winner : ""}>
+                  {homeName}
+                </p>
+              )}
             </span>
             <span>
               <img
@@ -130,9 +133,13 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-              <p className={awayGoal > homeGoal ? classes.winner : ""}>
-                {awayName}
-              </p>
+              {matchLive === "1" ? (
+                <p>{awayName}</p>
+              ) : (
+                <p className={awayGoal > homeGoal ? classes.winner : ""}>
+                  {awayName}
+                </p>
+              )}
             </span>
           </div>
         </div>

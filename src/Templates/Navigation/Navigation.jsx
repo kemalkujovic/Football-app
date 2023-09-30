@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import MainBar from "./MainBar";
-import LinkBar from "./LinkBar";
 import { Grid } from "@mui/material";
 import classes from "./MainBar.module.css";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import StarIcon from "@mui/icons-material/Star";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FavoriteMatchContext } from "../../context/FavoriteMatchContext";
 const Navigation = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
@@ -17,19 +16,29 @@ const Navigation = () => {
           <div className={classes.linkWrapper}>
             <div className={classes.linkButtonWrapper}>
               <div className={classes.linkWrapper}>
-                <Link to="favorite">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                  }
+                  to="favorite"
+                >
                   <StarIcon />
                   <span>FAVORITI</span>
                   <div className={classes.circleWrapper}>
                     {matchFavorit ? matchFavorit.length : "0"}
                   </div>
-                </Link>
+                </NavLink>
               </div>
               <div className={classes.linkWrapper}>
-                <Link to="/">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? classes.active : undefined
+                  }
+                  to="/"
+                >
                   <SportsSoccerIcon />
                   <span>FUDBAL</span>
-                </Link>
+                </NavLink>
               </div>
             </div>
           </div>

@@ -26,6 +26,7 @@ const FavoriteMatch = () => {
               matchStatus={item.match_status}
               key={index}
               item={item}
+              matchLive={item.match_live}
             />
           );
         })}

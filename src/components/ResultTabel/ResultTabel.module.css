@@ -69,6 +69,7 @@
 }
 .timeZoneWrapper div {
   display: flex;
+  gap: 15px;
 }
 /* .starWrapper {
   display: flex;

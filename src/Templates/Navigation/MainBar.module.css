@@ -48,6 +48,7 @@
   color: white;
   display: flex;
   align-items: center;
+  padding-bottom: 5px;
 }
 
 .linkButtonWrapper span {
@@ -80,6 +81,9 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
+}
+.active {
+  border-bottom: 3px solid red;
 }
 @media screen and (max-width: 768px) {
   .top-menu {

@@ -60,7 +60,6 @@ const ResultsCard = () => {
                         <span className={classes.roundWrapper}>
                           ROUND {item.match_round}
                         </span>
-
                         <ResultTabel
                           matchDate={item.match_date}
                           matchTime={item.match_time}
