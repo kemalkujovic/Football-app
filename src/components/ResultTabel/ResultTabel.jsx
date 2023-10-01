@@ -118,7 +118,7 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-              {matchLive === "1" ? (
+              {matchLive === "1" && matchStatus !== "Finished" ? (
                 <p>{homeName}</p>
               ) : (
                 <p className={homeGoal > awayGoal ? classes.winner : ""}>
@@ -135,7 +135,7 @@ const ResultTabel = (props) => {
                 }}
                 alt="Logo1"
               />
-              {matchLive === "1" ? (
+              {matchLive === "1" && matchStatus !== "Finished" ? (
                 <p>{awayName}</p>
               ) : (
                 <p className={awayGoal > homeGoal ? classes.winner : ""}>
