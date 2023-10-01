@@ -53,7 +53,7 @@ const ResultTabel = (props) => {
           updateMatchInLocalStorage(item.match_id, item.match_status);
         }
       });
-    }, 10000); // 60 sekundi
+    }, 15000); // 15 sekundi
 
     return () => clearInterval(intervalId);
   }, [item]);

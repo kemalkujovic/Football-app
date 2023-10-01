@@ -3,6 +3,7 @@ import FavoriteMatch from "../components/FavoriteMatch/FavoriteMatch";
 import { Grid } from "@mui/material";
 import Sidebar from "../Templates/Sidebar/Sidebar";
 import classes from "./HomePage.module.css";
+import FavoriteCard from "../components/FavoriteMatch/FavoriteCard";
 const FavoritePage = () => {
   return (
     <>
@@ -25,7 +26,7 @@ const FavoritePage = () => {
             item
             className={classes.responsiveLayout}
           >
-            <FavoriteMatch />
+            <FavoriteCard />
           </Grid>
         </Grid>
       </div>
