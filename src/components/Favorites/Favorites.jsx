@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
-import { leagues } from "../../util/helper";
 import League from "../League/League";
 import classes from "./Favorites.module.css";
 import TurnedInIcon from "@mui/icons-material/TurnedIn";
 import { Link } from "react-router-dom";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import { Button, Tooltip } from "@mui/material";
+import { Tooltip } from "@mui/material";
 const Favorites = () => {
   const { favorites, removeFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {

@@ -20,7 +20,7 @@ const FavoriteMatch = () => {
   }, [dispatch]);
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
-    console.log(selector);
+
     const intervalId = setInterval(() => {
       const fuad = matchData.filter((el) =>
         selector?.filter((item) => {

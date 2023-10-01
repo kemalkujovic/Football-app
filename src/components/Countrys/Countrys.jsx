@@ -11,7 +11,7 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import { Tooltip } from "@mui/material";
 const Countrys = () => {
-  const { favorites, addFavorite } = useContext(FavoriteContext);
+  const { addFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {
     addFavorite(item);
   };

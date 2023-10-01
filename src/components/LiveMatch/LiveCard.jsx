@@ -8,7 +8,6 @@ const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
-
   let updatedLeagues = [];
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
@@ -43,7 +42,7 @@ const LiveCard = () => {
   return (
     <div>
       {data.length > 0 &&
-        updatedLeagues?.map((item, index) => {
+        data?.map((item, index) => {
           currentLeague = item.league_name;
           if (currentLeague !== previusLeague) {
             previusLeague = currentLeague;
