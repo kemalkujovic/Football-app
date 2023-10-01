@@ -8,8 +8,7 @@ import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 const ResultTabel = (props) => {
-  const { addFavorite, removeFavorite, updateMatchInLocalStorage } =
-    useContext(FavoriteMatchContext);
+  const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -35,28 +34,12 @@ const ResultTabel = (props) => {
     matchLive,
   } = props;
 
-  // useEffect(() => {
-  //   const matchData = JSON.parse(localStorage.getItem("match"));
-  //   const data = matchData?.some((el) => el.match_id === item.match_id);
-  //   setIsFavorite(data);
-  // }, [item]);
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
     const data = matchData?.some((el) => el.match_id === item.match_id);
     setIsFavorite(data);
-    const intervalId = setInterval(() => {
-      const fuad = matchData.filter((el) => {
-        if (
-          el.match_id === item.match_id &&
-          el.match_status !== item.match_status
-        ) {
-          updateMatchInLocalStorage(item.match_id, item.match_status);
-        }
-      });
-    }, 15000); // 15 sekundi
-
-    return () => clearInterval(intervalId);
   }, [item]);
+
   const toggleFavorite = (item) => {
     if (isFavorite) {
       removeFavorite(item);

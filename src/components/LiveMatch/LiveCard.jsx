@@ -14,11 +14,11 @@ const LiveCard = () => {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
 
     const index = selector.filter((favorite) =>
-      favorites.some((item) => favorite.league_name === item.league_name)
+      favorites.some((item) => favorite.league_id === item.league_id)
     );
     const nonPrioritizedLeagues = selector.filter(
       (item) =>
-        !favorites.some((favorite) => favorite.league_name === item.league_name)
+        !favorites.some((favorite) => favorite.league_id === item.league_id)
     );
 
     updatedLeagues = [...index, ...nonPrioritizedLeagues];

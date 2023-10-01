@@ -25,11 +25,21 @@ export const FavoriteMatchContextProvider = ({ children }) => {
       return newLeague;
     });
   };
-  const updateMatchInLocalStorage = (matchId, newStatus) => {
+  const updateMatchInLocalStorage = (
+    matchId,
+    newStatus,
+    match_hometeam_score,
+    match_awayteam_score
+  ) => {
     setMatchFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.map((fav) => {
         if (fav.match_id === matchId) {
-          return { ...fav, match_status: newStatus };
+          return {
+            ...fav,
+            match_status: newStatus,
+            match_hometeam_score: match_hometeam_score,
+            match_awayteam_score: match_awayteam_score,
+          };
         }
         return fav;
       });
