@@ -15,11 +15,12 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  width: 125px;
 }
 
 .clubsWrapper span {
   display: flex;
-  margin: 10px 30px;
+  margin: 5px 30px;
   gap: 10px;
   align-items: center;
 }
@@ -81,6 +82,7 @@
 .wrapperStatusLive {
   color: #ff0046 !important;
   font-weight: 700 !important;
+  margin: auto;
 }
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {

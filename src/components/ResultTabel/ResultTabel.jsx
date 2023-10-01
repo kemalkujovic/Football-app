@@ -113,7 +113,7 @@ const ResultTabel = (props) => {
               </div>
             )}
             {matchLive === "1" && matchStatus === "Finished" ? (
-              <p>{matchStatus}</p>
+              <p style={{ margin: "auto" }}>{matchStatus}</p>
             ) : matchStatus === "Half Time" ? (
               <p className={classes.wrapperStatusLive}>{matchStatus}</p>
             ) : matchLive === "1" ? (
