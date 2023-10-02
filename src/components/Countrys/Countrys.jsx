@@ -14,7 +14,6 @@ const Countrys = () => {
   const { addFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {
     addFavorite(item);
-    dispatch(getLiveMatch());
   };
   const [iconStates, setIconStates] = useState({});
   const onClickIcons = (index) => {

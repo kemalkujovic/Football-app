@@ -7,7 +7,6 @@ import { FavoriteContext } from "../../context/FavoriteContext";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { getAllMatch, getLiveMatch } from "../../app/footballSlice";
 import { lastDays } from "../../util/helper";
 const Favorites = () => {
   const { favorites, removeFavorite } = useContext(FavoriteContext);
@@ -16,7 +15,6 @@ const Favorites = () => {
   const today = date.danasnjiDatum;
   const handleIconClick = (item) => {
     removeFavorite(item);
-    dispatch(getLiveMatch());
   };
 
   return (

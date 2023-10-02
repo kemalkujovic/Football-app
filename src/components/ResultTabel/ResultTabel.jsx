@@ -13,9 +13,9 @@ const ResultTabel = (props) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  function TransitionUp(props) {
-    return <Slide {...props} direction="up" />;
-  }
+  // function TransitionUp(props) {
+  //   return <Slide {...props} direction="up" />;
+  // }
 
   const {
     countryLogo,
@@ -182,7 +182,7 @@ const ResultTabel = (props) => {
           onClose={handleCloseSnackbar}
           autoHideDuration={1500}
           message={snackbarMessage}
-          TransitionComponent={TransitionUp}
+          // TransitionComponent={TransitionUp}
         />
       </Grid>
     </div>

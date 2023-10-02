@@ -3,7 +3,6 @@ import classes from "./ResultHeader.module.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { useDispatch } from "react-redux";
-import { getLiveMatch } from "../../app/footballSlice";
 import { Tooltip } from "@mui/material";
 const ResultHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -20,12 +19,10 @@ const ResultHeader = (props) => {
   const handleClick = () => {
     addFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-    dispatch(getLiveMatch());
   };
   const removeHandleClick = () => {
     removeFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
-    dispatch(getLiveMatch());
   };
 
   return (

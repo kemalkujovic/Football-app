@@ -43,7 +43,7 @@ const AllMatches = (props) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch]);
+  }, [dispatch, updatedLeagues]);
   return (
     <div>
       {data.length > 0 &&

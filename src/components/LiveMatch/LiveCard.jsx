@@ -40,7 +40,7 @@ const LiveCard = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch]);
+  }, [dispatch, updatedLeagues]);
 
   return (
     <div>
