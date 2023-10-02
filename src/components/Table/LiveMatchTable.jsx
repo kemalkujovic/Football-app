@@ -9,11 +9,13 @@ import { lastDays } from "../../util/helper";
 import { useDispatch } from "react-redux";
 import { getAllMatch } from "../../app/footballSlice";
 const LiveMatchTable = () => {
+  const datum = lastDays();
+  const initial = datum.danasnjiDatum;
   const [active, setActive] = useState(true);
   const [date, setDate] = useState(false);
   const [tableDate, setTableDate] = useState(null);
   const [lastClickedIndex, setLastClickedIndex] = useState(1);
-  const datum = lastDays();
+  const [action, setAction] = useState(initial);
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
 
@@ -24,6 +26,7 @@ const LiveMatchTable = () => {
   const handlerDay = (datum, index) => {
     setLastClickedIndex(index);
     setTableDate(datum.split("-").slice(1).join("/"));
+    setAction(datum);
     dispatch(getAllMatch(datum));
     setDate(!date);
   };
@@ -97,7 +100,7 @@ const LiveMatchTable = () => {
           ""
         )}
       </div>
-      {active ? <AllMatches /> : <LiveMatch />}
+      {active ? <AllMatches action={action} /> : <LiveMatch />}
     </section>
   );
 };

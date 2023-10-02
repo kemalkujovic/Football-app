@@ -6,11 +6,10 @@ import { getAllMatch } from "../../app/footballSlice";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import classes from "../LiveMatch/LiveCard.module.css";
 import { lastDays } from "../../util/helper";
-const AllMatches = () => {
+const AllMatches = (props) => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getAllMatch);
-
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
@@ -18,12 +17,12 @@ const AllMatches = () => {
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
 
-    const index = selector.filter((favorite) =>
-      favorites.some((item) => favorite.league_id === item.league_id)
+    const index = selector?.filter((favorite) =>
+      favorites?.some((item) => favorite.league_id === item.league_id)
     );
-    const nonPrioritizedLeagues = selector.filter(
+    const nonPrioritizedLeagues = selector?.filter(
       (item) =>
-        !favorites.some((favorite) => favorite.league_id === item.league_id)
+        !favorites?.some((favorite) => favorite.league_id === item.league_id)
     );
 
     updatedLeagues = [...index, ...nonPrioritizedLeagues];
@@ -33,11 +32,12 @@ const AllMatches = () => {
   const moreDate = updatedLeagues.slice(100);
   const date = lastDays();
   const today = date.danasnjiDatum;
+
   useEffect(() => {
     const fetchData = () => {
       dispatch(getAllMatch(today));
     };
-    const intervalId = setInterval(fetchData, 60000);
+    const intervalId = setInterval(fetchData, 10000);
     fetchData();
 
     return () => {
@@ -53,7 +53,7 @@ const AllMatches = () => {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
-                <ResultHeader item={item} />
+                <ResultHeader action={props.action} item={item} />
                 <ResultTabel
                   matchDate={item.match_date}
                   matchTime={item.match_time}

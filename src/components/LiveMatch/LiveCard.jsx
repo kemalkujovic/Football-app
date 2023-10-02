@@ -34,7 +34,7 @@ const LiveCard = () => {
     const fetchData = () => {
       dispatch(getLiveMatch());
     };
-    const intervalId = setInterval(fetchData, 60000);
+    const intervalId = setInterval(fetchData, 10000);
     fetchData();
 
     return () => {

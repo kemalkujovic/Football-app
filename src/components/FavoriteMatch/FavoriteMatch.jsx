@@ -16,7 +16,7 @@ const FavoriteMatch = () => {
     const updateSelectorAndDispatch = () => {
       dispatch(getLiveMatch());
     };
-    const intervalId = setInterval(updateSelectorAndDispatch, 30000);
+    const intervalId = setInterval(updateSelectorAndDispatch, 10000);
     return () => clearInterval(intervalId);
   }, [dispatch]);
 
