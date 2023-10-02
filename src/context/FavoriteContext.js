@@ -13,7 +13,6 @@ export const FavoriteContextProvider = ({ children }) => {
   const [favorites, setFavorites] = useState(getInitalState);
 
   const addFavorite = (country) => {
-    console.log(country);
     if (
       !favorites.some((favorite) => favorite.league_id === country.league_id)
     ) {
@@ -22,7 +21,6 @@ export const FavoriteContextProvider = ({ children }) => {
   };
 
   const removeFavorite = (country) => {
-    console.log("za country", country);
     setFavorites((prevFavorites) => {
       const newLeague = prevFavorites.filter(
         (fav) => fav.league_id !== country.league_id

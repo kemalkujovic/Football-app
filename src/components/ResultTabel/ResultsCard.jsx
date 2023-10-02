@@ -28,7 +28,6 @@ const ResultsCard = () => {
 
   let currentMatchRound;
   let previousMatchRound;
-  console.log(selector[0]);
   return (
     <>
       {selector?.error === 404 ? (

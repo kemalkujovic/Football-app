@@ -9,8 +9,10 @@ const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
-  console.log(selector);
   let updatedLeagues = [];
+  let currentLeague;
+  let previusLeague;
+
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
 
@@ -38,8 +40,6 @@ const LiveCard = () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
-  let currentLeague;
-  let previusLeague;
 
   return (
     <div>

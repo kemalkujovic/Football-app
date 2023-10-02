@@ -2,23 +2,29 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./ResultHeader.module.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { FavoriteContext } from "../../context/FavoriteContext";
+import { useDispatch, useSelector } from "react-redux";
+import { getLiveMatch } from "../../app/footballSlice";
 const ResultHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { item } = props;
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("league"));
     const data = matchData?.find((el) => el?.league_id === item?.league_id);
     setIsFavorite(!!data);
-  }, [item]);
+  }, [item, addFavorite, isFavorite]);
 
   const handleClick = () => {
     addFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+    dispatch(getLiveMatch());
   };
   const removeHandleClick = () => {
     removeFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+    dispatch(getLiveMatch());
   };
 
   return (

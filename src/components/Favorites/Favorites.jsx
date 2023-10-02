@@ -6,10 +6,14 @@ import { Link } from "react-router-dom";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Tooltip } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { getLiveMatch } from "../../app/footballSlice";
 const Favorites = () => {
   const { favorites, removeFavorite } = useContext(FavoriteContext);
+  const dispatch = useDispatch();
   const handleIconClick = (item) => {
     removeFavorite(item);
+    dispatch(getLiveMatch());
   };
 
   return (

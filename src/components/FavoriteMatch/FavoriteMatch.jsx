@@ -11,14 +11,15 @@ const FavoriteMatch = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
   const { updateMatchInLocalStorage } = useContext(FavoriteMatchContext);
+
   useEffect(() => {
     const updateSelectorAndDispatch = () => {
       dispatch(getLiveMatch());
     };
     const intervalId = setInterval(updateSelectorAndDispatch, 30000);
-
     return () => clearInterval(intervalId);
   }, [dispatch]);
+
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
 
