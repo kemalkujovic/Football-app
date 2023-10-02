@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ResultTabel from "../ResultTabel/ResultTabel";
 import classes from "./LeagueFixtures.module.css";
+import ResultHeader from "../ResultTabel/ResultHeader";
 const LeagueFixtures = () => {
   const selector = useSelector((state) => state.football.fixtureMatches);
   let sortedData;
@@ -33,18 +34,7 @@ const LeagueFixtures = () => {
           <div className={classes.headerTittle}>
             <h1>Fixtures Matches</h1>
           </div>
-          <div className={classes.countryWrapper}>
-            <img
-              src={
-                selector[0]?.country_logo
-                  ? selector[0]?.country_logo
-                  : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
-              }
-              alt=""
-            />
-            <p>{selector[0]?.country_name}:</p>
-            <p> {selector[0]?.league_name}</p>
-          </div>
+          <ResultHeader item={selector[0]} />
           {selector.length > 0 &&
             sortedData?.map((item, index) => {
               if (item.match_status.length === 0) {

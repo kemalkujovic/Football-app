@@ -1,0 +1,23 @@
+.countryWrapper {
+  display: flex;
+  background-color: #eef7ff;
+  padding: 10px 10px 10px 15px;
+  align-items: center;
+  color: black;
+  border-radius: 5px;
+}
+.countryWrapper img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+.pushPinWrapper {
+  color: #1976d2;
+  display: flex;
+  margin-left: 3px;
+}
+.defaultPinn {
+  color: rgba(0, 0, 0, 0.26);
+  display: flex;
+  margin-left: 3px;
+}

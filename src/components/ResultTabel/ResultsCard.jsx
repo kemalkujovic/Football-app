@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
+import ResultHeader from "./ResultHeader";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
   let sortedData;
@@ -24,9 +25,10 @@ const ResultsCard = () => {
       if (a.match_round > b.match_round) return -1;
     });
   }
+
   let currentMatchRound;
   let previousMatchRound;
-
+  console.log(selector[0]);
   return (
     <>
       {selector?.error === 404 ? (
@@ -37,18 +39,7 @@ const ResultsCard = () => {
             <div className={classes.headerTittle}>
               <h1>Last Results</h1>
             </div>
-            <div className={classes.countryWrapper}>
-              <img
-                src={
-                  selector[0]?.country_logo
-                    ? selector[0]?.country_logo
-                    : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
-                }
-                alt="Logo"
-              />
-              <p>{selector[0]?.country_name}:</p>
-              <p> {selector[0]?.league_name}</p>
-            </div>
+            <ResultHeader item={selector[0]} />
             {selector?.length > 0 &&
               sortedDataRound?.map((item, index) => {
                 if (item.match_status === "Finished") {

@@ -4,10 +4,12 @@ import { getLiveMatch } from "../../app/footballSlice";
 import ResultTabel from "../ResultTabel/ResultTabel";
 import classes from "./LiveCard.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ResultHeader from "../ResultTabel/ResultHeader";
 const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
+  console.log(selector);
   let updatedLeagues = [];
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
@@ -48,18 +50,7 @@ const LiveCard = () => {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
-                <div className={classes.countryWrapper}>
-                  <img
-                    src={
-                      item.country_logo
-                        ? item.country_logo
-                        : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
-                    }
-                    alt="Logo"
-                  />
-                  <p>{item?.country_name}:</p>
-                  <p> {item?.league_name}</p>
-                </div>
+                <ResultHeader item={item} />
                 <ResultTabel
                   matchDate={item.match_date}
                   matchTime={item.match_time}
@@ -123,18 +114,7 @@ const LiveCard = () => {
               previusLeague = currentLeague;
               return (
                 <React.Fragment key={item.match_id}>
-                  <div className={classes.countryWrapper}>
-                    <img
-                      src={
-                        item.country_logo
-                          ? item.country_logo
-                          : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
-                      }
-                      alt="Logo"
-                    />
-                    <p>{item?.country_name}:</p>
-                    <p> {item?.league_name}</p>
-                  </div>
+                  <ResultHeader item={item} />
                   <ResultTabel
                     matchDate={item.match_date}
                     matchTime={item.match_time}

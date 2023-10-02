@@ -22,8 +22,11 @@ export const FavoriteContextProvider = ({ children }) => {
   };
 
   const removeFavorite = (country) => {
+    console.log("za country", country);
     setFavorites((prevFavorites) => {
-      const newLeague = prevFavorites.filter((fav) => fav !== country);
+      const newLeague = prevFavorites.filter(
+        (fav) => fav.league_id !== country.league_id
+      );
       return newLeague;
     });
   };

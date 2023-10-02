@@ -4,6 +4,7 @@ import { FavoriteMatchContext } from "../../context/FavoriteMatchContext";
 import classes from "./FavoriteMatch.module.css";
 import { getLiveMatch } from "../../app/footballSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ResultHeader from "../ResultTabel/ResultHeader";
 
 const FavoriteMatch = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
@@ -55,18 +56,7 @@ const FavoriteMatch = () => {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
-                <div className={classes.countryWrapper}>
-                  <img
-                    src={
-                      item.country_logo
-                        ? item.country_logo
-                        : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
-                    }
-                    alt="Logo"
-                  />
-                  <p>{item?.country_name}:</p>
-                  <p> {item?.league_name}</p>
-                </div>
+                <ResultHeader item={item} />
                 <ResultTabel
                   matchDate={item.match_date}
                   matchTime={item.match_time}
