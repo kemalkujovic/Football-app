@@ -13,10 +13,6 @@ const ResultTabel = (props) => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
 
-  // function TransitionUp(props) {
-  //   return <Slide {...props} direction="up" />;
-  // }
-
   const {
     countryLogo,
     matchDate,
@@ -33,6 +29,21 @@ const ResultTabel = (props) => {
     item,
     matchLive,
   } = props;
+
+  const openPopup = () => {
+    const url = `http://localhost:3000/statistics/${item.match_id}`;
+    const windowName = "Popup";
+    const windowFeatures = "width=600,height=800";
+
+    window.open(url, windowName, windowFeatures);
+  };
+
+  const handleContainerClick = (event) => {
+    const isIconClick = event.target.closest(`.${classes.starWrapper}`);
+    if (!isIconClick) {
+      openPopup();
+    }
+  };
 
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
@@ -62,7 +73,10 @@ const ResultTabel = (props) => {
   };
 
   return (
-    <div className={classes.mainContainer}>
+    <div
+      onClick={(e) => handleContainerClick(e)}
+      className={classes.mainContainer}
+    >
       <Grid
         marginLeft="20px"
         width="75%"
@@ -87,11 +101,13 @@ const ResultTabel = (props) => {
             ) : (
               <div>
                 <Tooltip title="Add to Favorites" arrow>
-                  <StarBorderIcon
-                    onClick={() => {
-                      toggleFavorite(item);
-                    }}
-                  />
+                  <div className={classes.starWrapper}>
+                    <StarBorderIcon
+                      onClick={() => {
+                        toggleFavorite(item);
+                      }}
+                    />
+                  </div>
                 </Tooltip>
               </div>
             )}
@@ -182,7 +198,6 @@ const ResultTabel = (props) => {
           onClose={handleCloseSnackbar}
           autoHideDuration={1500}
           message={snackbarMessage}
-          // TransitionComponent={TransitionUp}
         />
       </Grid>
     </div>

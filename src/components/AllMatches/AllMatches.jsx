@@ -29,8 +29,8 @@ const AllMatches = (props) => {
     updatedLeagues = [...index, ...nonPrioritizedLeagues];
   }
   prioritizeFavoriteLeague();
-  const data = updatedLeagues.slice(0, 100);
-  const moreDate = updatedLeagues.slice(100);
+  const data = updatedLeagues.slice(0, 50);
+  const moreDate = updatedLeagues.slice(50);
   const date = lastDays();
   const today = date.danasnjiDatum;
   useEffect(() => {

@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLiveMatch } from "../../app/footballSlice";
 import ResultTabel from "../ResultTabel/ResultTabel";
 import classes from "./LiveCard.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ResultHeader from "../ResultTabel/ResultHeader";
+import { FavoriteContext } from "../../context/FavoriteContext";
 const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
+  const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
@@ -39,7 +41,7 @@ const LiveCard = () => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch, updatedLeagues]);
+  }, [dispatch, addFavorite]);
 
   return (
     <div>

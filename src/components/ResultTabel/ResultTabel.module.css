@@ -41,6 +41,7 @@
 }
 .mainContainer {
   border-bottom: 1px solid gray;
+  cursor: pointer;
 }
 .mainContainer:last-child {
   border: none;
@@ -72,9 +73,10 @@
   display: flex;
   gap: 15px;
 }
-/* .starWrapper {
+.starWrapper {
   display: flex;
-} */
+  /* padding: 20px; */
+}
 
 .snackbarWrapper div {
   min-width: 100px;
@@ -96,4 +98,7 @@
     margin: 0px !important;
     width: 100% !important;
   }
+}
+.fuad {
+  color: red;
 }
