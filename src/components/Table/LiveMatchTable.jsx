@@ -6,8 +6,6 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { lastDays } from "../../util/helper";
-import { useDispatch } from "react-redux";
-import { getAllMatch } from "../../app/footballSlice";
 const LiveMatchTable = () => {
   const datum = lastDays();
   const initial = datum.danasnjiDatum;
@@ -22,12 +20,10 @@ const LiveMatchTable = () => {
   const handleDatum = () => {
     setDate(!date);
   };
-  const dispatch = useDispatch();
   const handlerDay = (datum, index) => {
     setLastClickedIndex(index);
     setTableDate(datum.split("-").slice(1).join("/"));
     setAction(datum);
-    dispatch(getAllMatch(datum));
     setDate(!date);
   };
   const handlePreviousDate = () => {

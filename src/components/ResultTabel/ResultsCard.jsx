@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
 import ResultHeader from "./ResultHeader";
+import { useEffect } from "react";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
   let sortedData;

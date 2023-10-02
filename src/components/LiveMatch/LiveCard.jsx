@@ -9,7 +9,6 @@ const LiveCard = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
-
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
@@ -34,7 +33,7 @@ const LiveCard = () => {
     const fetchData = () => {
       dispatch(getLiveMatch());
     };
-    const intervalId = setInterval(fetchData, 10000);
+    const intervalId = setInterval(fetchData, 60000);
     fetchData();
 
     return () => {

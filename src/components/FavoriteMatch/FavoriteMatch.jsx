@@ -5,18 +5,19 @@ import classes from "./FavoriteMatch.module.css";
 import { getLiveMatch } from "../../app/footballSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ResultHeader from "../ResultTabel/ResultHeader";
+import { FavoriteContext } from "../../context/FavoriteContext";
 
 const FavoriteMatch = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.liveMatch);
   const { updateMatchInLocalStorage } = useContext(FavoriteMatchContext);
-
+  const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   useEffect(() => {
     const updateSelectorAndDispatch = () => {
       dispatch(getLiveMatch());
     };
-    const intervalId = setInterval(updateSelectorAndDispatch, 10000);
+    const intervalId = setInterval(updateSelectorAndDispatch, 30000);
     return () => clearInterval(intervalId);
   }, [dispatch]);
 
@@ -42,7 +43,6 @@ const FavoriteMatch = () => {
         })
       );
     }, 15000); // 15 sekundi
-
     return () => clearInterval(intervalId);
   }, [selector]);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ResultHeader from "../ResultTabel/ResultHeader";
 import ResultTabel from "../ResultTabel/ResultTabel";
@@ -6,14 +6,16 @@ import { getAllMatch } from "../../app/footballSlice";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import classes from "../LiveMatch/LiveCard.module.css";
 import { lastDays } from "../../util/helper";
+import { FavoriteContext } from "../../context/FavoriteContext";
 const AllMatches = (props) => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getAllMatch);
+  const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
-
+  let datum = props.action;
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
 
@@ -24,7 +26,6 @@ const AllMatches = (props) => {
       (item) =>
         !favorites?.some((favorite) => favorite.league_id === item.league_id)
     );
-
     updatedLeagues = [...index, ...nonPrioritizedLeagues];
   }
   prioritizeFavoriteLeague();
@@ -32,10 +33,9 @@ const AllMatches = (props) => {
   const moreDate = updatedLeagues.slice(100);
   const date = lastDays();
   const today = date.danasnjiDatum;
-
   useEffect(() => {
     const fetchData = () => {
-      dispatch(getAllMatch(today));
+      dispatch(getAllMatch(datum));
     };
     const intervalId = setInterval(fetchData, 10000);
     fetchData();
@@ -43,7 +43,7 @@ const AllMatches = (props) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch, updatedLeagues]);
+  }, [dispatch, datum, addFavorite]);
   return (
     <div>
       {data.length > 0 &&
@@ -53,7 +53,7 @@ const AllMatches = (props) => {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
-                <ResultHeader action={props.action} item={item} />
+                <ResultHeader item={item} />
                 <ResultTabel
                   matchDate={item.match_date}
                   matchTime={item.match_time}
