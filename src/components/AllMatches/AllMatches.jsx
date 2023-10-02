@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLiveMatch } from "../../app/footballSlice";
-import ResultTabel from "../ResultTabel/ResultTabel";
-import classes from "./LiveCard.module.css";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ResultHeader from "../ResultTabel/ResultHeader";
-const LiveCard = () => {
+import ResultTabel from "../ResultTabel/ResultTabel";
+import { getAllMatch } from "../../app/footballSlice";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import classes from "../LiveMatch/LiveCard.module.css";
+import { lastDays } from "../../util/helper";
+const AllMatches = () => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.football.liveMatch);
+  const selector = useSelector((state) => state.football.getAllMatch);
 
   let updatedLeagues = [];
   let currentLeague;
@@ -17,12 +18,12 @@ const LiveCard = () => {
   function prioritizeFavoriteLeague() {
     const favorites = JSON.parse(localStorage.getItem("league")) || [];
 
-    const index = selector?.filter((favorite) =>
-      favorites?.some((item) => favorite.league_id === item.league_id)
+    const index = selector.filter((favorite) =>
+      favorites.some((item) => favorite.league_id === item.league_id)
     );
-    const nonPrioritizedLeagues = selector?.filter(
+    const nonPrioritizedLeagues = selector.filter(
       (item) =>
-        !favorites?.some((favorite) => favorite.league_id === item.league_id)
+        !favorites.some((favorite) => favorite.league_id === item.league_id)
     );
 
     updatedLeagues = [...index, ...nonPrioritizedLeagues];
@@ -30,9 +31,11 @@ const LiveCard = () => {
   prioritizeFavoriteLeague();
   const data = updatedLeagues.slice(0, 100);
   const moreDate = updatedLeagues.slice(100);
+  const date = lastDays();
+  const today = date.danasnjiDatum;
   useEffect(() => {
     const fetchData = () => {
-      dispatch(getLiveMatch());
+      dispatch(getAllMatch(today));
     };
     const intervalId = setInterval(fetchData, 60000);
     fetchData();
@@ -41,7 +44,6 @@ const LiveCard = () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
-
   return (
     <div>
       {data.length > 0 &&
@@ -168,4 +170,4 @@ const LiveCard = () => {
   );
 };
 
-export default LiveCard;
+export default AllMatches;

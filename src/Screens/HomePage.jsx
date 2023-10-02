@@ -3,6 +3,7 @@ import LiveMatch from "../components/LiveMatch/LiveMatch";
 import { Grid } from "@mui/material";
 import Sidebar from "../Templates/Sidebar/Sidebar";
 import classes from "./HomePage.module.css";
+import LiveMatchTable from "../components/Table/LiveMatchTable";
 const HomePage = () => {
   return (
     <Grid lg={12} item container direction="row">
@@ -17,7 +18,7 @@ const HomePage = () => {
         item
         className={classes.responsiveLayout}
       >
-        <LiveMatch />
+        <LiveMatchTable />
       </Grid>
     </Grid>
   );

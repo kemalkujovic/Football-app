@@ -9,6 +9,10 @@
   margin: 0 auto;
   border-radius: 15px !important;
 }
+.container {
+  display: flex;
+  gap: 15px;
+}
 .relegationWrapper {
   background-color: rgb(189, 0, 0);
   display: flex;
@@ -38,6 +42,7 @@
   display: flex;
   gap: 15px;
   padding: 20px;
+  align-items: center;
 }
 .buttonsWrapper button {
   align-items: center;
@@ -59,11 +64,82 @@
   border: none;
   padding: 18px;
 }
+.mainButtonsWrapper {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.mainButtonsWrapper button {
+  align-items: center;
+  appearance: none;
+  background-color: #eee;
+  border-radius: 8px;
+  color: #555e61;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  height: 28px;
+  letter-spacing: 0.4px;
+  margin: initial;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  padding: 18px;
+}
 .active {
   color: white !important;
   background-color: #ff0046 !important;
 }
+.activeDatum {
+  background-color: #ff0046;
+  color: white;
+}
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 25px;
+  border-radius: 10px;
+}
 
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  list-style: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.menu li:hover {
+  background-color: #f0f0f0;
+}
+.menu .activeDatum:hover {
+  background-color: #ff0046;
+}
+.calendarWrapper {
+  display: flex;
+  position: relative;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 10px;
+  gap: 10px;
+}
+svg {
+  cursor: pointer;
+}
 @media screen and (max-width: 650px) {
   table {
     min-width: 400px !important;

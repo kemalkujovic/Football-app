@@ -28,8 +28,9 @@ export function lastDays() {
   let danasnjiDatum = new Date();
 
   // Oduzimanje jednog dana od trenutnog datuma da biste dobili jučerašnji datum
-  let jucerasnjiDatum = new Date(danasnjiDatum);
-  jucerasnjiDatum.setDate(danasnjiDatum.getDate() - 11);
+  let lastTenDays = new Date(danasnjiDatum);
+  lastTenDays.setDate(danasnjiDatum.getDate() - 11);
+
   let sledeciSedamDana = new Date(danasnjiDatum);
   sledeciSedamDana.setDate(danasnjiDatum.getDate() + 10);
   // Formatiranje datuma za današnji datum
@@ -44,9 +45,9 @@ export function lastDays() {
     (danasnjiDan < 10 ? "0" + danasnjiDan : danasnjiDan);
 
   // Formatiranje datuma za jučerašnji datum
-  let jucerasnjiGodina = jucerasnjiDatum.getFullYear();
-  let jucerasnjiMesec = jucerasnjiDatum.getMonth() + 1;
-  let jucerasnjiDan = jucerasnjiDatum.getDate();
+  let jucerasnjiGodina = lastTenDays.getFullYear();
+  let jucerasnjiMesec = lastTenDays.getMonth() + 1;
+  let jucerasnjiDan = lastTenDays.getDate();
   let jucerasnjiFormatiranDatum =
     jucerasnjiGodina +
     "-" +
@@ -64,10 +65,33 @@ export function lastDays() {
     "-" +
     (sledeciDan < 10 ? "0" + sledeciDan : sledeciDan);
   // Vraćanje datuma u nizu ili objektu
+
+  let danas = new Date();
+  let prethodniDan = new Date(danas);
+  prethodniDan.setDate(danas.getDate() - 1);
+
+  let prethodniDanFormatiran =
+    prethodniDan.getFullYear() +
+    "-" +
+    (prethodniDan.getMonth() + 1).toString().padStart(2, "0") +
+    "-" +
+    prethodniDan.getDate().toString().padStart(2, "0");
+  var nextDay = new Date(danas);
+  nextDay.setDate(danas.getDate() + 1);
+
+  var nextDayFormatiran =
+    nextDay.getFullYear() +
+    "-" +
+    (nextDay.getMonth() + 1).toString().padStart(2, "0") +
+    "-" +
+    nextDay.getDate().toString().padStart(2, "0");
+
   return {
     danasnjiDatum: danasnjiFormatiranDatum,
-    jucerasnjiDatum: jucerasnjiFormatiranDatum,
+    lastTenDays: jucerasnjiFormatiranDatum,
     sledeciDan: sledeciFormatiranDatum,
+    prethodniDan: prethodniDanFormatiran,
+    nextDay: nextDayFormatiran,
   };
 }
 export const leagues = [

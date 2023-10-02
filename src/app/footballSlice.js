@@ -37,7 +37,7 @@ export const leagueResults = createAsyncThunk(
   async (api, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `https://apiv3.apifootball.com/?action=get_events&from=${days.jucerasnjiDatum}&to=${days.danasnjiDatum}&league_id=${api}&APIkey=${APIkey}`
+        `https://apiv3.apifootball.com/?action=get_events&from=${days.lastTenDays}&to=${days.danasnjiDatum}&league_id=${api}&APIkey=${APIkey}`
       );
       return data;
     } catch (error) {
@@ -100,7 +100,19 @@ export const getLiveMatch = createAsyncThunk(
     }
   }
 );
-
+export const getAllMatch = createAsyncThunk(
+  "football/getAllMatch",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_events&from=${api}&to=${api}&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 const footballSlice = createSlice({
   name: "football",
   initialState: {
@@ -110,6 +122,7 @@ const footballSlice = createSlice({
     leagueStandings: [],
     fixtureMatches: [],
     leagueTopScores: [],
+    getAllMatch: [],
     liveMatch: [],
     isSuccess: false,
     message: "",
@@ -206,6 +219,18 @@ const footballSlice = createSlice({
         state.liveMatch = action.payload;
       })
       .addCase(getLiveMatch.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // getAllMatch
+      .addCase(getAllMatch.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getAllMatch.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getAllMatch = action.payload;
+      })
+      .addCase(getAllMatch.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
