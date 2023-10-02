@@ -11,13 +11,14 @@
   height: 30px;
   margin-right: 10px;
 }
+.countryWrapper p {
+  margin-right: 3px;
+}
 .pushPinWrapper {
   color: #1976d2;
   display: flex;
-  margin-left: 3px;
 }
 .defaultPinn {
   color: rgba(0, 0, 0, 0.26);
   display: flex;
-  margin-left: 3px;
 }

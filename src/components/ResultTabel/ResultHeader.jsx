@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./ResultHeader.module.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { FavoriteContext } from "../../context/FavoriteContext";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getLiveMatch } from "../../app/footballSlice";
+import { Tooltip } from "@mui/material";
 const ResultHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { item } = props;
@@ -39,18 +40,22 @@ const ResultHeader = (props) => {
             }
             alt="Logo"
           />
-          <p>{item?.country_name}:</p>
-          <p> {item?.league_name}</p>
+          <p>{item?.country_name}: </p>
+          <p>{item?.league_name} </p>
           {isFavorite ? (
             <span
               onClick={removeHandleClick}
               className={classes.pushPinWrapper}
             >
-              <PushPinIcon />
+              <Tooltip title="Remove this League from Favorite" arrow>
+                <PushPinIcon />
+              </Tooltip>
             </span>
           ) : (
             <span className={classes.defaultPinn} onClick={handleClick}>
-              <PushPinIcon />
+              <Tooltip title="Add to Favorite this League" arrow>
+                <PushPinIcon />
+              </Tooltip>
             </span>
           )}
         </div>

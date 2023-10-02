@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classes from "./Countrys.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { getLeague } from "../../app/footballSlice";
+import { getLeague, getLiveMatch } from "../../app/footballSlice";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import League from "../League/League";
@@ -14,6 +14,7 @@ const Countrys = () => {
   const { addFavorite } = useContext(FavoriteContext);
   const handleIconClick = (item) => {
     addFavorite(item);
+    dispatch(getLiveMatch());
   };
   const [iconStates, setIconStates] = useState({});
   const onClickIcons = (index) => {

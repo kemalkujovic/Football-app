@@ -1,6 +1,5 @@
 import React from "react";
 import LiveCard from "./LiveCard";
-
 const LiveMatch = () => {
   return (
     <section>
