@@ -1,0 +1,51 @@
+.mainContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.mainContainer p {
+  margin: 0;
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.container img {
+  width: 20px;
+  height: 20px;
+}
+.teamWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+.teamWrapper div {
+  display: flex;
+  gap: 8px;
+}
+.logoWrappper {
+  display: flex;
+  gap: 10px;
+}
+.headerMatchWrapper {
+  width: 100%;
+  background-color: #eee;
+  padding: 5px;
+  display: flex;
+  border-radius: 10px;
+}
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.scoreWrapper {
+  font-weight: 600;
+}
+.winner {
+  font-weight: 600;
+}
