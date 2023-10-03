@@ -39,6 +39,7 @@ const ResultTabel = (props) => {
   };
 
   const handleContainerClick = (event) => {
+    console.log(item);
     const isIconClick = event.target.closest(`.${classes.starWrapper}`);
     if (!isIconClick) {
       openPopup();

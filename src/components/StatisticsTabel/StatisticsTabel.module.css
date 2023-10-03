@@ -1,0 +1,62 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.mainContainer img {
+  width: 40px;
+  height: 40px;
+}
+
+.resultWrapper {
+  display: flex;
+}
+.mainContainer p {
+  margin: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container span {
+  display: flex;
+  gap: 10px;
+}
+.container span p {
+  color: gray;
+}
+.logoWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.winner {
+  font-weight: 700;
+}
+.container p {
+  font-size: 14px;
+}
+
+.resultWrapper p {
+  font-size: 40px;
+}
+
+.matchLive {
+  display: flex;
+  color: #ff004c;
+}
+.matchLive p {
+  font-size: 40px;
+}
+.matchStatusWrapper p {
+  color: #ff004c;
+}
+.proba {
+  color: #ff004c !important;
+  border-bottom: #ff004c !important;
+}
