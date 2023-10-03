@@ -4,6 +4,7 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { useDispatch } from "react-redux";
 import { Tooltip } from "@mui/material";
+import { Link } from "react-router-dom";
 const ResultHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const { item } = props;
@@ -38,7 +39,12 @@ const ResultHeader = (props) => {
             alt="Logo"
           />
           <p>{item?.country_name}: </p>
-          <p>{item?.league_name} </p>
+          <Link
+            className={classes.leagueNameWrapper}
+            to={`/league/${item.league_id}`}
+          >
+            <p>{item?.league_name} </p>
+          </Link>
           {isFavorite ? (
             <span
               onClick={removeHandleClick}

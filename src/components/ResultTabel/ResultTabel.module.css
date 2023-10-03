@@ -68,6 +68,7 @@
   margin: auto;
   padding: 7px;
   margin-top: 10px;
+  margin-bottom: 5px;
 }
 .timeZoneWrapper div {
   display: flex;
@@ -85,6 +86,9 @@
   color: #ff0046 !important;
   font-weight: 700 !important;
   margin: auto;
+}
+.mainContainer:hover {
+  background-color: #eee;
 }
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {

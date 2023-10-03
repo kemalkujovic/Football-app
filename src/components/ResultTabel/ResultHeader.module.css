@@ -22,3 +22,12 @@
   color: rgba(0, 0, 0, 0.26);
   display: flex;
 }
+
+.countryWrapper a {
+  margin: 0px 3px;
+  width: unset;
+}
+
+.countryWrapper a:hover {
+  text-decoration: underline;
+}
