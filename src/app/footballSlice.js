@@ -127,6 +127,20 @@ export const getStatistics = createAsyncThunk(
     }
   }
 );
+
+export const getH2H = createAsyncThunk(
+  "football/getH2H",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_H2H&firstTeamId=${api.homeId}&secondTeamId=${api.awayId}&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 const footballSlice = createSlice({
   name: "football",
   initialState: {
@@ -139,6 +153,7 @@ const footballSlice = createSlice({
     getAllMatch: [],
     liveMatch: [],
     getStatistics: [],
+    getH2H: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -258,6 +273,18 @@ const footballSlice = createSlice({
         state.getStatistics = action.payload;
       })
       .addCase(getStatistics.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // Get H2H matches
+      .addCase(getH2H.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getH2H.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getH2H = action.payload;
+      })
+      .addCase(getH2H.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

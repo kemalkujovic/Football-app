@@ -5,6 +5,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import HeadToHead from "../H2H/HeadToHead";
 
 const theme = createTheme({
   palette: {
@@ -17,9 +18,9 @@ const theme = createTheme({
   },
 });
 
-const TabListe = () => {
+const TabListe = (props) => {
   const [value, setValue] = useState("1");
-
+  const { item } = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -37,23 +38,19 @@ const TabListe = () => {
             >
               <Tab
                 style={{ borderBottomColor: "red" }}
-                label="Item One"
+                label="SUMMARY"
                 value="1"
                 textColor="primary"
-                indicatorColor="primary"
               />
-              <Tab
-                textColor="primary"
-                indicatorColor="primary"
-                label="Item Two"
-                value="2"
-              />
-              <Tab label="Item Three" value="3" />
+              <Tab textColor="primary" label="H2H" value="2" />
+              <Tab label="STANDINGS" value="3" />
             </TabList>
           </Box>
-          <TabPanel value="1">Item One</TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
+          <TabPanel value="1">SUMMARY</TabPanel>
+          <TabPanel value="2">
+            <HeadToHead item={item} />
+          </TabPanel>
+          <TabPanel value="3">STANDINGS</TabPanel>
         </TabContext>
       </Box>
     </ThemeProvider>
