@@ -31,10 +31,11 @@
 }
 .headerMatchWrapper {
   width: 100%;
-  background-color: #eee;
+  background-color: white;
   padding: 5px;
   display: flex;
   border-radius: 10px;
+  margin-bottom: 3px;
 }
 .loadMoreWrapper {
   display: flex;

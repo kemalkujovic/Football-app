@@ -7,10 +7,11 @@ const LastMatches = ({ item }) => {
         <div className={classes.logoWrappper}>
           <p>{item.match_date}</p>
           <img
-            src={item.country_logo}
+            src={item.country_logo ? item.country_logo : item.league_logo}
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = item.league_logo;
+              e.target.src =
+                "https://a3.espncdn.com/combiner/i?img=%2Fi%2Fleaguelogos%2Fsoccer%2F500%2F2310.png";
             }}
             alt="Logo"
           />

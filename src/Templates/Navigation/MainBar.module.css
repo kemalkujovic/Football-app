@@ -83,7 +83,7 @@
   font-size: 18px;
 }
 .active {
-  border-bottom: 3px solid red;
+  border-bottom: 3px solid #ff004c;
 }
 @media screen and (max-width: 768px) {
   .top-menu {

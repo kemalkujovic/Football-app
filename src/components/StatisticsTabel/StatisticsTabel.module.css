@@ -1,7 +1,7 @@
 .mainContainer {
   display: flex;
   justify-content: space-between;
-  max-width: 500px;
+  max-width: 430px;
   margin: 0 auto;
   align-items: center;
   margin-top: 30px;
@@ -59,4 +59,8 @@
 .proba {
   color: #ff004c !important;
   border-bottom: #ff004c !important;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
 }

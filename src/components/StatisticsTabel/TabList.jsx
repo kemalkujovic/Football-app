@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -7,6 +7,8 @@ import TabPanel from "@mui/lab/TabPanel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import HeadToHead from "../H2H/HeadToHead";
 import StatisticsStandings from "./StatisticsStandings";
+import { useDispatch } from "react-redux";
+import { getH2H } from "../../app/footballSlice";
 
 const theme = createTheme({
   palette: {
@@ -20,11 +22,20 @@ const theme = createTheme({
 });
 
 const TabListe = (props) => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState("1");
   const { item } = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const id = {
+      homeId: item.match_hometeam_id,
+      awayId: item.match_awayteam_id,
+    };
+    dispatch(getH2H(id));
+  }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>

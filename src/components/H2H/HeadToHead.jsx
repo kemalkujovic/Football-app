@@ -18,15 +18,7 @@ const HeadToHead = ({ item }) => {
   const moreFiveAwayMatches = secondTeamMatchs?.slice(5);
 
   const headToHead = selector["firstTeam_VS_secondTeam"];
-  console.log(headToHead);
-  useEffect(() => {
-    const id = {
-      homeId: item.match_hometeam_id,
-      awayId: item.match_awayteam_id,
-    };
-    dispatch(getH2H(id));
-  }, [dispatch]);
-
+  console.log(selector);
   return (
     <div>
       <div className={classes.headerMatchWrapper}>
