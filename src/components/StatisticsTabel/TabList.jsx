@@ -6,6 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import HeadToHead from "../H2H/HeadToHead";
+import StatisticsStandings from "./StatisticsStandings";
 
 const theme = createTheme({
   palette: {
@@ -50,7 +51,9 @@ const TabListe = (props) => {
           <TabPanel value="2">
             <HeadToHead item={item} />
           </TabPanel>
-          <TabPanel value="3">STANDINGS</TabPanel>
+          <TabPanel value="3">
+            <StatisticsStandings item={item} />
+          </TabPanel>
         </TabContext>
       </Box>
     </ThemeProvider>
