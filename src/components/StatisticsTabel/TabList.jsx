@@ -9,6 +9,7 @@ import HeadToHead from "../H2H/HeadToHead";
 import StatisticsStandings from "./StatisticsStandings";
 import { useDispatch } from "react-redux";
 import { getH2H } from "../../app/footballSlice";
+import MatchDetail from "../MatchDetail/MatchDetail";
 
 const theme = createTheme({
   palette: {
@@ -58,7 +59,9 @@ const TabListe = (props) => {
               <Tab label="STANDINGS" value="3" />
             </TabList>
           </Box>
-          <TabPanel value="1">SUMMARY</TabPanel>
+          <TabPanel style={{ padding: "0px" }} value="1">
+            <MatchDetail item={item} />
+          </TabPanel>
           <TabPanel value="2">
             <HeadToHead item={item} />
           </TabPanel>

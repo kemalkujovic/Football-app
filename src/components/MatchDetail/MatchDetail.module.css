@@ -1,0 +1,31 @@
+.awayContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+.homeContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.yellowCard {
+  width: 15px;
+  height: 25px;
+  background-color: yellow;
+  border-radius: 4px;
+}
+.redCard {
+  width: 15px;
+  height: 25px;
+  background-color: red;
+  border-radius: 4px;
+}
+.scoreWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.halfWrapper {
+  background-color: white;
+}
