@@ -10,7 +10,14 @@ const StatisticsPage = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getStatistics);
   useEffect(() => {
-    dispatch(getStatistics(id));
+    const fetchData = () => {
+      dispatch(getStatistics(id));
+    };
+    const intervalId = setInterval(fetchData, 10000);
+    fetchData();
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [dispatch]);
   console.log(selector);
   return (
