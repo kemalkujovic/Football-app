@@ -19,7 +19,6 @@ const StatisticsPage = () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
-  console.log(selector);
   return (
     <div>
       <StatisticsTabel item={selector} />

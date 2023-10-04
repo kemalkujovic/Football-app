@@ -18,7 +18,6 @@ const HeadToHead = ({ item }) => {
   const moreFiveAwayMatches = secondTeamMatchs?.slice(5);
 
   const headToHead = selector["firstTeam_VS_secondTeam"];
-  console.log(selector);
   return (
     <div>
       <div className={classes.headerMatchWrapper}>

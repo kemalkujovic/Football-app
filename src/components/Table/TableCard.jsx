@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 const TableCard = () => {
   const selector = useSelector((state) => state.football.leagueStandings);
-  console.log(selector);
   let brojac = 0;
   const mappedData = [];
   if (selector?.length > 0) {
