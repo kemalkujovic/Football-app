@@ -1,0 +1,21 @@
+.whistleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 0px 12px;
+}
+.whistleWrapper span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  color: #555e61;
+  font-size: 13px;
+}
+.whistleWrapper p {
+  margin: 0;
+  font-weight: 600;
+  color: #2a2626;
+  font-size: 13px;
+}

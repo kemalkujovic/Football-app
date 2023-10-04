@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./MatchDetail.module.css";
 
 import Detail from "./Detail";
+import MatchInfromation from "../MatchInfromation/MatchInfromation";
 const MatchDetail = ({ item }) => {
   let matchData = [];
   let substitutions = item.substitutions;
@@ -83,6 +84,14 @@ const MatchDetail = ({ item }) => {
           })}
         </div>
       )}
+      {
+        <div>
+          <div className={classes.halfWrapper}>
+            <p>MATCH INFORMATION</p>
+          </div>
+          <MatchInfromation item={item} />
+        </div>
+      }
     </>
   );
 };
