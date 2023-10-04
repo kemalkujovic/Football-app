@@ -3,9 +3,13 @@ import classes from "./MatchDetail.module.css";
 
 import Detail from "./Detail";
 import MatchInfromation from "../MatchInfromation/MatchInfromation";
+import MatchOdds from "./MatchOdds";
+import { useSelector } from "react-redux";
 const MatchDetail = ({ item }) => {
   let matchData = [];
   let substitutions = item.substitutions;
+  const selector = useSelector((state) => state.football.getOddsMatch);
+
   if (item.cards && item.goalscorer) {
     matchData = [...item.cards, ...item.goalscorer]
       .map((detail) => ({
@@ -56,7 +60,6 @@ const MatchDetail = ({ item }) => {
   const secondHalfData = matchData.filter(
     (item) => determineHalf(item.time) === "2nd Half"
   );
-  console.log(firstHalfData);
   return (
     <>
       {(firstHalfData.length > 0 || item.match_live === "1") && (
@@ -82,6 +85,14 @@ const MatchDetail = ({ item }) => {
               <Detail substitutions={substitutions} key={index} item={item} />
             );
           })}
+        </div>
+      )}
+      {selector.length > 0 && (
+        <div>
+          <div className={classes.halfWrapper}>
+            <p>PRE-MATCH ODDS</p>
+          </div>
+          <MatchOdds data={selector} />
         </div>
       )}
       {

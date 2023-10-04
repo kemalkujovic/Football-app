@@ -13,7 +13,7 @@ const StatisticsPage = () => {
     const fetchData = () => {
       dispatch(getStatistics(id));
     };
-    const intervalId = setInterval(fetchData, 10000);
+    const intervalId = setInterval(fetchData, 30000);
     fetchData();
     return () => {
       clearInterval(intervalId);

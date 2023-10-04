@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.container p {
+  margin: 0;
+}
+.container img {
+  width: 100px;
+  height: 50px;
+}
+.oddsWrapper {
+  display: flex;
+  gap: 20px;
+}
+.oddsWrapper div {
+  display: flex;
+  align-items: center;
+  background-color: #ddd;
+  padding: 10px 10px;
+  border-radius: 8px;
+  gap: 20px;
+}
+.oddsWrapper p {
+  font-weight: 700;
+  cursor: pointer;
+}
+.oddsWrapper p:hover {
+  text-decoration: underline;
+}
