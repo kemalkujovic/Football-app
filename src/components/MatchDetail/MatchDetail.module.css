@@ -3,11 +3,13 @@
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
+  padding-right: 12px;
 }
 .homeContainer {
   display: flex;
   align-items: center;
   gap: 5px;
+  padding-left: 12px;
 }
 .yellowCard {
   width: 15px;
@@ -24,8 +26,32 @@
 .scoreWrapper {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 .halfWrapper {
-  background-color: white;
+  background-color: #ddd;
+  margin-top: 20px;
+  padding: 5px 12px;
+}
+.halfWrapper p {
+  margin: 0;
+}
+.goalIconWrapper {
+  display: flex;
+  background-color: #fdf9f9;
+  border-radius: 10px;
+  padding: 3px 4px;
+  margin: 0;
+  gap: 5px;
+}
+.goalIconWrapper p {
+  margin: 0;
+  font-weight: 600;
+}
+.goalScoreWrapper {
+  display: flex;
+  gap: 5px;
+}
+.assistGoal {
+  color: gray;
 }
