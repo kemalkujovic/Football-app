@@ -8,7 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import HeadToHead from "../H2H/HeadToHead";
 import StatisticsStandings from "./StatisticsStandings";
 import { useDispatch } from "react-redux";
-import { getH2H, getOddsMatch } from "../../app/footballSlice";
+import { getOddsMatch } from "../../app/footballSlice";
 import MatchDetail from "../MatchDetail/MatchDetail";
 
 const theme = createTheme({
@@ -31,11 +31,6 @@ const TabListe = (props) => {
   };
 
   useEffect(() => {
-    const id = {
-      homeId: item.match_hometeam_id,
-      awayId: item.match_awayteam_id,
-    };
-    dispatch(getH2H(id));
     dispatch(getOddsMatch(item.match_id));
   }, [dispatch]);
 

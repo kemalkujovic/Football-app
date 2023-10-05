@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import Tooltip from "@mui/material/Tooltip";
@@ -8,7 +7,6 @@ import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { SidebarContext } from "../../context/SideBarContext.js";
 const ResultTabel = (props) => {
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -33,7 +31,6 @@ const ResultTabel = (props) => {
     item,
     matchLive,
   } = props;
-
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };

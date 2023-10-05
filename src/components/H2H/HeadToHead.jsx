@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getH2H } from "../../app/footballSlice";
+
 import LastMatches from "./LastMatches";
 import classes from "./HomeMatches.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { getH2H } from "../../app/footballSlice";
 const HeadToHead = ({ item }) => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getH2H);
@@ -18,6 +19,15 @@ const HeadToHead = ({ item }) => {
   const moreFiveAwayMatches = secondTeamMatchs?.slice(5);
 
   const headToHead = selector["firstTeam_VS_secondTeam"];
+
+  useEffect(() => {
+    const id = {
+      homeId: item.match_hometeam_id,
+      awayId: item.match_awayteam_id,
+    };
+    dispatch(getH2H(id));
+  }, [dispatch]);
+
   return (
     <div>
       <div className={classes.headerMatchWrapper}>

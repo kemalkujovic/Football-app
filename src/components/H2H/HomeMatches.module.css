@@ -19,7 +19,6 @@
 .teamWrapper {
   display: flex;
   flex-direction: column;
-  width: 250px;
 }
 .teamWrapper div {
   display: flex;

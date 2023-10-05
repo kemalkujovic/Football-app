@@ -15,7 +15,13 @@ const Detail = ({ item }) => {
         {item.home_scorer && (
           <div className={classes.scoreWrapper}>
             <p>{item.time}'</p>
-            <div className={classes.goalIconWrapper}>
+            <div
+              className={
+                item.home_scorer?.includes("(o.g.)")
+                  ? classes.ogWrapper
+                  : classes.goalIconWrapper
+              }
+            >
               <SportsSoccerIcon />
               <p>{item.score}</p>
             </div>
@@ -71,7 +77,13 @@ const Detail = ({ item }) => {
               <p className={classes.assistGoal}>({item.away_assist})</p>
             )}
             <p>{item.away_scorer}</p>
-            <div className={classes.goalIconWrapper}>
+            <div
+              className={
+                item.away_scorer?.includes("(o.g.)")
+                  ? classes.ogWrapper
+                  : classes.goalIconWrapper
+              }
+            >
               <SportsSoccerIcon />
               <p>{item.score}</p>
             </div>

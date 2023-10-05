@@ -9,7 +9,6 @@ const MatchDetail = ({ item }) => {
   let matchData = [];
   let substitutions = item.substitutions;
   const selector = useSelector((state) => state.football.getOddsMatch);
-
   if (item.cards && item.goalscorer) {
     matchData = [...item.cards, ...item.goalscorer]
       .map((detail) => ({
@@ -60,6 +59,8 @@ const MatchDetail = ({ item }) => {
   const secondHalfData = matchData.filter(
     (item) => determineHalf(item.time) === "2nd Half"
   );
+  console.log(firstHalfData);
+
   return (
     <>
       {(firstHalfData.length > 0 || item.match_live === "1") && (
