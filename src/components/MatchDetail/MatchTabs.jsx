@@ -31,8 +31,7 @@ const MatchTabs = ({ item }) => {
 
       {activeComponent === 0 && <MatchDetail item={item} />}
       {activeComponent === 1 && <StatsMatch />}
-      {activeComponent === 2 &&
-        item?.lineup.home.starting_lineups.length > 0 && <LineupsMatch />}
+      {activeComponent === 2 && <LineupsMatch />}
     </>
   );
 };

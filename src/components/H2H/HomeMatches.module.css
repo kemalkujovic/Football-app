@@ -49,3 +49,9 @@
 .winner {
   font-weight: 600;
 }
+.circularLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}

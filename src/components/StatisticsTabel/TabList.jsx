@@ -9,7 +9,6 @@ import HeadToHead from "../H2H/HeadToHead";
 import StatisticsStandings from "./StatisticsStandings";
 import { useDispatch } from "react-redux";
 import { getOddsMatch } from "../../app/footballSlice";
-import MatchDetail from "../MatchDetail/MatchDetail";
 import MatchTabs from "../MatchDetail/MatchTabs";
 
 const theme = createTheme({

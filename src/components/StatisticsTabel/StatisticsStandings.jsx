@@ -5,7 +5,7 @@ import { leagueStandings, leagueTopScores } from "../../app/footballSlice";
 
 const StatisticsStandings = (props) => {
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.football.leagueStandings);
+
   useEffect(() => {
     dispatch(leagueStandings(props.item.league_id));
     dispatch(leagueTopScores(props.item.league_id));
