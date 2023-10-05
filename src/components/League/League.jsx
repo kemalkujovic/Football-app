@@ -4,7 +4,6 @@ import { SidebarContext } from "../../context/SideBarContext";
 const League = (props) => {
   const { league_id, league_logo, country_logo, league_name } = props;
   const { handleClick } = useContext(SidebarContext);
-
   return (
     <div key={league_id} onClick={handleClick}>
       <img

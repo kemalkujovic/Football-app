@@ -1,5 +1,4 @@
 import React from "react";
-import LiveMatch from "../components/LiveMatch/LiveMatch";
 import { Grid } from "@mui/material";
 import Sidebar from "../Templates/Sidebar/Sidebar";
 import classes from "./HomePage.module.css";
