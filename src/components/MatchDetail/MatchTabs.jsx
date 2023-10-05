@@ -1,0 +1,37 @@
+import React, { useState } from "react";
+import MatchDetail from "./MatchDetail";
+import LineupsMatch from "../Lineups/LineupsMatch";
+import StatsMatch from "../Stats/StatsMatch";
+import classes from "./MatchTabs.module.css";
+const MatchTabs = ({ item }) => {
+  const [activeComponent, setActiveComponent] = useState(0);
+  const options = ["Summary", "Stats", "Lineups"];
+  const changeComponent = (index) => {
+    setActiveComponent(index);
+  };
+  return (
+    <>
+      {item.match_status !== "" && (
+        <div className={classes.buttonsWrapper}>
+          {options?.map((el, index) => {
+            return (
+              <button
+                className={activeComponent === index ? classes.active : ""}
+                key={index}
+                onClick={() => changeComponent(index)}
+              >
+                {el}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {activeComponent === 0 && <MatchDetail item={item} />}
+      {activeComponent === 1 && <StatsMatch />}
+      {activeComponent === 2 && <LineupsMatch />}
+    </>
+  );
+};
+
+export default MatchTabs;

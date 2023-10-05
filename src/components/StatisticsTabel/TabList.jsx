@@ -10,6 +10,7 @@ import StatisticsStandings from "./StatisticsStandings";
 import { useDispatch } from "react-redux";
 import { getOddsMatch } from "../../app/footballSlice";
 import MatchDetail from "../MatchDetail/MatchDetail";
+import MatchTabs from "../MatchDetail/MatchTabs";
 
 const theme = createTheme({
   palette: {
@@ -55,7 +56,7 @@ const TabListe = (props) => {
             </TabList>
           </Box>
           <TabPanel style={{ padding: "0px" }} value="1">
-            <MatchDetail item={item} />
+            <MatchTabs item={item} />
           </TabPanel>
           <TabPanel value="2">
             <HeadToHead item={item} />

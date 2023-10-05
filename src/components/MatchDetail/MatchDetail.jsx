@@ -59,7 +59,6 @@ const MatchDetail = ({ item }) => {
   const secondHalfData = matchData.filter(
     (item) => determineHalf(item.time) === "2nd Half"
   );
-  console.log(firstHalfData);
 
   return (
     <>
