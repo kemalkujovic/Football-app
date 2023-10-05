@@ -29,7 +29,6 @@ const TabListe = (props) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   useEffect(() => {
     dispatch(getOddsMatch(item.match_id));
   }, [dispatch]);

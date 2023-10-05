@@ -106,3 +106,9 @@
 .fuad {
   color: red;
 }
+.redCard {
+  width: 12px;
+  height: 20px;
+  background-color: red;
+  border-radius: 2px;
+}

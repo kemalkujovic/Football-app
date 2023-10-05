@@ -34,13 +34,19 @@ const ResultTabel = (props) => {
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
-
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const homeRedCard = item.cards?.filter((item) => {
+    return item.home_fault.length > 0 && item.card === "red card";
+  });
+  const awayRedCard = item.cards?.filter((item) => {
+    return item.away_fault.length > 0 && item.card === "red card";
+  });
 
   const openPopup = () => {
     const url = `http://localhost:3000/statistics/${item.match_id}`;
@@ -150,11 +156,26 @@ const ResultTabel = (props) => {
                 alt="Logo1"
               />
               {matchLive === "1" && matchStatus !== "Finished" ? (
-                <p>{homeName}</p>
+                <>
+                  <p>{homeName}</p>
+
+                  {homeRedCard.length > 0 ? (
+                    <div className={classes.redCard}></div>
+                  ) : (
+                    ""
+                  )}
+                </>
               ) : (
-                <p className={homeGoal > awayGoal ? classes.winner : ""}>
-                  {homeName}
-                </p>
+                <>
+                  <p className={homeGoal > awayGoal ? classes.winner : ""}>
+                    {homeName}
+                  </p>
+                  {homeRedCard.length > 0 ? (
+                    <div className={classes.redCard}></div>
+                  ) : (
+                    ""
+                  )}
+                </>
               )}
             </span>
             <span>
@@ -167,11 +188,25 @@ const ResultTabel = (props) => {
                 alt="Logo1"
               />
               {matchLive === "1" && matchStatus !== "Finished" ? (
-                <p>{awayName}</p>
+                <>
+                  <p>{awayName}</p>
+                  {awayRedCard.length > 0 ? (
+                    <div className={classes.redCard}></div>
+                  ) : (
+                    ""
+                  )}
+                </>
               ) : (
-                <p className={awayGoal > homeGoal ? classes.winner : ""}>
-                  {awayName}
-                </p>
+                <>
+                  <p className={awayGoal > homeGoal ? classes.winner : ""}>
+                    {awayName}
+                  </p>
+                  {awayRedCard.length > 0 ? (
+                    <div className={classes.redCard}></div>
+                  ) : (
+                    ""
+                  )}
+                </>
               )}
             </span>
           </div>
