@@ -7,7 +7,7 @@ const StatisticsTabel = (props) => {
 
   return (
     <>
-      {item.map((item, index) => {
+      {item?.map((item, index) => {
         return (
           <main key={index}>
             <StastisticsHeader item={item} />

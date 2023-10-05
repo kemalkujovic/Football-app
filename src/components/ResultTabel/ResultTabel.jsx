@@ -7,11 +7,15 @@ import Tooltip from "@mui/material/Tooltip";
 import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { SidebarContext } from "../../context/SideBarContext.js";
 const ResultTabel = (props) => {
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const history = useNavigate();
 
   const {
     countryLogo,
@@ -30,18 +34,32 @@ const ResultTabel = (props) => {
     matchLive,
   } = props;
 
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const openPopup = () => {
     const url = `http://localhost:3000/statistics/${item.match_id}`;
     const windowName = "Popup";
-    const windowFeatures = "width=600,height=800";
+    const windowFeatures = "width=650,height=850";
 
     window.open(url, windowName, windowFeatures);
   };
-
   const handleContainerClick = (event) => {
     const isIconClick = event.target.closest(`.${classes.starWrapper}`);
-    if (!isIconClick) {
+    if (!isIconClick && windowWidth > 768) {
       openPopup();
+    }
+    if (!isIconClick && windowWidth < 768) {
+      const url = `/statistics/${item.match_id}`;
+      history(url);
     }
   };
 
