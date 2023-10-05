@@ -14,6 +14,8 @@ const MatchTabs = ({ item }) => {
       {item.match_status !== "" && (
         <div className={classes.buttonsWrapper}>
           {options?.map((el, index) => {
+            if (index === 2 && !(item.lineup.home.starting_lineups.length > 0))
+              return null;
             return (
               <button
                 className={activeComponent === index ? classes.active : ""}
@@ -29,7 +31,8 @@ const MatchTabs = ({ item }) => {
 
       {activeComponent === 0 && <MatchDetail item={item} />}
       {activeComponent === 1 && <StatsMatch />}
-      {activeComponent === 2 && <LineupsMatch />}
+      {activeComponent === 2 &&
+        item?.lineup.home.starting_lineups.length > 0 && <LineupsMatch />}
     </>
   );
 };
