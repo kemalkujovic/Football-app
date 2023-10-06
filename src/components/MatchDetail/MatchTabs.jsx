@@ -30,8 +30,8 @@ const MatchTabs = ({ item }) => {
       )}
 
       {activeComponent === 0 && <MatchDetail item={item} />}
-      {activeComponent === 1 && <StatsMatch />}
-      {activeComponent === 2 && <LineupsMatch />}
+      {activeComponent === 1 && <StatsMatch item={item} />}
+      {activeComponent === 2 && <LineupsMatch item={item} />}
     </>
   );
 };
