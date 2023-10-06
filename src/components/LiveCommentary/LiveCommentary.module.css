@@ -7,3 +7,13 @@
 .container {
   padding: 10px 12px;
 }
+.halfWrapper {
+  background-color: #ddd;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  margin-top: 10px;
+}
+.halfWrapper p {
+  margin: 0;
+  font-size: 14px;
+}

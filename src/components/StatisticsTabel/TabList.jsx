@@ -20,6 +20,9 @@ const theme = createTheme({
       main: "#ff004c",
     },
   },
+  typography: {
+    fontFamily: ["Jost", "sans-serif"].join(","),
+  },
 });
 
 const TabListe = (props) => {
@@ -31,7 +34,7 @@ const TabListe = (props) => {
   };
   useEffect(() => {
     dispatch(getOddsMatch(item.match_id));
-  }, [dispatch]);
+  }, [dispatch, item.match_id]);
 
   return (
     <ThemeProvider theme={theme}>

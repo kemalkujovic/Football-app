@@ -92,7 +92,7 @@ const MatchDetail = ({ item }) => {
           <div className={classes.halfWrapper}>
             <p>PRE-MATCH ODDS</p>
           </div>
-          <MatchOdds data={selector} />
+          <MatchOdds />
         </div>
       )}
       {

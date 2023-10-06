@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./LiveCommentary.module.css";
+import MatchOdds from "../MatchDetail/MatchOdds";
 const LiveCommentary = ({ comments }) => {
   console.log(comments);
   return (
@@ -14,7 +15,7 @@ const LiveCommentary = ({ comments }) => {
             }
             <p
               className={
-                comment.text.includes("dangerous ") ? classes.commentsFonts : ""
+                comment.text.includes("dangerous") ? classes.commentsFonts : ""
               }
             >
               {comment.text}
@@ -22,6 +23,12 @@ const LiveCommentary = ({ comments }) => {
           </div>
         );
       })}
+      <div>
+        <div className={classes.halfWrapper}>
+          <p>PRE-MATCH ODDS</p>
+        </div>
+        <MatchOdds />
+      </div>
     </div>
   );
 };

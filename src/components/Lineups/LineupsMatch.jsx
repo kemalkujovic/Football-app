@@ -2,6 +2,7 @@ import React from "react";
 import LineupCard from "./LineupCard";
 import { Grid } from "@mui/material";
 import classes from "./LineupCard.module.css";
+import MatchOdds from "../MatchDetail/MatchOdds";
 const LineupsMatch = ({ item }) => {
   console.log(item);
   return (
@@ -51,6 +52,12 @@ const LineupsMatch = ({ item }) => {
           })}
         </Grid>
       </Grid>
+      <div className={classes.halfWrapper}>
+        <p>PRE-MATCH ODDS</p>
+      </div>
+      <div>
+        <MatchOdds />
+      </div>
     </>
   );
 };

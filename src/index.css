@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 body {
   margin: 0;
-  font-family: "Jost", sans-serif;
+  font-family: "Jost", sans-serif !important;
   background-color: #eeeeee;
 }
 
