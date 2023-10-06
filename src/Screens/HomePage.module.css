@@ -14,3 +14,11 @@
     flex-basis: 100% !important;
   }
 }
+.soundWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.soundWrapper svg {
+  color: #001e28;
+}

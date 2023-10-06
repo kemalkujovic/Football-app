@@ -11,12 +11,12 @@ const LineupsMatch = ({ item }) => {
         <p>STARTING LINEUPS</p>
       </div>
       <Grid container>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.home.starting_lineups.map((item, index) => {
             return <LineupCard key={index} item={item} />;
           })}
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.away.starting_lineups.map((item, index) => {
             return <LineupCard key={index} item={item} away={true} />;
           })}
@@ -26,12 +26,12 @@ const LineupsMatch = ({ item }) => {
         <p>SUBSTITUTES</p>
       </div>
       <Grid container>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.home.substitutes?.map((item, index) => {
             return <LineupCard key={index} item={item} />;
           })}
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.away.substitutes?.map((item, index) => {
             return <LineupCard key={index} item={item} away={true} />;
           })}
@@ -41,12 +41,12 @@ const LineupsMatch = ({ item }) => {
         <p>COACH</p>
       </div>
       <Grid container>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.home.coach?.map((item, index) => {
             return <LineupCard key={index} item={item} />;
           })}
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={6} sm={6}>
           {item.lineup.away.coach?.map((item, index) => {
             return <LineupCard key={index} item={item} away={true} />;
           })}

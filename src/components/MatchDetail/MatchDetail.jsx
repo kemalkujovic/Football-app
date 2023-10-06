@@ -7,6 +7,7 @@ import MatchOdds from "./MatchOdds";
 import { useSelector } from "react-redux";
 const MatchDetail = ({ item }) => {
   let matchData = [];
+  console.log(item);
   let substitutions = item.substitutions;
   const selector = useSelector((state) => state.football.getOddsMatch);
   if (item.cards && item.goalscorer) {
@@ -41,6 +42,7 @@ const MatchDetail = ({ item }) => {
         return timeA - timeB;
       });
   }
+
   const determineHalf = (timeString) => {
     const time = parseInt(timeString, 10);
     if (time <= 45 || timeString.includes("45+")) {

@@ -8,7 +8,7 @@ const getInitalState = () => {
 
 export const FavoriteMatchContextProvider = ({ children }) => {
   const [matchFavorit, setMatchFavorites] = useState(getInitalState);
-
+  const [goal, setGoal] = useState(false);
   const addFavorite = (country) => {
     if (
       !matchFavorit.some((favorite) => favorite?.match_id === country?.match_id)
@@ -34,6 +34,9 @@ export const FavoriteMatchContextProvider = ({ children }) => {
     setMatchFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.map((fav) => {
         if (fav.match_id === matchId) {
+          if (fav.match_hometeam_score !== match_hometeam_score) {
+            setGoal(true);
+          }
           return {
             ...fav,
             match_status: newStatus,
@@ -58,6 +61,8 @@ export const FavoriteMatchContextProvider = ({ children }) => {
         addFavorite,
         removeFavorite,
         updateMatchInLocalStorage,
+        goal,
+        setGoal,
       }}
     >
       {children}
