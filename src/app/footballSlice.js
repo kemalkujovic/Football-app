@@ -154,6 +154,19 @@ export const getOddsMatch = createAsyncThunk(
     }
   }
 );
+export const getLiveComments = createAsyncThunk(
+  "football/getLiveComments",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_live_odds_commnets&match_id=${api}&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 const footballSlice = createSlice({
   name: "football",
   initialState: {
@@ -168,6 +181,7 @@ const footballSlice = createSlice({
     getStatistics: [],
     getH2H: [],
     getOddsMatch: [],
+    getLiveComments: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -311,6 +325,18 @@ const footballSlice = createSlice({
         state.getOddsMatch = action.payload;
       })
       .addCase(getOddsMatch.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      // getLiveComments
+      .addCase(getLiveComments.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getLiveComments.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getLiveComments = action.payload;
+      })
+      .addCase(getLiveComments.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
