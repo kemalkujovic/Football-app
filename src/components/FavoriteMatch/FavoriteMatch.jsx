@@ -19,7 +19,6 @@ const FavoriteMatch = () => {
     const matchData = JSON.parse(localStorage.getItem("match"));
     const updateMatches = () => {
       dispatch(getLiveMatch());
-      console.log("da");
       const updatedMatches = matchData.filter((el) =>
         selector?.filter((item) => {
           if (
@@ -45,6 +44,9 @@ const FavoriteMatch = () => {
           }
         })
       );
+      if (updatedMatches.length > 0) {
+        dispatch(getLiveMatch());
+      }
     };
 
     const matchIntervalId = setInterval(updateMatches, 30000);
@@ -52,7 +54,7 @@ const FavoriteMatch = () => {
     return () => {
       clearInterval(matchIntervalId);
     };
-  }, [dispatch]);
+  }, [dispatch, selector]);
   let currentLeague;
   let previusLeague;
   return (
@@ -66,8 +68,8 @@ const FavoriteMatch = () => {
               <React.Fragment key={item.match_id}>
                 <ResultHeader item={item} />
                 <ResultTabel
-                  key={item.match_id}
                   previousScores={previousScores}
+                  key={item.match_id}
                   item={item}
                 />
               </React.Fragment>
