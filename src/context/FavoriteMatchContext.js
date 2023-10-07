@@ -34,7 +34,10 @@ export const FavoriteMatchContextProvider = ({ children }) => {
     setMatchFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.map((fav) => {
         if (fav.match_id === matchId) {
-          if (fav.match_hometeam_score !== match_hometeam_score) {
+          if (
+            fav.match_hometeam_score !== match_hometeam_score ||
+            fav.match_awayteam_score !== match_awayteam_score
+          ) {
             setGoal(true);
           }
           return {

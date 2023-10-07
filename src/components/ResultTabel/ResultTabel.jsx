@@ -15,22 +15,20 @@ const ResultTabel = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const history = useNavigate();
 
-  const {
-    countryLogo,
-    matchDate,
-    matchTime,
-    matchStatus,
-    homeLogo,
-    awayLogo,
-    homeName,
-    awayName,
-    homeGoal,
-    awayGoal,
-    homeHalfGoal,
-    awayHalfGoal,
-    item,
-    matchLive,
-  } = props;
+  const { item, previousScores } = props;
+  let klasa;
+  let klasa2;
+  if (previousScores) {
+    const previousScore = previousScores[item?.match_id];
+    const isScoreChanged =
+      previousScore &&
+      previousScore.hometeam_score !== item.match_hometeam_score;
+    const isAwayScoreChanged =
+      previousScore &&
+      previousScore.awayteam_score !== item.match_awayteam_score;
+    klasa = isScoreChanged ? classes.goalSouder : "";
+    klasa2 = isAwayScoreChanged ? classes.goalSouder : "";
+  }
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
@@ -96,7 +94,7 @@ const ResultTabel = (props) => {
   return (
     <div
       onClick={(e) => handleContainerClick(e)}
-      className={classes.mainContainer}
+      className={klasa ? klasa : klasa2 ? klasa2 : classes.mainContainer}
     >
       <Grid
         marginLeft="20px"
@@ -132,33 +130,35 @@ const ResultTabel = (props) => {
                 </Tooltip>
               </div>
             )}
-            {matchLive === "1" && matchStatus === "Finished" ? (
-              <p style={{ margin: "auto" }}>{matchStatus}</p>
-            ) : matchStatus === "Half Time" ? (
-              <p className={classes.wrapperStatusLive}>{matchStatus}</p>
-            ) : matchLive === "1" ? (
-              <p className={classes.wrapperStatusLive}>{matchStatus}'</p>
+            {item.match_live === "1" && item.match_status === "Finished" ? (
+              <p style={{ margin: "auto" }}>{item.match_status}</p>
+            ) : item.match_status === "Half Time" ? (
+              <p className={classes.wrapperStatusLive}>{item.match_status}</p>
+            ) : item.match_live === "1" ? (
+              <p className={classes.wrapperStatusLive}>{item.match_status}'</p>
             ) : (
               <div>
-                <p>{matchDate?.split("-").slice(1).join(".")}</p>
-                <p>{matchTime}</p>
+                <p>{item.match_date?.split("-").slice(1).join(".")}</p>
+                <p>{item.match_time}</p>
               </div>
             )}
           </div>
           <div className={classes.clubsWrapper}>
             <span>
               <img
-                src={homeLogo}
+                src={item.team_home_badge}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = countryLogo;
+                  e.target.src = item.country_logo;
                 }}
                 alt="Logo1"
               />
-              {matchLive === "1" && matchStatus !== "Finished" ? (
+              {item.match_live === "1" && item.match_status !== "Finished" ? (
                 <>
-                  <p>{homeName}</p>
-
+                  <p className={klasa ? classes.goalSound : ""}>
+                    {item.match_hometeam_name}
+                  </p>
+                  {klasa ? <p style={{ color: "#ff004c" }}>GOAL</p> : ""}
                   {homeRedCard.length > 0 ? (
                     <div className={classes.redCard}></div>
                   ) : (
@@ -167,8 +167,14 @@ const ResultTabel = (props) => {
                 </>
               ) : (
                 <>
-                  <p className={homeGoal > awayGoal ? classes.winner : ""}>
-                    {homeName}
+                  <p
+                    className={
+                      item.match_hometeam_score > item.match_awayteam_score
+                        ? classes.winner
+                        : ""
+                    }
+                  >
+                    {item.match_hometeam_name}
                   </p>
                   {homeRedCard.length > 0 ? (
                     <div className={classes.redCard}></div>
@@ -180,16 +186,19 @@ const ResultTabel = (props) => {
             </span>
             <span>
               <img
-                src={awayLogo}
+                src={item.team_away_badge}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = countryLogo;
+                  e.target.src = item.country_logo;
                 }}
                 alt="Logo1"
               />
-              {matchLive === "1" && matchStatus !== "Finished" ? (
+              {item.match_live === "1" && item.match_status !== "Finished" ? (
                 <>
-                  <p>{awayName}</p>
+                  <p className={klasa2 ? classes.goalSound : ""}>
+                    {item.match_awayteam_name}
+                  </p>
+                  {klasa2 ? <p style={{ color: "#ff004c" }}>GOAL</p> : ""}
                   {awayRedCard.length > 0 ? (
                     <div className={classes.redCard}></div>
                   ) : (
@@ -198,8 +207,14 @@ const ResultTabel = (props) => {
                 </>
               ) : (
                 <>
-                  <p className={awayGoal > homeGoal ? classes.winner : ""}>
-                    {awayName}
+                  <p
+                    className={
+                      item.match_awayteam_score > item.match_hometeam_score
+                        ? classes.winner
+                        : ""
+                    }
+                  >
+                    {item.match_awayteam_name}
                   </p>
                   {awayRedCard.length > 0 ? (
                     <div className={classes.redCard}></div>
@@ -213,15 +228,23 @@ const ResultTabel = (props) => {
         </div>
         <div className={classes.resultsWrapper}>
           <div className={classes.finalResult}>
-            {matchLive === "1" && matchStatus !== "Finished" ? (
+            {item.match_live === "1" && item.match_status !== "Finished" ? (
+              <>
+                <span>
+                  <p className={classes.wrapperStatusLive}>
+                    {item.match_hometeam_score}
+                  </p>
+                </span>
+                <span>
+                  <p className={classes.wrapperStatusLive}>
+                    {item.match_awayteam_score}
+                  </p>
+                </span>
+              </>
+            ) : item.match_hometeam_score?.length > 0 ? (
               <span>
-                <p className={classes.wrapperStatusLive}>{homeGoal}</p>
-                <p className={classes.wrapperStatusLive}>{awayGoal}</p>
-              </span>
-            ) : homeGoal?.length > 0 ? (
-              <span>
-                <p>{homeGoal}</p>
-                <p>{awayGoal}</p>
+                <p>{item.match_hometeam_score}</p>
+                <p>{item.match_awayteam_score}</p>
               </span>
             ) : (
               <span>
@@ -231,10 +254,10 @@ const ResultTabel = (props) => {
             )}
           </div>
           <div>
-            {homeHalfGoal?.length > 0 ? (
+            {item.match_hometeam_halftime_score?.length > 0 ? (
               <span>
-                <p>({homeHalfGoal})</p>
-                <p>({awayHalfGoal})</p>
+                <p>({item.match_hometeam_halftime_score})</p>
+                <p>({item.match_awayteam_halftime_score})</p>
               </span>
             ) : (
               ""

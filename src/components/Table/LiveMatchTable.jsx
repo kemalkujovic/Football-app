@@ -6,6 +6,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { lastDays } from "../../util/helper";
+import { useSelector } from "react-redux";
 const LiveMatchTable = () => {
   const datum = lastDays();
   const initial = datum.danasnjiDatum;
@@ -16,7 +17,6 @@ const LiveMatchTable = () => {
   const [action, setAction] = useState(initial);
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
-
   const handleDatum = () => {
     setDate(!date);
   };

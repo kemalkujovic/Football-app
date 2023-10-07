@@ -104,6 +104,7 @@ export const getAllMatch = createAsyncThunk(
   "football/getAllMatch",
   async (api, { rejectWithValue }) => {
     try {
+      console.log(api);
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_events&from=${api}&to=${api}&APIkey=${APIkey}`
       );

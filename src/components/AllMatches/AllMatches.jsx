@@ -11,7 +11,9 @@ const AllMatches = (props) => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getAllMatch);
+
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
+
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
@@ -30,20 +32,20 @@ const AllMatches = (props) => {
   }
   prioritizeFavoriteLeague();
   const data = updatedLeagues.slice(0, 50);
-  const moreDate = updatedLeagues.slice(50);
+  const moreDate = updatedLeagues.slice(50, 200);
   const date = lastDays();
   const today = date.danasnjiDatum;
   useEffect(() => {
     const fetchData = () => {
       dispatch(getAllMatch(datum));
     };
-    const intervalId = setInterval(fetchData, 10000);
+    const intervalId = setInterval(fetchData, 30000);
     fetchData();
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [dispatch, datum, addFavorite]);
+  }, [props.action, addFavorite]);
   return (
     <div>
       {data.length > 0 &&
@@ -54,49 +56,13 @@ const AllMatches = (props) => {
             return (
               <React.Fragment key={item.match_id}>
                 <ResultHeader item={item} />
-                <ResultTabel
-                  matchDate={item.match_date}
-                  matchTime={item.match_time}
-                  homeLogo={item.team_home_badge}
-                  awayLogo={item.team_away_badge}
-                  league_logo={item.league_logo}
-                  homeName={item.match_hometeam_name}
-                  awayName={item.match_awayteam_name}
-                  homeGoal={item.match_hometeam_score}
-                  awayGoal={item.match_awayteam_score}
-                  homeHalfGoal={item.match_hometeam_halftime_score}
-                  awayHalfGoal={item.match_awayteam_halftime_score}
-                  leagueName={item.league_name}
-                  countryLogo={item.country_logo}
-                  matchStatus={item.match_status}
-                  key={item.match_id}
-                  item={item}
-                  matchLive={item.match_live}
-                />
+                <ResultTabel key={item.match_id} item={item} />
               </React.Fragment>
             );
           } else {
             return (
               <React.Fragment key={index}>
-                <ResultTabel
-                  matchDate={item.match_date}
-                  matchTime={item.match_time}
-                  homeLogo={item.team_home_badge}
-                  awayLogo={item.team_away_badge}
-                  league_logo={item.league_logo}
-                  homeName={item.match_hometeam_name}
-                  awayName={item.match_awayteam_name}
-                  homeGoal={item.match_hometeam_score}
-                  awayGoal={item.match_awayteam_score}
-                  homeHalfGoal={item.match_hometeam_halftime_score}
-                  awayHalfGoal={item.match_awayteam_halftime_score}
-                  leagueName={item.league_name}
-                  countryLogo={item.country_logo}
-                  matchStatus={item.match_status}
-                  key={item.match_id}
-                  item={item}
-                  matchLive={item.match_live}
-                />
+                <ResultTabel key={item.match_id} item={item} />
               </React.Fragment>
             );
           }
@@ -118,49 +84,13 @@ const AllMatches = (props) => {
               return (
                 <React.Fragment key={item.match_id}>
                   <ResultHeader item={item} />
-                  <ResultTabel
-                    matchDate={item.match_date}
-                    matchTime={item.match_time}
-                    homeLogo={item.team_home_badge}
-                    awayLogo={item.team_away_badge}
-                    league_logo={item.league_logo}
-                    homeName={item.match_hometeam_name}
-                    awayName={item.match_awayteam_name}
-                    homeGoal={item.match_hometeam_score}
-                    awayGoal={item.match_awayteam_score}
-                    homeHalfGoal={item.match_hometeam_halftime_score}
-                    awayHalfGoal={item.match_awayteam_halftime_score}
-                    leagueName={item.league_name}
-                    countryLogo={item.country_logo}
-                    matchStatus={item.match_status}
-                    key={item.match_id}
-                    item={item}
-                    matchLive={item.match_live}
-                  />
+                  <ResultTabel key={item.match_id} item={item} />
                 </React.Fragment>
               );
             } else {
               return (
                 <React.Fragment key={index}>
-                  <ResultTabel
-                    matchDate={item.match_date}
-                    matchTime={item.match_time}
-                    homeLogo={item.team_home_badge}
-                    awayLogo={item.team_away_badge}
-                    league_logo={item.league_logo}
-                    homeName={item.match_hometeam_name}
-                    awayName={item.match_awayteam_name}
-                    homeGoal={item.match_hometeam_score}
-                    awayGoal={item.match_awayteam_score}
-                    homeHalfGoal={item.match_hometeam_halftime_score}
-                    awayHalfGoal={item.match_awayteam_halftime_score}
-                    leagueName={item.league_name}
-                    countryLogo={item.country_logo}
-                    matchStatus={item.match_status}
-                    key={item.match_id}
-                    item={item}
-                    matchLive={item.match_live}
-                  />
+                  <ResultTabel key={item.match_id} item={item} />
                 </React.Fragment>
               );
             }
