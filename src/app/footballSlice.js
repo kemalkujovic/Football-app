@@ -186,6 +186,7 @@ const footballSlice = createSlice({
     isSuccess: false,
     message: "",
     loading: false,
+    loading2: false,
   },
   reducers: {},
   extraReducers: (builder) => {

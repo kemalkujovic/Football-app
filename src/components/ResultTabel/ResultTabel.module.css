@@ -112,3 +112,11 @@
   background-color: red;
   border-radius: 2px;
 }
+.goalSouder {
+  background-color: #d090a1;
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+.goalSound {
+  color: #ff0046;
+}

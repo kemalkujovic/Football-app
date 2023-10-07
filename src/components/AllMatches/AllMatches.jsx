@@ -11,7 +11,6 @@ const AllMatches = (props) => {
   const [more, setMore] = useState(false);
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getAllMatch);
-
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
 
   let updatedLeagues = [];
@@ -36,6 +35,7 @@ const AllMatches = (props) => {
   const date = lastDays();
   const today = date.danasnjiDatum;
   useEffect(() => {
+    console.log(selector);
     const fetchData = () => {
       dispatch(getAllMatch(datum));
     };
@@ -45,7 +45,7 @@ const AllMatches = (props) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [props.action, addFavorite]);
+  }, [props.action, addFavorite, dispatch]);
   return (
     <div>
       {data.length > 0 &&

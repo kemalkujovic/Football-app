@@ -14,19 +14,13 @@ const FavoriteMatch = () => {
   const { updateMatchInLocalStorage } = useContext(FavoriteMatchContext);
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   const [previousScores, setPreviousScores] = useState({});
-  useEffect(() => {
-    const updateSelectorAndDispatch = () => {
-      dispatch(getLiveMatch());
-    };
-    const intervalId = setInterval(updateSelectorAndDispatch, 30000);
-    return () => clearInterval(intervalId);
-  }, [dispatch]);
 
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
-
-    const intervalId = setInterval(() => {
-      const fuad = matchData.filter((el) =>
+    const updateMatches = () => {
+      dispatch(getLiveMatch());
+      console.log("da");
+      const updatedMatches = matchData.filter((el) =>
         selector?.filter((item) => {
           if (
             (el.match_id === item.match_id &&
@@ -51,9 +45,14 @@ const FavoriteMatch = () => {
           }
         })
       );
-    }, 15000);
-    return () => clearInterval(intervalId);
-  }, [dispatch, selector]);
+    };
+
+    const matchIntervalId = setInterval(updateMatches, 30000);
+
+    return () => {
+      clearInterval(matchIntervalId);
+    };
+  }, [dispatch]);
   let currentLeague;
   let previusLeague;
   return (
@@ -65,8 +64,12 @@ const FavoriteMatch = () => {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
-                <ResultHeader previousScores={previousScores} item={item} />
-                <ResultTabel key={item.match_id} item={item} />
+                <ResultHeader item={item} />
+                <ResultTabel
+                  key={item.match_id}
+                  previousScores={previousScores}
+                  item={item}
+                />
               </React.Fragment>
             );
           } else {

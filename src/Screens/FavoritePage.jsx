@@ -16,7 +16,9 @@ const FavoritePage = () => {
     if (goal && sound) {
       const audioElement = document.getElementById("soundGoal");
       if (audioElement) {
-        audioElement.play();
+        audioElement.play().catch((error) => {
+          console.error("No sound", error);
+        });
         setGoal(false);
       }
     }

@@ -18,6 +18,7 @@ const ResultTabel = (props) => {
   const { item, previousScores } = props;
   let klasa;
   let klasa2;
+
   if (previousScores) {
     const previousScore = previousScores[item?.match_id];
     const isScoreChanged =
@@ -68,7 +69,7 @@ const ResultTabel = (props) => {
     const matchData = JSON.parse(localStorage.getItem("match"));
     const data = matchData?.some((el) => el.match_id === item.match_id);
     setIsFavorite(data);
-  }, [item]);
+  }, []);
 
   const toggleFavorite = (item) => {
     if (isFavorite) {
