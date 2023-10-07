@@ -51,7 +51,7 @@ const FavoriteMatch = () => {
           }
         })
       );
-    }, 15000); // 15 sekundi
+    }, 15000);
     return () => clearInterval(intervalId);
   }, [dispatch, selector]);
   let currentLeague;
