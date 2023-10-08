@@ -64,3 +64,8 @@ main {
   max-width: 800px;
   margin: 0 auto;
 }
+@media only screen and (max-width: 700px) {
+  .mainContainer {
+    max-width: 350px;
+  }
+}

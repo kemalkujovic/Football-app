@@ -63,7 +63,7 @@ const TabListe = (props) => {
           <TabPanel value="2">
             <HeadToHead item={item} />
           </TabPanel>
-          <TabPanel value="3">
+          <TabPanel style={{ padding: "0px" }} value="3">
             <StatisticsStandings item={item} />
           </TabPanel>
         </TabContext>

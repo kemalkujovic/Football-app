@@ -144,6 +144,15 @@ svg {
     min-width: 400px !important;
   }
 }
+@media screen and (max-width: 500px) {
+  table {
+    min-width: 360px !important;
+  }
+  table th {
+    padding: 3px !important;
+    text-align: center !important;
+  }
+}
 .buttonWrapper {
   padding: 10px !important;
   background-color: white !important;
