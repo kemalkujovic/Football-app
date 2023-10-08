@@ -48,7 +48,7 @@ const ResultTabel = (props) => {
   });
 
   const openPopup = () => {
-    const url = `http://localhost:3000/statistics/${item.match_id}`;
+    const url = `/statistics/${item.match_id}`;
     const windowName = "Popup";
     const windowFeatures = "width=650,height=850";
 

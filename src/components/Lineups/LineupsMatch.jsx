@@ -4,7 +4,6 @@ import { Grid } from "@mui/material";
 import classes from "./LineupCard.module.css";
 import MatchOdds from "../MatchDetail/MatchOdds";
 const LineupsMatch = ({ item }) => {
-  console.log(item);
   return (
     <>
       <div className={classes.halfWrapper}>

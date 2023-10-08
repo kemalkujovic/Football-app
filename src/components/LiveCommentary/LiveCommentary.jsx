@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./LiveCommentary.module.css";
 import MatchOdds from "../MatchDetail/MatchOdds";
 const LiveCommentary = ({ comments }) => {
-  console.log(comments);
   return (
     <div>
       {comments?.map((comment, index) => {

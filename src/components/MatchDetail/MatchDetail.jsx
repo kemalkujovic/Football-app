@@ -7,7 +7,6 @@ import MatchOdds from "./MatchOdds";
 import { useSelector } from "react-redux";
 const MatchDetail = ({ item }) => {
   let matchData = [];
-  console.log(item);
   let substitutions = item.substitutions;
   const selector = useSelector((state) => state.football.getOddsMatch);
   if (item.cards && item.goalscorer) {

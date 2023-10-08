@@ -35,7 +35,6 @@ const AllMatches = (props) => {
   const date = lastDays();
   const today = date.danasnjiDatum;
   useEffect(() => {
-    console.log(selector);
     const fetchData = () => {
       dispatch(getAllMatch(datum));
     };

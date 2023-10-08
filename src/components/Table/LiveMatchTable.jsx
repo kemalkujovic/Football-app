@@ -84,15 +84,13 @@ const LiveMatchTable = () => {
               <ul className={classes.menu}>
                 {data.map((item, index) => {
                   return (
-                    <li
-                      className={
-                        lastClickedIndex === index ? classes.activeDatum : ""
-                      }
-                      key={index}
-                    >
+                    <li key={index}>
                       <button
                         disabled={loading}
                         onClick={() => handlerDay(item, index)}
+                        className={
+                          lastClickedIndex === index ? classes.activeDatum : ""
+                        }
                       >
                         {item.split("-").slice(1).join("/")}
                       </button>
