@@ -88,7 +88,6 @@ const ResultTabel = (props) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpenSnackbar(false);
   };
 
@@ -132,7 +131,7 @@ const ResultTabel = (props) => {
               </div>
             )}
             {item.match_live === "1" && item.match_status === "Finished" ? (
-              <p style={{ margin: "auto" }}>{item.match_status}</p>
+              <p className={classes.finishedStatus}>{item.match_status}</p>
             ) : item.match_status === "Half Time" ? (
               <p className={classes.wrapperStatusLive}>{item.match_status}</p>
             ) : item.match_live === "1" ? (
@@ -237,20 +236,29 @@ const ResultTabel = (props) => {
             </span>
           </div>
         </div>
-        <div className={classes.resultsWrapper}>
+        <div className={classes.resultLiveWrapper}>
           <div className={classes.finalResult}>
             {item.match_live === "1" && item.match_status !== "Finished" ? (
               <>
-                <span>
-                  <p className={classes.wrapperStatusLive}>
-                    {item.match_hometeam_score}
+                {item.match_status !== "Half Time" ? (
+                  <p className={classes.matchStatusRes}>{item.match_status}'</p>
+                ) : (
+                  <p className={classes.matchStatusRes}>
+                    {item.match_status.split(" ").map((word) => word.charAt(0))}
                   </p>
-                </span>
-                <span>
-                  <p className={classes.wrapperStatusLive}>
-                    {item.match_awayteam_score}
-                  </p>
-                </span>
+                )}
+                <div>
+                  <span>
+                    <p className={classes.wrapperScoreLive}>
+                      {item.match_hometeam_score}
+                    </p>
+                  </span>
+                  <span>
+                    <p className={classes.wrapperScoreLive}>
+                      {item.match_awayteam_score}
+                    </p>
+                  </span>
+                </div>
               </>
             ) : item.match_hometeam_score?.length > 0 ? (
               <span>

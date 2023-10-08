@@ -87,13 +87,39 @@
   font-weight: 700 !important;
   margin: auto;
 }
+.wrapperScoreLive {
+  color: #ff0046 !important;
+  font-weight: 700 !important;
+  margin: auto;
+}
+.finishedStatus {
+  margin: auto;
+}
 .mainContainer:hover {
   background-color: #eee;
+}
+.resultLiveWrapper {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  justify-content: end;
+  gap: 15px;
+}
+.matchStatusRes {
+  display: none;
+}
+.resultLiveWrapper .finalResult p {
+  color: black;
+  font-weight: 700;
 }
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;
     margin-right: 20px;
+  }
+  .resultLiveWrapper {
+    width: 0px;
+    margin-left: 20px;
   }
   .timeLogoWrapper {
     margin-left: 25px;
@@ -101,6 +127,33 @@
   .responsiveContainer {
     margin: 0px !important;
     width: 100% !important;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .wrapperStatusLive {
+    margin: 0 !important;
+    display: none;
+    /* justify-content: start !important; */
+  }
+
+  .timeZoneWrapper {
+    width: auto;
+  }
+  .finishedStatus {
+    display: none;
+  }
+  .timeZoneWrapper div {
+    display: block;
+  }
+  .finalResult {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  .matchStatusRes {
+    display: block;
+    color: #ff0046 !important;
+    font-weight: 700 !important;
   }
 }
 .fuad {
@@ -113,7 +166,7 @@
   border-radius: 2px;
 }
 .goalSouder {
-  background-color: #f2c9d4;
+  background-color: #ffe6f3;
   border-bottom: 1px solid gray;
   cursor: pointer;
 }
