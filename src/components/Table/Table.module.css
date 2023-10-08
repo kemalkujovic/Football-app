@@ -100,7 +100,7 @@
 .menu {
   position: absolute;
   top: 100%;
-  left: 40px;
+  left: 20px;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
