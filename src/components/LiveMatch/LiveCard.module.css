@@ -18,3 +18,12 @@
   font-size: 17px;
   cursor: pointer;
 }
+.circularLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+.circularLoading svg {
+  color: #ff0046;
+}

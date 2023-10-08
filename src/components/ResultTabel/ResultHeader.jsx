@@ -36,6 +36,11 @@ const ResultHeader = (props) => {
                 ? item.country_logo
                 : "https://logowik.com/content/uploads/images/994_champions_league.jpg"
             }
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = item.country_logo;
+            }}
+            loading="lazy"
             alt="Logo"
           />
           <p>{item?.country_name}: </p>

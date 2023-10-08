@@ -6,6 +6,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { lastDays } from "../../util/helper";
+import { useSelector } from "react-redux";
 const LiveMatchTable = () => {
   const datum = lastDays();
   const initial = datum.danasnjiDatum;
@@ -16,6 +17,8 @@ const LiveMatchTable = () => {
   const [action, setAction] = useState(initial);
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
+  const loading = useSelector((state) => state.football.loadingLive);
+
   const handleDatum = () => {
     setDate(!date);
   };
@@ -60,9 +63,18 @@ const LiveMatchTable = () => {
         {active ? (
           <div className={classes.calendarWrapper}>
             {lastClickedIndex > 0 && (
-              <KeyboardArrowLeftIcon onClick={handlePreviousDate} />
+              <button
+                className={classes.buttonWrapper}
+                disabled={loading}
+                onClick={handlePreviousDate}
+              >
+                <KeyboardArrowLeftIcon />
+              </button>
             )}
-            <div style={{ display: "flex" }} onClick={handleDatum}>
+            <div
+              style={{ display: "flex", alignItems: "center" }}
+              onClick={handleDatum}
+            >
               <CalendarMonthIcon color="disabled" />
               <p style={{ cursor: "pointer" }}>
                 {tableDate ? tableDate : today}
@@ -76,10 +88,14 @@ const LiveMatchTable = () => {
                       className={
                         lastClickedIndex === index ? classes.activeDatum : ""
                       }
-                      onClick={() => handlerDay(item, index)}
                       key={index}
                     >
-                      {item.split("-").slice(1).join("/")}
+                      <button
+                        disabled={loading}
+                        onClick={() => handlerDay(item, index)}
+                      >
+                        {item.split("-").slice(1).join("/")}
+                      </button>
                     </li>
                   );
                 })}
@@ -88,7 +104,13 @@ const LiveMatchTable = () => {
               ""
             )}
             {lastClickedIndex >= 0 && lastClickedIndex < 2 && (
-              <KeyboardArrowRightIcon onClick={handleNextDate} />
+              <button
+                className={classes.buttonWrapper}
+                disabled={loading}
+                onClick={handleNextDate}
+              >
+                <KeyboardArrowRightIcon />
+              </button>
             )}
           </div>
         ) : (

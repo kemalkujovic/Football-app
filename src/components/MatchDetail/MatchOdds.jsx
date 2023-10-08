@@ -3,7 +3,8 @@ import classes from "./MatchOdds.module.css";
 import { useSelector } from "react-redux";
 const MatchOdds = () => {
   const data = useSelector((state) => state.football.getOddsMatch);
-  const bet365Data = data?.filter((el) => el.odd_bookmakers === "bet365");
+  const bet365Data =
+    data.length > 0 && data?.filter((el) => el.odd_bookmakers === "bet365");
   return (
     <div className={classes.container}>
       <div>

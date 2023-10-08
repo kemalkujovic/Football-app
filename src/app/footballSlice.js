@@ -3,7 +3,7 @@ import axios from "axios";
 import { lastDays } from "../util/helper";
 const days = lastDays();
 const APIkey =
-  "8e65fed9ff5ee695c483f88affb3575f58e67eaa9cdc096d6ceb9bd36e166691";
+  "19e594278e50461a60a3b46a1c0222d9afe6b9351345a20f5403006bae1330ae";
 const baseURL = "https://apiv3.apifootball.com/";
 
 export const getFootball = createAsyncThunk(
@@ -104,7 +104,6 @@ export const getAllMatch = createAsyncThunk(
   "football/getAllMatch",
   async (api, { rejectWithValue }) => {
     try {
-      console.log(api);
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_events&from=${api}&to=${api}&APIkey=${APIkey}`
       );
@@ -186,7 +185,7 @@ const footballSlice = createSlice({
     isSuccess: false,
     message: "",
     loading: false,
-    loading2: false,
+    loadingLive: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -284,14 +283,14 @@ const footballSlice = createSlice({
       })
       // getAllMatch
       .addCase(getAllMatch.pending, (state) => {
-        state.loading = true;
+        state.loadingLive = true;
       })
       .addCase(getAllMatch.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingLive = false;
         state.getAllMatch = action.payload;
       })
       .addCase(getAllMatch.rejected, (state, action) => {
-        state.loading = false;
+        state.loadingLive = false;
         state.error = action.error.message;
       })
       // Get staticts match

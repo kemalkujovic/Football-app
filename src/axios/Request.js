@@ -1,5 +1,5 @@
 const APIkey =
-  "8e65fed9ff5ee695c483f88affb3575f58e67eaa9cdc096d6ceb9bd36e166691";
+  "19e594278e50461a60a3b46a1c0222d9afe6b9351345a20f5403006bae1330ae";
 const baseURL = "https://apiv3.apifootball.com/";
 
 const request = {

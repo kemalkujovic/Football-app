@@ -147,11 +147,16 @@ const ResultTabel = (props) => {
           <div className={classes.clubsWrapper}>
             <span>
               <img
-                src={item.team_home_badge}
+                src={
+                  item.team_home_badge
+                    ? item.team_home_badge
+                    : item.country_logo
+                }
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = item.country_logo;
                 }}
+                loading="lazy"
                 alt="Logo1"
               />
               {item.match_live === "1" && item.match_status !== "Finished" ? (
@@ -187,11 +192,16 @@ const ResultTabel = (props) => {
             </span>
             <span>
               <img
-                src={item.team_away_badge}
+                src={
+                  item.team_away_badge
+                    ? item.team_away_badge
+                    : item.country_logo
+                }
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = item.country_logo;
                 }}
+                loading="lazy"
                 alt="Logo1"
               />
               {item.match_live === "1" && item.match_status !== "Finished" ? (
