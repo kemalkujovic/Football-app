@@ -1,10 +1,10 @@
 import React from "react";
 import TablePlayers from "./TablePlayers";
 
-const TopScores = () => {
+const TopScores = (props) => {
   return (
     <div>
-      <TablePlayers />
+      <TablePlayers teams={props} />
     </div>
   );
 };

@@ -8,7 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
-const TableCard = () => {
+const TableCard = (props) => {
+  const homeTeam = props["teams"].home;
+  const awayTeam = props["teams"].away;
   const selector = useSelector((state) => state.football.leagueStandings);
   let brojac = 0;
   const mappedData = [];
@@ -48,6 +50,13 @@ const TableCard = () => {
               {selector?.length > 0 &&
                 mappedData?.map((team, index) => (
                   <TableRow
+                    style={{
+                      background:
+                        team.team_name === homeTeam ||
+                        team.team_name === awayTeam
+                          ? "#eef7ff"
+                          : "",
+                    }}
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >

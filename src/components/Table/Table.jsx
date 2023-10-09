@@ -3,7 +3,7 @@ import TableCard from "./TableCard";
 import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 import TopScores from "../TablePlayers/TopScores";
-const Table = () => {
+const Table = (props) => {
   const [active, setActive] = useState(true);
   return (
     <section>
@@ -21,7 +21,7 @@ const Table = () => {
           TOP SCORES
         </button>
       </div>
-      {active ? <TableCard /> : <TopScores />}
+      {active ? <TableCard teams={props} /> : <TopScores teams={props} />}
     </section>
   );
 };

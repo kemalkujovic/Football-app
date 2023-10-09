@@ -2,11 +2,17 @@ import React from "react";
 import classes from "./StatisticsTabel.module.css";
 const StastisticsHeader = (props) => {
   const { item } = props;
-
   return (
     <div className={classes.mainContainer}>
       <div className={classes.logoWrapper}>
-        <img src={item?.team_home_badge} alt="Logo" />
+        <img
+          src={item?.team_home_badge}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = item.country_logo;
+          }}
+          alt="Logo"
+        />
         {item.match_live === "1" && item.match_status === "Finished" ? (
           <p
             className={
@@ -73,7 +79,14 @@ const StastisticsHeader = (props) => {
         )}
       </div>
       <div className={classes.logoWrapper}>
-        <img src={item?.team_away_badge} alt="Logo" />
+        <img
+          src={item?.team_away_badge}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = item.country_logo;
+          }}
+          alt="Logo"
+        />
         {item.match_live === "1" && item.match_status === "Finished" ? (
           <p
             className={

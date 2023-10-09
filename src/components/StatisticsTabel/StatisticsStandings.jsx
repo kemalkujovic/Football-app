@@ -10,10 +10,12 @@ const StatisticsStandings = (props) => {
     dispatch(leagueStandings(props.item.league_id));
     dispatch(leagueTopScores(props.item.league_id));
   }, [dispatch]);
-
   return (
     <div>
-      <Table />
+      <Table
+        home={props.item.match_hometeam_name}
+        away={props.item.match_awayteam_name}
+      />
     </div>
   );
 };
