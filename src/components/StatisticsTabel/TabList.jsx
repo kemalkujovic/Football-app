@@ -40,7 +40,14 @@ const TabListe = (props) => {
     <ThemeProvider theme={theme}>
       <Box sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              marginTop: "15px",
+              paddingLeft: "12px",
+            }}
+          >
             <TabList
               textColor="secondary"
               indicatorColor="secondary"

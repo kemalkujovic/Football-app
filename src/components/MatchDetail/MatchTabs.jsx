@@ -44,7 +44,7 @@ const MatchTabs = ({ item }) => {
       )}
 
       {activeComponent === 0 && <MatchDetail item={item} />}
-      {activeComponent === 1 && <StatsMatch item={item} />}
+      {activeComponent === 1 && <StatsMatch statistics={item.statistics} />}
       {activeComponent === 2 && <LineupsMatch item={item} />}
       {activeComponent === 3 && (
         <LiveCommentary comments={selector[item.match_id]?.live_comments} />
