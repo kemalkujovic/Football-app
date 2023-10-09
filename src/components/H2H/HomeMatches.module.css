@@ -27,6 +27,7 @@
 .logoWrappper {
   display: flex;
   gap: 10px;
+  width: 145px;
 }
 .headerMatchWrapper {
   width: 100%;

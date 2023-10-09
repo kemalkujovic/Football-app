@@ -15,8 +15,8 @@ const LastMatches = ({ item }) => {
             }}
             alt="Logo"
           />
+          <p>{item.league_name.slice(0, 2).toUpperCase()}</p>
         </div>
-        <p>{item.league_name.slice(0, 2).toUpperCase()}</p>
         <div className={classes.teamWrapper}>
           <div>
             <img src={item.team_home_badge} alt="" />

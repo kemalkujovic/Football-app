@@ -24,7 +24,7 @@ const StatsMatch = ({ statistics }) => {
             }
 
             return (
-              <div className={classes.container}>
+              <div key={index} className={classes.container}>
                 <div className={classes.mainContainer}>
                   <div className={classes.statsGraph}>{statistic.home}</div>
                   <div>{statistic.type}</div>
