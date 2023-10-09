@@ -49,13 +49,13 @@ const LiveMatchTable = () => {
         <div className={classes.container}>
           <button
             className={active ? classes.active : ""}
-            onClick={() => setActive(!active)}
+            onClick={() => setActive(true)}
           >
             ALL
           </button>
           <button
             className={!active ? classes.active : ""}
-            onClick={() => setActive(!active)}
+            onClick={() => setActive(false)}
           >
             LIVE
           </button>
