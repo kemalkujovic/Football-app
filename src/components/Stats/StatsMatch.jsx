@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Stats.module.css";
+import MatchOdds from "../MatchDetail/MatchOdds";
 const StatsMatch = ({ statistics }) => {
   return (
     <>
@@ -61,6 +62,12 @@ const StatsMatch = ({ statistics }) => {
               </div>
             );
           })}
+          <div className={classes.halfWrapper}>
+            <p>PRE-MATCH ODDS</p>
+          </div>
+          <div>
+            <MatchOdds />
+          </div>
         </div>
       ) : (
         ""
