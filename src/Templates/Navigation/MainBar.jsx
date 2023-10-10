@@ -11,9 +11,12 @@ import Hamburger from "hamburger-react";
 import Sidebar from "../Sidebar/Sidebar";
 import { SidebarContext } from "../../context/SideBarContext";
 import { useDarkMode } from "../../context/DarkModeContext";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
 const MainBar = () => {
   const { isOpen, setOpen } = useContext(SidebarContext);
-  const { isDarkMode } = useDarkMode();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
@@ -40,6 +43,11 @@ const MainBar = () => {
             <PersonIcon />
             <p>Login</p>
           </div>
+          {isDarkMode ? (
+            <Brightness7Icon onClick={toggleDarkMode} />
+          ) : (
+            <Brightness4Icon onClick={toggleDarkMode} />
+          )}
           <div className={isOpen ? classes.activeMenu : classes.hamburgerIcon}>
             <Hamburger
               toggled={isOpen}

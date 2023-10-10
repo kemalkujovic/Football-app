@@ -80,6 +80,13 @@
 .snackbarWrapper div {
   min-width: 100px;
 }
+.snackbarWrapper div {
+  background: #010a0f;
+  color: white;
+}
+.snackbarWrapper div {
+  color: white;
+}
 .wrapperStatusLive {
   color: #ff0046 !important;
   font-weight: 700 !important;

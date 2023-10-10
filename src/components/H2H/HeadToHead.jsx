@@ -16,7 +16,6 @@ const HeadToHead = ({ item }) => {
   const firstTeamMatchs = selector["firstTeam_lastResults"];
   const lastFiveHomeMatches = firstTeamMatchs?.slice(0, 5);
   const moreFiveHomeMatches = firstTeamMatchs?.slice(5);
-
   const secondTeamMatchs = selector["secondTeam_lastResults"];
   const lastFiveAwayMatches = secondTeamMatchs?.slice(0, 5);
   const moreFiveAwayMatches = secondTeamMatchs?.slice(5);

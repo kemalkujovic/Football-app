@@ -32,13 +32,30 @@ const TablePlayers = (props) => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>#</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell align="left">TEAM</TableCell>
-                <TableCell align="right" style={{ fontWeight: 600 }}>
+                <TableCell style={{ color: isDarkMode ? "white" : "" }}>
+                  #
+                </TableCell>
+                <TableCell style={{ color: isDarkMode ? "white" : "" }}>
+                  Name
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="left"
+                >
+                  TEAM
+                </TableCell>
+                <TableCell
+                  align="right"
+                  style={{ fontWeight: 600, color: isDarkMode ? "white" : "" }}
+                >
                   G
                 </TableCell>
-                <TableCell align="right">A</TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  A
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -63,22 +80,41 @@ const TablePlayers = (props) => {
                       component="th"
                       scope="row"
                       width="5px"
-                      style={{ fontWeight: 600 }}
+                      style={{
+                        fontWeight: 600,
+                        color: isDarkMode ? "white" : "",
+                      }}
                     >
                       {row.player_place}.
                     </TableCell>
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      component="th"
+                      scope="row"
+                    >
                       {row.player_name}
                     </TableCell>
-                    <TableCell align="left">{row.team_name}</TableCell>
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="left"
+                    >
+                      {row.team_name}
+                    </TableCell>
                     <TableCell
                       align="right"
                       width="5px"
-                      style={{ fontWeight: 600 }}
+                      style={{
+                        fontWeight: 600,
+                        color: isDarkMode ? "white" : "",
+                      }}
                     >
                       {row.goals}
                     </TableCell>
-                    <TableCell align="right" width="5px">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                      width="5px"
+                    >
                       {row.assists.length === 0 ? "0" : row.assists}
                     </TableCell>
                   </TableRow>

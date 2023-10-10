@@ -8,10 +8,15 @@ export function useDarkMode() {
 }
 
 export function DarkModeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const storedDarkMode = localStorage.getItem("darkMode");
+  const [isDarkMode, setIsDarkMode] = useState(storedDarkMode === "true");
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem("darkMode", newMode);
+      return newMode;
+    });
   };
 
   const theme = createTheme({

@@ -12,17 +12,17 @@ import { DarkModeProvider } from "./context/DarkModeContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <FavoriteMatchContextProvider>
-      <SidebarProvider>
-        <FavoriteContextProvider>
-          <DarkModeProvider>
+    <DarkModeProvider>
+      <FavoriteMatchContextProvider>
+        <SidebarProvider>
+          <FavoriteContextProvider>
             <Provider store={store}>
               <App />
             </Provider>
-          </DarkModeProvider>
-        </FavoriteContextProvider>
-      </SidebarProvider>
-    </FavoriteMatchContextProvider>
+          </FavoriteContextProvider>
+        </SidebarProvider>
+      </FavoriteMatchContextProvider>
+    </DarkModeProvider>
   </React.StrictMode>
 );
 

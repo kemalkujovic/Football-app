@@ -27,7 +27,12 @@ const Favorites = () => {
       </div>
       {favorites?.map((item, index) => {
         return (
-          <div className={classes.favoritesDiv} key={index}>
+          <div
+            className={
+              isDarkMode ? classes.darkFavoritesDiv : classes.favoritesDiv
+            }
+            key={index}
+          >
             <div>
               <Link
                 style={{ color: isDarkMode ? "white" : "" }}

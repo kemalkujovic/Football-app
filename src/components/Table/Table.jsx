@@ -27,15 +27,7 @@ const Table = (props) => {
           TOP SCORES
         </button>
       </div>
-      {active ? (
-        <DarkModeProvider>
-          <TableCard teams={props} />
-        </DarkModeProvider>
-      ) : (
-        <DarkModeProvider>
-          <TopScores teams={props} />
-        </DarkModeProvider>
-      )}
+      {active ? <TableCard teams={props} /> : <TopScores teams={props} />}
     </section>
   );
 };

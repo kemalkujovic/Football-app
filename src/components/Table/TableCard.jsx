@@ -43,13 +43,42 @@ const TableCard = (props) => {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>#</TableCell>
-                <TableCell>Team</TableCell>
-                <TableCell align="right">G</TableCell>
-                <TableCell align="right">P</TableCell>
-                <TableCell align="right">N</TableCell>
-                <TableCell align="right">I</TableCell>
-                <TableCell align="right">B</TableCell>
+                <TableCell style={{ color: isDarkMode ? "white" : "" }}>
+                  #
+                </TableCell>
+                <TableCell style={{ color: isDarkMode ? "white" : "" }}>
+                  Team
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  G
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  P
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  N
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  I
+                </TableCell>
+                <TableCell
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  align="right"
+                >
+                  B
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -70,7 +99,12 @@ const TableCard = (props) => {
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row" width="5px">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      component="th"
+                      scope="row"
+                      width="5px"
+                    >
                       <span
                         className={
                           team.overall_promotion.split(" ")[0] === "Relegation"
@@ -87,7 +121,11 @@ const TableCard = (props) => {
                         {team.overall_league_position}.
                       </span>
                     </TableCell>
-                    <TableCell component="th" scope="row">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      component="th"
+                      scope="row"
+                    >
                       <div className={classes.wrapperLogo}>
                         <img
                           width="30px"
@@ -101,13 +139,34 @@ const TableCard = (props) => {
                         <p>{team.team_name}</p>
                       </div>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                    >
                       {team.overall_league_payed}
                     </TableCell>
-                    <TableCell align="right">{team.overall_league_W}</TableCell>
-                    <TableCell align="right">{team.overall_league_D}</TableCell>
-                    <TableCell align="right">{team.overall_league_L}</TableCell>
-                    <TableCell align="right">
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                    >
+                      {team.overall_league_W}
+                    </TableCell>
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                    >
+                      {team.overall_league_D}
+                    </TableCell>
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                    >
+                      {team.overall_league_L}
+                    </TableCell>
+                    <TableCell
+                      style={{ color: isDarkMode ? "white" : "" }}
+                      align="right"
+                    >
                       {team.overall_league_PTS}
                     </TableCell>
                   </TableRow>
