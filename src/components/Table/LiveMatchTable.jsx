@@ -82,7 +82,10 @@ const LiveMatchTable = () => {
               </p>
             </div>
             {date ? (
-              <ul className={classes.menu}>
+              <ul
+                style={{ background: isDarkMode ? "#010a0f" : "" }}
+                className={classes.menu}
+              >
                 {data.map((item, index) => {
                   return (
                     <li key={index}>

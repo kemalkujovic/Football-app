@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import TurnedInNotIcon from "@mui/icons-material/TurnedInNot";
 import { Tooltip } from "@mui/material";
+import { useDarkMode } from "../../context/DarkModeContext";
 const Countrys = () => {
   const { addFavorite } = useContext(FavoriteContext);
+  const { isDarkMode } = useDarkMode();
   const handleIconClick = (item) => {
     addFavorite(item);
   };
@@ -52,7 +54,9 @@ const Countrys = () => {
           <div
             key={el.country_id}
             onClick={() => onClickHandler(el.country_id, index)}
-            className={classes.countryWrapper}
+            className={
+              isDarkMode ? classes.countryWrapperDark : classes.countryWrapper
+            }
           >
             <div className={classes.logoWrapper}>
               <div className={classes.nameLeague}>
@@ -63,7 +67,11 @@ const Countrys = () => {
             </div>
 
             {selector2 && isOpen.includes(index) && (
-              <div className={classes.leagueWrapper}>
+              <div
+                className={
+                  isDarkMode ? classes.leagueWrapperDark : classes.leagueWrapper
+                }
+              >
                 {selector2.map((item, index) => {
                   return (
                     +item.country_id === +el.country_id && (
@@ -105,7 +113,11 @@ const Countrys = () => {
               <div
                 key={el.country_id}
                 onClick={() => onClickHandler(el.country_id, index)}
-                className={classes.countryWrapper}
+                className={
+                  isDarkMode
+                    ? classes.countryWrapperDark
+                    : classes.countryWrapper
+                }
               >
                 <div className={classes.logoWrapper}>
                   <div className={classes.nameLeague}>
@@ -119,7 +131,13 @@ const Countrys = () => {
                   )}
                 </div>
                 {selector2 && isOpen.includes(index) && (
-                  <div className={classes.leagueWrapper}>
+                  <div
+                    className={
+                      isDarkMode
+                        ? classes.leagueWrapperDark
+                        : classes.leagueWrapper
+                    }
+                  >
                     {selector2.map((item) => {
                       return (
                         +item.country_id === +el.country_id && (
