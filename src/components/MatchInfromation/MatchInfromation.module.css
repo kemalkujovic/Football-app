@@ -19,3 +19,22 @@
   color: #2a2626;
   font-size: 13px;
 }
+.darkWhistleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 0px 12px;
+}
+.darkWhistleWrapper span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+  font-size: 13px;
+}
+.darkWhistleWrapper p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 13px;
+}

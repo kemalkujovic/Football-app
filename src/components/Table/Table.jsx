@@ -9,7 +9,11 @@ const Table = (props) => {
   const { isDarkMode } = useDarkMode();
   return (
     <section style={{ background: isDarkMode ? "#00141e" : "" }}>
-      <div className={classes.buttonsWrapper}>
+      <div
+        className={
+          isDarkMode ? classes.buttonsDarkWrapper : classes.buttonsWrapper
+        }
+      >
         <button
           className={active ? classes.active : ""}
           onClick={() => setActive(!active)}

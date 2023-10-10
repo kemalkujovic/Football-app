@@ -5,7 +5,9 @@ import LastMatches from "./LastMatches";
 import classes from "./HomeMatches.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { getH2H } from "../../app/footballSlice";
+import { useDarkMode } from "../../context/DarkModeContext";
 const HeadToHead = ({ item }) => {
+  const { isDarkMode } = useDarkMode();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getH2H);
   const loading = useSelector((state) => state.football.loading);
@@ -37,7 +39,10 @@ const HeadToHead = ({ item }) => {
         </div>
       ) : (
         <div>
-          <div className={classes.headerMatchWrapper}>
+          <div
+            style={{ background: isDarkMode ? "#001e28" : "" }}
+            className={classes.headerMatchWrapper}
+          >
             Last Match: {item.match_hometeam_name}
           </div>
           {lastFiveHomeMatches?.map((item, index) => {
@@ -57,7 +62,10 @@ const HeadToHead = ({ item }) => {
             })
           )}
 
-          <div className={classes.headerMatchWrapper}>
+          <div
+            style={{ background: isDarkMode ? "#001e28" : "" }}
+            className={classes.headerMatchWrapper}
+          >
             Last Match: {item.match_awayteam_name}
           </div>
           {lastFiveAwayMatches?.map((item, index) => {
@@ -76,7 +84,12 @@ const HeadToHead = ({ item }) => {
               return <LastMatches key={index} item={item} />;
             })
           )}
-          <div className={classes.headerMatchWrapper}>HEAD-TO-HEAD MATCHES</div>
+          <div
+            style={{ background: isDarkMode ? "#001e28" : "" }}
+            className={classes.headerMatchWrapper}
+          >
+            HEAD-TO-HEAD MATCHES
+          </div>
           {headToHead?.map((item, index) => {
             return <LastMatches key={index} item={item} />;
           })}

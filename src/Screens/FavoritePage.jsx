@@ -8,10 +8,11 @@ import { FavoriteMatchContext } from "../context/FavoriteMatchContext";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import { Tooltip } from "@mui/material";
+import { useDarkMode } from "../context/DarkModeContext";
 const FavoritePage = () => {
   const [sound, setSound] = useState(true);
   const { goal, setGoal } = useContext(FavoriteMatchContext);
-
+  const { isDarkMode } = useDarkMode();
   useEffect(() => {
     if (goal && sound) {
       const audioElement = document.getElementById("soundGoal");
@@ -30,13 +31,19 @@ const FavoritePage = () => {
           {sound ? (
             <Tooltip title="Turn off sound" arrow>
               <div>
-                <VolumeUpIcon onClick={() => setSound(!sound)} />
+                <VolumeUpIcon
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  onClick={() => setSound(!sound)}
+                />
               </div>
             </Tooltip>
           ) : (
             <Tooltip title="Turn on sound" arrow>
               <div>
-                <VolumeOffIcon onClick={() => setSound(!sound)} />
+                <VolumeOffIcon
+                  style={{ color: isDarkMode ? "white" : "" }}
+                  onClick={() => setSound(!sound)}
+                />
               </div>
             </Tooltip>
           )}

@@ -157,3 +157,29 @@ svg {
   padding: 10px !important;
   background-color: white !important;
 }
+
+.buttonsDarkWrapper {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  align-items: center;
+}
+.buttonsDarkWrapper button {
+  align-items: center;
+  appearance: none;
+  background-color: rgb(0, 30, 40);
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  height: 28px;
+  letter-spacing: 0.4px;
+  margin: initial;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  padding: 18px;
+}
