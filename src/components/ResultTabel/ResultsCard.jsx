@@ -4,8 +4,10 @@ import ResultTabel from "./ResultTabel";
 import classes from "./ResultTabel.module.css";
 import ResultHeader from "./ResultHeader";
 import { useEffect } from "react";
+import { useDarkMode } from "../../context/DarkModeContext";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
+  const { isDarkMode } = useDarkMode();
   let sortedData;
 
   if (selector?.length > 0) {
@@ -35,7 +37,7 @@ const ResultsCard = () => {
         <p>No Data for This League</p>
       ) : (
         <>
-          <section>
+          <section style={{ background: isDarkMode ? "#00141e" : "" }}>
             <div className={classes.headerTittle}>
               <h1>Last Results</h1>
             </div>
@@ -48,7 +50,13 @@ const ResultsCard = () => {
                     previousMatchRound = currentMatchRound;
                     return (
                       <React.Fragment key={item.match_round}>
-                        <span className={classes.roundWrapper}>
+                        <span
+                          style={{
+                            background: isDarkMode ? "#001e28" : "",
+                            color: isDarkMode ? "white" : "",
+                          }}
+                          className={classes.roundWrapper}
+                        >
                           ROUND {item.match_round}
                         </span>
                         <ResultTabel key={item.match_id} item={item} />

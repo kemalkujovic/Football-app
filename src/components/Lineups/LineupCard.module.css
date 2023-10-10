@@ -9,12 +9,7 @@
   gap: 10px;
   margin-right: 10px;
 }
-.rightSideLineups:nth-child(even) {
-  background-color: #eee;
-}
-.leftSideLineups:nth-child(even) {
-  background-color: #eee;
-}
+
 .halfWrapper {
   background-color: #ddd;
   margin-bottom: 10px;
@@ -22,6 +17,16 @@
   margin-top: 10px;
 }
 .halfWrapper p {
+  margin: 0;
+  font-size: 14px;
+}
+.darkHalfWrapper {
+  background-color: #001e28;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  margin-top: 10px;
+}
+.darkHalfWrapper p {
   margin: 0;
   font-size: 14px;
 }

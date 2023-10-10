@@ -8,8 +8,10 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { lastDays } from "../../util/helper";
+import { useDarkMode } from "../../context/DarkModeContext";
 const Favorites = () => {
   const { favorites, removeFavorite } = useContext(FavoriteContext);
+  const { isDarkMode } = useDarkMode();
   const dispatch = useDispatch();
   const date = lastDays();
   const today = date.danasnjiDatum;
@@ -27,7 +29,10 @@ const Favorites = () => {
         return (
           <div className={classes.favoritesDiv} key={index}>
             <div>
-              <Link to={`/league/${item.league_id}`}>
+              <Link
+                style={{ color: isDarkMode ? "white" : "" }}
+                to={`/league/${item.league_id}`}
+              >
                 <League
                   key={item.league_id}
                   league_logo={item.league_logo}

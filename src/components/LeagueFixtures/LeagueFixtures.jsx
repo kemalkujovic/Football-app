@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 import ResultTabel from "../ResultTabel/ResultTabel";
 import classes from "./LeagueFixtures.module.css";
 import ResultHeader from "../ResultTabel/ResultHeader";
+import { useDarkMode } from "../../context/DarkModeContext";
 const LeagueFixtures = () => {
   const selector = useSelector((state) => state.football.fixtureMatches);
   let sortedData;
-
+  const { isDarkMode } = useDarkMode();
   if (selector.length > 0) {
     sortedData = [...selector]?.sort((a, b) => {
       if (a.match_date < b.match_date) return -1;
@@ -43,7 +44,13 @@ const LeagueFixtures = () => {
                   previousMatchRound = currentMatchRound;
                   return (
                     <React.Fragment key={index}>
-                      <span className={classes.roundWrapper}>
+                      <span
+                        style={{
+                          background: isDarkMode ? "#001e28" : "",
+                          color: isDarkMode ? "white" : "",
+                        }}
+                        className={classes.roundWrapper}
+                      >
                         ROUND {item.match_round}
                       </span>
                       <ResultTabel key={item.match_id} item={item} />

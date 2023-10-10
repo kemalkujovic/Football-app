@@ -3,10 +3,15 @@ import LineupCard from "./LineupCard";
 import { Grid } from "@mui/material";
 import classes from "./LineupCard.module.css";
 import MatchOdds from "../MatchDetail/MatchOdds";
+import { useDarkMode } from "../../context/DarkModeContext";
 const LineupsMatch = ({ item }) => {
+  const { isDarkMode } = useDarkMode();
+  console.log(isDarkMode);
   return (
     <>
-      <div className={classes.halfWrapper}>
+      <div
+        className={isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper}
+      >
         <p>STARTING LINEUPS</p>
       </div>
       <Grid container>
@@ -21,7 +26,9 @@ const LineupsMatch = ({ item }) => {
           })}
         </Grid>
       </Grid>
-      <div className={classes.halfWrapper}>
+      <div
+        className={isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper}
+      >
         <p>SUBSTITUTES</p>
       </div>
       <Grid container>
@@ -36,7 +43,9 @@ const LineupsMatch = ({ item }) => {
           })}
         </Grid>
       </Grid>
-      <div className={classes.halfWrapper}>
+      <div
+        className={isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper}
+      >
         <p>COACH</p>
       </div>
       <Grid container>
@@ -51,7 +60,9 @@ const LineupsMatch = ({ item }) => {
           })}
         </Grid>
       </Grid>
-      <div className={classes.halfWrapper}>
+      <div
+        className={isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper}
+      >
         <p>PRE-MATCH ODDS</p>
       </div>
       <div>

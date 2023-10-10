@@ -36,7 +36,6 @@
   gap: 15px;
 }
 .resultsWrapper .finalResult p {
-  color: black;
   font-weight: 700;
 }
 .mainContainer {
@@ -51,7 +50,6 @@
 }
 
 .winner {
-  color: black;
   font-weight: 600;
 }
 .headerTittle h1 {
@@ -109,7 +107,6 @@
   display: none;
 }
 .resultLiveWrapper .finalResult p {
-  color: black;
   font-weight: 700;
 }
 @media only screen and (max-width: 1200px) {
@@ -167,10 +164,20 @@
   border-radius: 2px;
 }
 .goalSouder {
-  background-color: #ffe6f3;
+  background-color: #ff9c9c;
   border-bottom: 1px solid gray;
   cursor: pointer;
 }
 .goalSound {
   color: #ff0046;
+}
+.darkMainContainer {
+  border-bottom: 1px solid gray;
+  cursor: pointer;
+}
+.darkMainContainer:last-child {
+  border: none;
+}
+.darkMainContainer:hover {
+  background-color: #001e28;
 }

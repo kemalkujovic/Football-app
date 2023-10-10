@@ -31,3 +31,22 @@
 .oddsWrapper p:hover {
   text-decoration: underline;
 }
+.oddsWrapperDark {
+  display: flex;
+  gap: 20px;
+}
+.oddsWrapperDark div {
+  display: flex;
+  align-items: center;
+  background-color: #001e28;
+  padding: 5px 10px;
+  border-radius: 5px;
+  gap: 15px;
+}
+.oddsWrapperDark p {
+  font-weight: 700;
+  cursor: pointer;
+}
+.oddsWrapperDark p:hover {
+  text-decoration: underline;
+}

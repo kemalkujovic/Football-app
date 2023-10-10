@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./LiveCommentary.module.css";
 import MatchOdds from "../MatchDetail/MatchOdds";
+import { useDarkMode } from "../../context/DarkModeContext";
 const LiveCommentary = ({ comments }) => {
+  const { isDarkMode } = useDarkMode();
   return (
     <div>
       {comments?.map((comment, index) => {
@@ -23,7 +25,9 @@ const LiveCommentary = ({ comments }) => {
         );
       })}
       <div>
-        <div className={classes.halfWrapper}>
+        <div
+          className={isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper}
+        >
           <p>PRE-MATCH ODDS</p>
         </div>
         <MatchOdds />

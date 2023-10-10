@@ -7,6 +7,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import { lastDays } from "../../util/helper";
 import { useSelector } from "react-redux";
+import { useDarkMode } from "../../context/DarkModeContext";
 const LiveMatchTable = () => {
   const datum = lastDays();
   const initial = datum.danasnjiDatum;
@@ -18,7 +19,7 @@ const LiveMatchTable = () => {
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
   const loading = useSelector((state) => state.football.loadingLive);
-
+  const { isDarkMode } = useDarkMode();
   const handleDatum = () => {
     setDate(!date);
   };
@@ -44,7 +45,7 @@ const LiveMatchTable = () => {
     }
   };
   return (
-    <section>
+    <section style={{ background: isDarkMode ? "#00141e" : "" }}>
       <div className={classes.mainButtonsWrapper}>
         <div className={classes.container}>
           <button

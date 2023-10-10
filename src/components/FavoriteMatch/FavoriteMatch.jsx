@@ -6,6 +6,7 @@ import { getLiveMatch } from "../../app/footballSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ResultHeader from "../ResultTabel/ResultHeader";
 import { FavoriteContext } from "../../context/FavoriteContext";
+import { useDarkMode } from "../../context/DarkModeContext";
 
 const FavoriteMatch = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
@@ -14,7 +15,7 @@ const FavoriteMatch = () => {
   const { updateMatchInLocalStorage } = useContext(FavoriteMatchContext);
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   const [previousScores, setPreviousScores] = useState({});
-
+  const { isDarkMode } = useDarkMode();
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("match"));
     const updateMatches = () => {
@@ -58,7 +59,7 @@ const FavoriteMatch = () => {
   let currentLeague;
   let previusLeague;
   return (
-    <section>
+    <section style={{ background: isDarkMode ? "#00141e" : "" }}>
       {matchFavorit.length > 0 &&
         matchFavorit?.map((item, index) => {
           currentLeague = item.league_name;

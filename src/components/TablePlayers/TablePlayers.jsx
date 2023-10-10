@@ -8,7 +8,9 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import classes from "../Table/Table.module.css";
 import { useSelector } from "react-redux";
+import { useDarkMode } from "../../context/DarkModeContext";
 const TablePlayers = (props) => {
+  const { isDarkMode } = useDarkMode();
   const homeTeam = props["teams"].teams.home;
   const awayTeam = props["teams"].teams.away;
   const selector = useSelector((state) => state.football.leagueTopScores);
@@ -22,7 +24,11 @@ const TablePlayers = (props) => {
       {selector?.error === 404 ? (
         <p>No TopScores Data</p>
       ) : (
-        <TableContainer component={Paper} className={classes.mainContainer}>
+        <TableContainer
+          style={{ background: isDarkMode ? "#00141e" : "" }}
+          component={Paper}
+          className={classes.mainContainer}
+        >
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -40,10 +46,15 @@ const TablePlayers = (props) => {
                 data?.map((row, index) => (
                   <TableRow
                     style={{
-                      background:
-                        row.team_name === homeTeam || row.team_name === awayTeam
-                          ? "#eef7ff"
-                          : "",
+                      background: isDarkMode
+                        ? row.team_name === homeTeam ||
+                          row.team_name === awayTeam
+                          ? "#0f2d37"
+                          : ""
+                        : row.team_name === homeTeam ||
+                          row.team_name === awayTeam
+                        ? "#eef7ff"
+                        : "",
                     }}
                     key={index}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

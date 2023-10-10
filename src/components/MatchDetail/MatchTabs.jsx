@@ -6,7 +6,9 @@ import classes from "./MatchTabs.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getLiveComments } from "../../app/footballSlice";
 import LiveCommentary from "../LiveCommentary/LiveCommentary";
+import { useDarkMode } from "../../context/DarkModeContext";
 const MatchTabs = ({ item }) => {
+  const { isDarkMode } = useDarkMode();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getLiveComments);
   const [activeComponent, setActiveComponent] = useState(0);
@@ -32,6 +34,10 @@ const MatchTabs = ({ item }) => {
               return null;
             return (
               <button
+                style={{
+                  background: isDarkMode ? "#001e28" : "",
+                  color: isDarkMode ? "white" : "",
+                }}
                 className={activeComponent === index ? classes.active : ""}
                 key={index}
                 onClick={() => changeComponent(index)}

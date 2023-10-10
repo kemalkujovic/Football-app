@@ -10,6 +10,7 @@ import StatisticsStandings from "./StatisticsStandings";
 import { useDispatch } from "react-redux";
 import { getOddsMatch } from "../../app/footballSlice";
 import MatchTabs from "../MatchDetail/MatchTabs";
+import { useDarkMode } from "../../context/DarkModeContext";
 
 const theme = createTheme({
   palette: {
@@ -26,6 +27,7 @@ const theme = createTheme({
 });
 
 const TabListe = (props) => {
+  const { isDarkMode } = useDarkMode();
   const dispatch = useDispatch();
   const [value, setValue] = useState("1");
   const { item } = props;
@@ -49,7 +51,7 @@ const TabListe = (props) => {
             }}
           >
             <TabList
-              textColor="secondary"
+              textColor={isDarkMode ? "inherit" : "secondary"}
               indicatorColor="secondary"
               onChange={handleChange}
               aria-label="lab API tabs example"

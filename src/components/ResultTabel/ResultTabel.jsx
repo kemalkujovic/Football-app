@@ -7,6 +7,7 @@ import { FavoriteMatchContext } from "../../context/FavoriteMatchContext.js";
 import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDarkMode } from "../../context/DarkModeContext.js";
 const ResultTabel = (props) => {
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -14,7 +15,7 @@ const ResultTabel = (props) => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const history = useNavigate();
-
+  const { isDarkMode } = useDarkMode();
   const { item, previousScores } = props;
   let klasa;
   let klasa2;
@@ -94,7 +95,15 @@ const ResultTabel = (props) => {
   return (
     <div
       onClick={(e) => handleContainerClick(e)}
-      className={klasa ? klasa : klasa2 ? klasa2 : classes.mainContainer}
+      className={
+        klasa
+          ? klasa
+          : klasa2
+          ? klasa2
+          : isDarkMode
+          ? classes.darkMainContainer
+          : classes.mainContainer
+      }
     >
       <Grid
         marginLeft="20px"

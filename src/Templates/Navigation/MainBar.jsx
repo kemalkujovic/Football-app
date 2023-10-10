@@ -10,9 +10,10 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Hamburger from "hamburger-react";
 import Sidebar from "../Sidebar/Sidebar";
 import { SidebarContext } from "../../context/SideBarContext";
+import { useDarkMode } from "../../context/DarkModeContext";
 const MainBar = () => {
   const { isOpen, setOpen } = useContext(SidebarContext);
-
+  const { isDarkMode } = useDarkMode();
   if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
@@ -51,7 +52,10 @@ const MainBar = () => {
       </div>
       {isOpen && (
         <div className={classes["menu-container"]}>
-          <div className={classes["fade-in-text"]}>
+          <div
+            style={{ background: isDarkMode ? "#010a0f" : "" }}
+            className={classes["fade-in-text"]}
+          >
             <Sidebar />
           </div>
         </div>

@@ -5,7 +5,9 @@ import Detail from "./Detail";
 import MatchInfromation from "../MatchInfromation/MatchInfromation";
 import MatchOdds from "./MatchOdds";
 import { useSelector } from "react-redux";
+import { useDarkMode } from "../../context/DarkModeContext";
 const MatchDetail = ({ item }) => {
+  const { isDarkMode } = useDarkMode();
   let matchData = [];
   let substitutions = item.substitutions;
   const selector = useSelector((state) => state.football.getOddsMatch);
@@ -65,7 +67,11 @@ const MatchDetail = ({ item }) => {
     <>
       {(firstHalfData.length > 0 || item.match_live === "1") && (
         <div>
-          <div className={classes.halfWrapper}>
+          <div
+            className={
+              isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper
+            }
+          >
             <p>1. HALF</p>
             <p></p>
           </div>
@@ -78,7 +84,11 @@ const MatchDetail = ({ item }) => {
       )}
       {secondHalfData.length > 0 && (
         <div>
-          <div className={classes.halfWrapper}>
+          <div
+            className={
+              isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper
+            }
+          >
             <p>2. HALF</p>
           </div>
           {secondHalfData?.map((item, index) => {
@@ -90,7 +100,11 @@ const MatchDetail = ({ item }) => {
       )}
       {selector.length > 0 && (
         <div>
-          <div className={classes.halfWrapper}>
+          <div
+            className={
+              isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper
+            }
+          >
             <p>PRE-MATCH ODDS</p>
           </div>
           <MatchOdds />
@@ -98,7 +112,11 @@ const MatchDetail = ({ item }) => {
       )}
       {
         <div>
-          <div className={classes.halfWrapper}>
+          <div
+            className={
+              isDarkMode ? classes.darkHalfWrapper : classes.halfWrapper
+            }
+          >
             <p>MATCH INFORMATION</p>
           </div>
           <MatchInfromation item={item} />

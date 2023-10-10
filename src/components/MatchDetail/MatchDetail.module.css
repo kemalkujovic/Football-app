@@ -72,3 +72,13 @@
 .ogWrapper svg {
   color: red;
 }
+.darkHalfWrapper {
+  background-color: #001e28;
+  margin-bottom: 10px;
+  padding: 5px 12px;
+  margin-top: 10px;
+}
+.darkHalfWrapper p {
+  margin: 0;
+  font-size: 14px;
+}

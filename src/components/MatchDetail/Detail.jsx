@@ -2,7 +2,9 @@ import React from "react";
 import classes from "./MatchDetail.module.css";
 import SportsSoccerIcon from "@mui/icons-material/SportsSoccer";
 import SyncIcon from "@mui/icons-material/Sync";
+import { useDarkMode } from "../../context/DarkModeContext";
 const Detail = ({ item }) => {
+  const { isDarkMode } = useDarkMode();
   return (
     <div>
       <div
@@ -16,6 +18,7 @@ const Detail = ({ item }) => {
           <div className={classes.scoreWrapper}>
             <p>{item.time}'</p>
             <div
+              style={{ background: isDarkMode ? "transparent" : "" }}
               className={
                 item.home_scorer?.includes("(o.g.)")
                   ? classes.ogWrapper
@@ -78,6 +81,7 @@ const Detail = ({ item }) => {
             )}
             <p>{item.away_scorer}</p>
             <div
+              style={{ background: isDarkMode ? "transparent" : "" }}
               className={
                 item.away_scorer?.includes("(o.g.)")
                   ? classes.ogWrapper

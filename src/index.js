@@ -8,15 +8,18 @@ import store from "./app/store";
 import { FavoriteContextProvider } from "./context/FavoriteContext";
 import { SidebarProvider } from "./context/SideBarContext";
 import { FavoriteMatchContextProvider } from "./context/FavoriteMatchContext";
+import { DarkModeProvider } from "./context/DarkModeContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <FavoriteMatchContextProvider>
       <SidebarProvider>
         <FavoriteContextProvider>
-          <Provider store={store}>
-            <App />
-          </Provider>
+          <DarkModeProvider>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </DarkModeProvider>
         </FavoriteContextProvider>
       </SidebarProvider>
     </FavoriteMatchContextProvider>

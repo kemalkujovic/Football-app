@@ -3,10 +3,12 @@ import TableCard from "./TableCard";
 import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 import TopScores from "../TablePlayers/TopScores";
+import { DarkModeProvider, useDarkMode } from "../../context/DarkModeContext";
 const Table = (props) => {
   const [active, setActive] = useState(true);
+  const { isDarkMode } = useDarkMode();
   return (
-    <section>
+    <section style={{ background: isDarkMode ? "#00141e" : "" }}>
       <div className={classes.buttonsWrapper}>
         <button
           className={active ? classes.active : ""}
@@ -21,7 +23,15 @@ const Table = (props) => {
           TOP SCORES
         </button>
       </div>
-      {active ? <TableCard teams={props} /> : <TopScores teams={props} />}
+      {active ? (
+        <DarkModeProvider>
+          <TableCard teams={props} />
+        </DarkModeProvider>
+      ) : (
+        <DarkModeProvider>
+          <TopScores teams={props} />
+        </DarkModeProvider>
+      )}
     </section>
   );
 };
