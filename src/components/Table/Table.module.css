@@ -155,7 +155,7 @@ svg {
 }
 .buttonWrapper {
   padding: 10px !important;
-  background-color: white !important;
+  background-color: white;
 }
 
 .buttonsDarkWrapper {

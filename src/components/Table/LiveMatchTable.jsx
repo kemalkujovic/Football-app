@@ -49,12 +49,20 @@ const LiveMatchTable = () => {
       <div className={classes.mainButtonsWrapper}>
         <div className={classes.container}>
           <button
+            style={{
+              background: isDarkMode ? "#001e28" : "",
+              color: isDarkMode ? "white" : "",
+            }}
             className={active ? classes.active : ""}
             onClick={() => setActive(true)}
           >
             ALL
           </button>
           <button
+            style={{
+              background: isDarkMode ? "#001e28" : "",
+              color: isDarkMode ? "white" : "",
+            }}
             className={!active ? classes.active : ""}
             onClick={() => setActive(false)}
           >
@@ -65,6 +73,10 @@ const LiveMatchTable = () => {
           <div className={classes.calendarWrapper}>
             {lastClickedIndex > 0 && (
               <button
+                style={{
+                  background: isDarkMode ? "#001e28" : "#fff",
+                  color: isDarkMode ? "white" : "",
+                }}
                 className={classes.buttonWrapper}
                 disabled={loading}
                 onClick={handlePreviousDate}
@@ -107,6 +119,10 @@ const LiveMatchTable = () => {
             )}
             {lastClickedIndex >= 0 && lastClickedIndex < 2 && (
               <button
+                style={{
+                  background: isDarkMode ? "#001e28" : "#fff",
+                  color: isDarkMode ? "white" : "",
+                }}
                 className={classes.buttonWrapper}
                 disabled={loading}
                 onClick={handleNextDate}
