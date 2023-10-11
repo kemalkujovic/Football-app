@@ -85,12 +85,50 @@
 .active {
   border-bottom: 3px solid #ff004c;
 }
+.sideBarResposnive {
+  display: none;
+}
+
+.activeMenu {
+  position: relative;
+}
+
+.darkModeWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.darkModeWrapper div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 5px;
+}
+.menu-container {
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  top: 55px;
+  right: 5px;
+}
+.fade-in-text {
+  padding: 20px;
+  width: 300px;
+  box-shadow: -1px 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
+}
+
 @media screen and (max-width: 768px) {
   .top-menu {
     display: none;
     z-index: 100;
   }
-
+  .sideBarResposnive {
+    display: block;
+  }
   .hamburgerIcon {
     font-size: 35px;
     display: block !important;

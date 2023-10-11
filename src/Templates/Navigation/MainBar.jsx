@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Switch } from "@mui/material";
 import React, { useContext, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import classes from "./MainBar.module.css";
@@ -11,9 +11,8 @@ import Hamburger from "hamburger-react";
 import Sidebar from "../Sidebar/Sidebar";
 import { SidebarContext } from "../../context/SideBarContext";
 import { useDarkMode } from "../../context/DarkModeContext";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 
+import NightsStayIcon from "@mui/icons-material/NightsStay";
 const MainBar = () => {
   const { isOpen, setOpen } = useContext(SidebarContext);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -43,31 +42,40 @@ const MainBar = () => {
             <PersonIcon />
             <p>Login</p>
           </div>
-          {isDarkMode ? (
-            <Brightness7Icon onClick={toggleDarkMode} />
-          ) : (
-            <Brightness4Icon onClick={toggleDarkMode} />
-          )}
-          <div className={isOpen ? classes.activeMenu : classes.hamburgerIcon}>
+
+          <div className={true ? classes.activeMenu : classes.hamburgerIcon}>
             <Hamburger
               toggled={isOpen}
               toggle={setOpen}
               duration={0.6}
               color="white"
             />
+            {isOpen && (
+              <div className={classes["menu-container"]}>
+                <div
+                  style={{ background: isDarkMode ? "#010a0f" : "" }}
+                  className={classes["fade-in-text"]}
+                >
+                  <div className={classes.darkModeWrapper}>
+                    <div>
+                      <NightsStayIcon />
+                      <p>Dark mode</p>
+                    </div>
+                    <Switch
+                      checked={isDarkMode}
+                      onChange={toggleDarkMode}
+                      inputProps={{ "aria-label": "controlled" }}
+                    />
+                  </div>
+                  <div className={classes.sideBarResposnive}>
+                    <Sidebar />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </Grid>
       </div>
-      {isOpen && (
-        <div className={classes["menu-container"]}>
-          <div
-            style={{ background: isDarkMode ? "#010a0f" : "" }}
-            className={classes["fade-in-text"]}
-          >
-            <Sidebar />
-          </div>
-        </div>
-      )}
     </>
   );
 };
