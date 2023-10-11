@@ -127,7 +127,7 @@
     margin-right: 5px;
   }
   .timeLogoWrapper {
-    margin-left: 25px;
+    margin-left: 10px;
   }
   .responsiveContainer {
     margin: 0px !important;
@@ -159,6 +159,24 @@
     display: block;
     color: #ff0046 !important;
     font-weight: 700 !important;
+  }
+  .clubsWrapper span {
+    margin: 5px 10px;
+  }
+}
+@media only screen and (max-width: 420px) {
+  .clubsWrapper span img {
+    width: 24px;
+    height: 24px;
+  }
+  .clubsWrapper span {
+    margin: 5px 10px;
+  }
+  .timeZoneWrapper {
+    gap: 10px;
+  }
+  .clubsWrapper span p {
+    font-size: 14px;
   }
 }
 .fuad {

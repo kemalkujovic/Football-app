@@ -88,7 +88,7 @@ const LiveMatchTable = () => {
               style={{ display: "flex", alignItems: "center" }}
               onClick={handleDatum}
             >
-              <CalendarMonthIcon color="disabled" />
+              <CalendarMonthIcon color={isDarkMode ? "white" : "disabled"} />
               <p style={{ cursor: "pointer" }}>
                 {tableDate ? tableDate : today}
               </p>
