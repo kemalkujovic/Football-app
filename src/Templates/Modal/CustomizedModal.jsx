@@ -17,17 +17,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-  "& .css-12pstkr-MuiPaper-root-MuiDialog-paper": {
+  "& .MuiPaper-root-MuiDialog-paper": {
     margin: theme.spacing(1),
   },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
   "@media (max-width: 500px)": {
-    "& .css-12pstkr-MuiPaper-root-MuiDialog-paper": {
+    "& .MuiPaper-root": {
       width: "100%",
       position: "absolute",
-      top: "60px",
+      top: "50px",
       height: "100vh",
     },
   },
@@ -116,7 +116,7 @@ export default function CustomizedModal(props) {
         onClose={handleModalClose}
         aria-labelledby="customized-dialog-title"
         open={openModal}
-        fullWidth="xl"
+        fullWidth={true}
       >
         <DialogTitle
           style={{ background: isDarkMode ? " #010a0f" : "" }}
