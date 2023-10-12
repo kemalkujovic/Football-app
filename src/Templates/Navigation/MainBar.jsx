@@ -13,7 +13,10 @@ import { SidebarContext } from "../../context/SideBarContext";
 import { useDarkMode } from "../../context/DarkModeContext";
 
 import NightsStayIcon from "@mui/icons-material/NightsStay";
+import CustomizedModal from "../Modal/CustomizedModal";
 const MainBar = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   if (isOpen && isSidebarVisible) {
@@ -21,6 +24,13 @@ const MainBar = () => {
   } else {
     document.body.style.overflow = "";
   }
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+  const handleClose = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
       <div className={classes.mainBar}>
@@ -36,7 +46,15 @@ const MainBar = () => {
         </Grid>
         <Grid display="flex" alignItems="center">
           <div className={classes.searchIcon}>
-            <SearchIcon />
+            <SearchIcon onClick={() => handleClickOpen(!openModal)} />
+            {openModal ? (
+              <CustomizedModal
+                handleClose={handleClose}
+                openModal={openModal}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div className={classes.searchIcon}>
             <PersonIcon />

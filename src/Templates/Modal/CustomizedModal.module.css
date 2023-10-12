@@ -1,0 +1,27 @@
+.searchWrapper {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.searchWrapper p {
+  margin: 0;
+  font-size: 18px;
+}
+.containerSearch {
+  padding: 0px;
+}
+.searchWrapper img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.searchWrapper:hover {
+  background-color: #f5f5f5;
+}
+.darkSearchWrapper:hover {
+  background-color: #001e28;
+}
