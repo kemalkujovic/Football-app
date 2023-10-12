@@ -11,10 +11,12 @@ import { useEffect } from "react";
 import { getPlayers } from "../../app/footballSlice";
 import classes from "./CustomizedModal.module.css";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { Skeleton, Typography } from "@mui/material";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
+
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
@@ -26,17 +28,24 @@ export default function CustomizedModal(props) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  // const [data, setData] = useState([]);
   const selector = useSelector((state) => state.football.getPlayers);
+
+  if (openModal) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+
   const resetSelector = () => {
     dispatch({ type: "RESET_GET_PLAYERS" });
   };
-  console.log(selector);
   useEffect(() => {
     if (openModal) {
       const debounceTimer = setTimeout(() => {
         setDebouncedSearchTerm(search);
+        setLoading(false);
       }, 500);
 
       return () => {
@@ -52,7 +61,9 @@ export default function CustomizedModal(props) {
   }, [dispatch, debouncedSearchTerm]);
 
   const handleInputChange = (e) => {
-    setSearch(e.target.value);
+    const inputValue = e.target.value;
+    setSearch(inputValue);
+    setLoading(inputValue !== "");
   };
   const handleModalClose = () => {
     resetSelector();
@@ -63,6 +74,7 @@ export default function CustomizedModal(props) {
   return (
     <div>
       <BootstrapDialog
+        disableScrollLock
         onClose={handleModalClose}
         aria-labelledby="customized-dialog-title"
         open={openModal}
@@ -96,17 +108,38 @@ export default function CustomizedModal(props) {
             label="Search"
             variant="outlined"
             type="text"
-            placeholder="Pretraga..."
             value={search}
             onChange={handleInputChange}
           />
           <p>
             Please type characters. The results will start displaying here
-            immediately.
+            immediately
           </p>
           <ul className={classes.containerSearch}>
             {selector.error === 404 ? (
               <p>{selector.message}</p>
+            ) : loading ? (
+              <>
+                {[0, 1, 2, 3].map((item, index) => {
+                  return (
+                    <Typography
+                      key={index}
+                      component="div"
+                      className={classes.skeletonWrapper}
+                    >
+                      <Skeleton
+                        animation="wave"
+                        variant="circular"
+                        width={45}
+                        height={45}
+                      />
+                      <Typography variant="h3">
+                        <Skeleton animation="wave" />
+                      </Typography>
+                    </Typography>
+                  );
+                })}
+              </>
             ) : (
               selector?.map((item, index) => {
                 if (!item.player_image) return;
@@ -125,6 +158,7 @@ export default function CustomizedModal(props) {
                           "https://apiv3.apifootball.com/badges/players/97489_t-messing.jpg";
                       }}
                       alt="Player"
+                      loading="lazy"
                     />
                     <div>
                       <p>{item.player_name}</p>

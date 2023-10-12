@@ -25,3 +25,16 @@
 .darkSearchWrapper:hover {
   background-color: #001e28;
 }
+.dialogWrapper {
+  position: absolute !important;
+  top: 20px !important;
+  width: 100%;
+}
+.skeletonWrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.skeletonWrapper h3 {
+  width: 100%;
+}
