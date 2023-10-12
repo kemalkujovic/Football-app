@@ -12,13 +12,24 @@ import { getPlayers } from "../../app/footballSlice";
 import classes from "./CustomizedModal.module.css";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { Skeleton, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
-
+  "& .css-12pstkr-MuiPaper-root-MuiDialog-paper": {
+    margin: theme.spacing(1),
+  },
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
+  },
+  "@media (max-width: 500px)": {
+    "& .css-12pstkr-MuiPaper-root-MuiDialog-paper": {
+      width: "100%",
+      position: "absolute",
+      top: "60px",
+      height: "100vh",
+    },
   },
 }));
 
@@ -29,15 +40,21 @@ export default function CustomizedModal(props) {
   const [search, setSearch] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getPlayers);
+
+  const data =
+    selector.length > 0 &&
+    selector.filter((item) => item.player_image).slice(0, 10);
+
+  const historySearch = JSON.parse(localStorage.getItem("search")) || [];
 
   if (openModal) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "";
   }
-
   const resetSelector = () => {
     dispatch({ type: "RESET_GET_PLAYERS" });
   };
@@ -64,12 +81,33 @@ export default function CustomizedModal(props) {
     const inputValue = e.target.value;
     setSearch(inputValue);
     setLoading(inputValue !== "");
+
+    if (inputValue !== "") {
+      resetSelector();
+    }
   };
   const handleModalClose = () => {
     resetSelector();
     setSearch("");
     setDebouncedSearchTerm("");
     handleClose();
+  };
+
+  const handleOnInput = (e) => {
+    if (e.target.value === "") {
+      resetSelector();
+    }
+  };
+  const handlePlayer = (item) => {
+    const existingItem = historySearch.find(
+      (dataItem) => dataItem.player_id === item.player_id
+    );
+    if (!existingItem) {
+      historySearch.push(item);
+    }
+    localStorage.setItem("search", JSON.stringify(historySearch));
+    handleModalClose();
+    navigate(`/${item.player_name}/${item.player_id}`);
   };
   return (
     <div>
@@ -78,6 +116,7 @@ export default function CustomizedModal(props) {
         onClose={handleModalClose}
         aria-labelledby="customized-dialog-title"
         open={openModal}
+        fullWidth="xl"
       >
         <DialogTitle
           style={{ background: isDarkMode ? " #010a0f" : "" }}
@@ -110,6 +149,8 @@ export default function CustomizedModal(props) {
             type="text"
             value={search}
             onChange={handleInputChange}
+            onInput={handleOnInput}
+            autoComplete="off"
           />
           <p>
             Please type characters. The results will start displaying here
@@ -141,13 +182,15 @@ export default function CustomizedModal(props) {
                 })}
               </>
             ) : (
-              selector?.map((item, index) => {
+              data &&
+              data?.map((item, index) => {
                 if (!item.player_image) return;
                 return (
                   <li
                     className={`${classes.searchWrapper} ${
                       isDarkMode ? classes.darkSearchWrapper : ""
                     }`}
+                    onClick={() => handlePlayer(item)}
                     key={index}
                   >
                     <img
@@ -168,6 +211,36 @@ export default function CustomizedModal(props) {
                 );
               })
             )}
+          </ul>
+          <ul className={classes.containerSearch}>
+            <h5>YOUR LAST SEARCH</h5>
+            {historySearch.length > 0 &&
+              historySearch?.map((item, index) => {
+                return (
+                  <li
+                    className={`${classes.searchWrapper} ${
+                      isDarkMode ? classes.darkSearchWrapper : ""
+                    }`}
+                    onClick={() => handlePlayer(item)}
+                    key={index}
+                  >
+                    <img
+                      src={item.player_image}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://apiv3.apifootball.com/badges/players/97489_t-messing.jpg";
+                      }}
+                      alt="Player"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p>{item.player_name}</p>
+                      <p>{item.team_name}</p>
+                    </div>
+                  </li>
+                );
+              })}
           </ul>
         </DialogContent>
       </BootstrapDialog>

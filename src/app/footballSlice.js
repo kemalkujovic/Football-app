@@ -170,7 +170,6 @@ export const getLiveComments = createAsyncThunk(
 export const getPlayers = createAsyncThunk(
   "football/getPlayers",
   async (api, { rejectWithValue }) => {
-    console.log(api);
     try {
       const { data } = await axios.get(
         `https://apiv3.apifootball.com/?action=get_players&player_name=${api}&APIkey=${APIkey}`

@@ -4,6 +4,7 @@ import HomePage from "./Screens/HomePage";
 import LeaguePage from "./Screens/LeaguePage";
 import FavoritePage from "./Screens/FavoritePage";
 import StatisticsPage from "./Screens/StatisticsPage";
+import PlayerPage from "./Screens/PlayerPage";
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,6 +22,7 @@ function App() {
         },
         { path: "/league/:projectsId", element: <LeaguePage /> },
         { path: "/statistics/:id", element: <StatisticsPage /> },
+        { path: "/:playerName/:id", element: <PlayerPage /> },
       ],
     },
   ]);

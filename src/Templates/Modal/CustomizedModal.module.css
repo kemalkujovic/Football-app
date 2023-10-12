@@ -38,3 +38,9 @@
 .skeletonWrapper h3 {
   width: 100%;
 }
+.searchWrapper:hover {
+  background-color: #eeeeee;
+}
+.darkSearchWrapper:hover {
+  background-color: #001e28;
+}
