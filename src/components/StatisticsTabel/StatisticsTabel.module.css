@@ -34,6 +34,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 .winner {
   font-weight: 700;
@@ -64,9 +65,13 @@ main {
   max-width: 800px;
   margin: 0 auto;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
   .mainContainer {
     max-width: 370px;
     justify-content: space-around;
+  }
+  .logoWrapper {
+    width: 100px;
+    gap: 5px;
   }
 }

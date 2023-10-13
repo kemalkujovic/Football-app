@@ -69,7 +69,7 @@ const TabListe = (props) => {
           <TabPanel style={{ padding: "0px" }} value="1">
             <MatchTabs item={item} />
           </TabPanel>
-          <TabPanel value="2">
+          <TabPanel style={{ padding: "5px" }} value="2">
             <HeadToHead item={item} />
           </TabPanel>
           <TabPanel style={{ padding: "0px" }} value="3">

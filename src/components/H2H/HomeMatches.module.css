@@ -46,6 +46,7 @@
 }
 .scoreWrapper {
   font-weight: 600;
+  margin-right: 10px;
 }
 .winner {
   font-weight: 600;
@@ -55,4 +56,17 @@
   justify-content: center;
   align-items: center;
   height: 50vh;
+}
+@media only screen and (max-width: 500px) {
+  .container {
+    gap: 0px;
+    /* width: 140px; */
+  }
+  .logoWrappper {
+    gap: 5px;
+    width: 115px;
+  }
+  .logoWrappper p {
+    font-size: 13px;
+  }
 }
