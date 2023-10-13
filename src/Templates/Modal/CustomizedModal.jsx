@@ -61,7 +61,7 @@ export default function CustomizedModal(props) {
   useEffect(() => {
     if (openModal) {
       const debounceTimer = setTimeout(() => {
-        setDebouncedSearchTerm(search);
+        setDebouncedSearchTerm(search.trim());
         setLoading(false);
       }, 500);
 

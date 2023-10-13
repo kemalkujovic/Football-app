@@ -107,7 +107,7 @@ const ResultTabel = (props) => {
     >
       <Grid
         marginLeft="20px"
-        width="75%"
+        width="78%"
         container
         item
         justifyContent="space-between"
