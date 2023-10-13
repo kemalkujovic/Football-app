@@ -59,8 +59,7 @@
 }
 @media only screen and (max-width: 500px) {
   .container {
-    gap: 0px;
-    /* width: 140px; */
+    gap: 5px;
   }
   .logoWrappper {
     gap: 5px;

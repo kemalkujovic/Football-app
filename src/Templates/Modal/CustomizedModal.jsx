@@ -43,10 +43,9 @@ export default function CustomizedModal(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getPlayers);
-
   const data =
     selector.length > 0 &&
-    selector.filter((item) => item.player_image).slice(0, 10);
+    selector.filter((item) => item.player_image).slice(0, 12);
 
   const historySearch = JSON.parse(localStorage.getItem("search")) || [];
 
