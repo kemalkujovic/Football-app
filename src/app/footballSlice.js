@@ -180,7 +180,19 @@ export const getPlayers = createAsyncThunk(
     }
   }
 );
-
+export const getPlayer = createAsyncThunk(
+  "football/getPlayer",
+  async (api, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get(
+        `https://apiv3.apifootball.com/?action=get_players&player_id=${api}&APIkey=${APIkey}`
+      );
+      return data;
+    } catch (error) {
+      rejectWithValue(error.response.data);
+    }
+  }
+);
 const footballSlice = createSlice({
   name: "football",
   initialState: {
@@ -197,6 +209,7 @@ const footballSlice = createSlice({
     getOddsMatch: [],
     getLiveComments: [],
     getPlayers: [],
+    getPlayer: [],
     isSuccess: false,
     message: "",
     loading: false,
@@ -370,6 +383,18 @@ const footballSlice = createSlice({
       })
       .addCase("RESET_GET_PLAYERS", (state) => {
         state.getPlayers = [];
+      })
+      // GET PLAYER BY ID
+      .addCase(getPlayer.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getPlayer.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getPlayer = action.payload;
+      })
+      .addCase(getPlayer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

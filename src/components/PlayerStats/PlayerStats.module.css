@@ -1,0 +1,32 @@
+.searchWrapper {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.searchWrapper p {
+  margin: 0;
+  font-size: 16px;
+}
+.searchWrapper h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.containerSearch {
+  padding: 0px;
+}
+.searchWrapper img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+.playerWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.playerWrapper span {
+  font-weight: 600;
+}
