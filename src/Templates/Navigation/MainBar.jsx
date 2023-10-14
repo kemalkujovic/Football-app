@@ -14,8 +14,10 @@ import { useDarkMode } from "../../context/DarkModeContext";
 
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import CustomizedModal from "../Modal/CustomizedModal";
+import RegisterModal from "../../components/RegisterModal/RegisterModal";
 const MainBar = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
 
@@ -24,6 +26,7 @@ const MainBar = () => {
   } else {
     document.body.style.overflow = "";
   }
+
   const handleClickOpen = () => {
     setOpenModal(true);
   };
@@ -31,6 +34,12 @@ const MainBar = () => {
     setOpenModal(false);
   };
 
+  const handleLoginOpen = () => {
+    setLoginModal(true);
+  };
+  const handleLoginClose = () => {
+    setLoginModal(false);
+  };
   return (
     <>
       <div className={classes.mainBar}>
@@ -57,8 +66,23 @@ const MainBar = () => {
             )}
           </div>
           <div className={classes.searchIcon}>
-            <PersonIcon />
-            <p>Login</p>
+            <div
+              className={classes.loginWrapper}
+              style={{ display: "flex" }}
+              onClick={() => handleLoginOpen(!openModal)}
+            >
+              <PersonIcon />
+
+              <p>Login</p>
+            </div>
+            {loginModal ? (
+              <RegisterModal
+                handleClose={handleLoginClose}
+                openModal={loginModal}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           <div className={true ? classes.activeMenu : classes.hamburgerIcon}>

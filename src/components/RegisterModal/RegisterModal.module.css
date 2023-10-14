@@ -1,0 +1,59 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 100px 30px 100px !important;
+}
+.mainContainer h5 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+.buttonWrappers {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 330px;
+}
+.buttonWrappers div {
+  border-radius: 15px !important;
+}
+.emailWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 15px 0px;
+  cursor: pointer;
+}
+@media only screen and (max-width: 550px) {
+  .mainContainer {
+    padding: 10px !important;
+  }
+}
+.separetor {
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+  background-color: #001e28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-container,
+.separetor::before {
+  content: "or";
+  color: #ccc;
+  font-size: 15px;
+  padding: 10px 10px;
+  background-color: #010a0f;
+}
+.description {
+  display: block;
+  text-align: center;
+}
+.description a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-left: 5px;
+}

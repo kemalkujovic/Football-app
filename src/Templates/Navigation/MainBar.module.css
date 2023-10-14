@@ -120,7 +120,11 @@
   border-radius: 10px;
   background-color: white;
 }
-
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
 @media screen and (max-width: 768px) {
   .top-menu {
     display: none;
