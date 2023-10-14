@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
@@ -17,7 +16,6 @@ import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {},
   "& .MuiPaper-root-MuiDialog-paper": {
     margin: theme.spacing(1),
   },
@@ -52,6 +50,7 @@ const RegisterModal = (props) => {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={openModal}
+        disableScrollLock
       >
         <DialogTitle
           sx={{ m: 0, p: 3 }}
@@ -140,7 +139,7 @@ const RegisterModal = (props) => {
                 type="text"
                 placeholder="Email"
                 sx={{
-                  background: "#001e28",
+                  background: isDarkMode ? "#001e28" : "",
                   width: "100%",
                   marginBottom: "15px",
                 }}
@@ -151,16 +150,18 @@ const RegisterModal = (props) => {
                 type="password"
                 placeholder="Password"
                 sx={{
-                  background: "#001e28",
+                  background: isDarkMode ? "#001e28" : "",
                   width: "100%",
                   marginBottom: "15px",
                 }}
               />
               {register && (
-                <ReCAPTCHA
-                  sitekey="6LfH_p4oAAAAAKdMB8-_4ND5ekt6vEQjigtRC5iB"
-                  onChange={(val) => setReceptcha(val)}
-                />
+                <div className={classes.captchaWrapper}>
+                  <ReCAPTCHA
+                    sitekey="6LfH_p4oAAAAAKdMB8-_4ND5ekt6vEQjigtRC5iB"
+                    onChange={(val) => setReceptcha(val)}
+                  />
+                </div>
               )}
               <Button
                 disabled={register && !recaptcha}
@@ -180,7 +181,11 @@ const RegisterModal = (props) => {
               >
                 {email ? "LOG IN" : "SIGN UP"}
               </Button>
-              <div className={classes.separetor}></div>
+              <div
+                className={
+                  isDarkMode ? classes.separetor : classes.separetorLight
+                }
+              ></div>
               <span className={classes.description}>
                 {email ? "Don't have an account?" : "Do you have an account?"}
                 <Link
@@ -193,6 +198,7 @@ const RegisterModal = (props) => {
                       setEmail(true);
                     }
                   }}
+                  style={{ color: isDarkMode ? "" : "#4e4e4e" }}
                 >
                   {email ? "Sign up" : "Log In"}
                 </Link>

@@ -57,3 +57,26 @@
   text-decoration: underline;
   margin-left: 5px;
 }
+.captchaWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.separetorLight {
+  height: 1px;
+  width: 100%;
+  margin: 20px 0;
+  background-color: #c0c0c0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-container,
+.separetorLight::before {
+  content: "or";
+  color: #ccc;
+  font-size: 15px;
+  padding: 10px 10px;
+  background-color: white;
+}
