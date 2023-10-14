@@ -1,5 +1,4 @@
-const APIkey =
-  "19e594278e50461a60a3b46a1c0222d9afe6b9351345a20f5403006bae1330ae";
+const APIkey = process.env.REACT_APP_API_KEY;
 const baseURL = "https://apiv3.apifootball.com/";
 
 const request = {

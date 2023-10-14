@@ -10,12 +10,15 @@ import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 import { useDarkMode } from "../../context/DarkModeContext";
 const TableCard = (props) => {
+  const selector = useSelector((state) => state.football.leagueStandings);
   const { isDarkMode } = useDarkMode();
+
   const homeTeam = props["teams"].home;
   const awayTeam = props["teams"].away;
-  const selector = useSelector((state) => state.football.leagueStandings);
-  let brojac = 0;
+
   const mappedData = [];
+  let brojac = 0;
+
   if (selector?.length > 0) {
     for (const item of selector) {
       if (

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import TableCard from "./TableCard";
-import { useSelector } from "react-redux";
 import classes from "./Table.module.css";
 import TopScores from "../TablePlayers/TopScores";
-import { DarkModeProvider, useDarkMode } from "../../context/DarkModeContext";
+import { useDarkMode } from "../../context/DarkModeContext";
 const Table = (props) => {
   const [active, setActive] = useState(true);
   const { isDarkMode } = useDarkMode();

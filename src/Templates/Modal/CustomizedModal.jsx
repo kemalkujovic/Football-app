@@ -34,15 +34,17 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export default function CustomizedModal(props) {
-  const { openModal, handleClose } = props;
-  const { isDarkMode } = useDarkMode();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
   const [loading, setLoading] = useState(false);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(search);
+  const selector = useSelector((state) => state.football.getPlayers);
+
+  const { openModal, handleClose } = props;
+  const { isDarkMode } = useDarkMode();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const selector = useSelector((state) => state.football.getPlayers);
+
   const data =
     selector.length > 0 &&
     selector.filter((item) => item.player_image).slice(0, 12);

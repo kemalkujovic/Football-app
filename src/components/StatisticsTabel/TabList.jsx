@@ -27,13 +27,15 @@ const theme = createTheme({
 });
 
 const TabListe = (props) => {
-  const { isDarkMode } = useDarkMode();
-  const dispatch = useDispatch();
   const [value, setValue] = useState("1");
+  const dispatch = useDispatch();
+  const { isDarkMode } = useDarkMode();
   const { item } = props;
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   useEffect(() => {
     dispatch(getOddsMatch(item.match_id));
   }, [dispatch, item.match_id]);

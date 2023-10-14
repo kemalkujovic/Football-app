@@ -13,6 +13,7 @@ const FavoritePage = () => {
   const [sound, setSound] = useState(true);
   const { goal, setGoal } = useContext(FavoriteMatchContext);
   const { isDarkMode } = useDarkMode();
+
   useEffect(() => {
     if (goal && sound) {
       const audioElement = document.getElementById("soundGoal");
@@ -24,6 +25,7 @@ const FavoritePage = () => {
       }
     }
   }, [goal, sound]);
+
   return (
     <>
       <div>

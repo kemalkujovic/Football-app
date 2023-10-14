@@ -16,9 +16,9 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import CustomizedModal from "../Modal/CustomizedModal";
 const MainBar = () => {
   const [openModal, setOpenModal] = useState(false);
-
-  const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
+
   if (isOpen && isSidebarVisible) {
     document.body.style.overflow = "hidden";
   } else {

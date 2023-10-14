@@ -9,14 +9,16 @@ import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeContext.js";
 const ResultTabel = (props) => {
-  const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
+
   const history = useNavigate();
   const { isDarkMode } = useDarkMode();
   const { item, previousScores } = props;
+
   let klasa;
   let klasa2;
 
@@ -31,9 +33,11 @@ const ResultTabel = (props) => {
     klasa = isScoreChanged ? classes.goalSouder : "";
     klasa2 = isAwayScoreChanged ? classes.goalSouder : "";
   }
+
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
   };
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
@@ -55,6 +59,7 @@ const ResultTabel = (props) => {
 
     window.open(url, windowName, windowFeatures);
   };
+
   const handleContainerClick = (event) => {
     const isIconClick = event.target.closest(`.${classes.starWrapper}`);
     if (!isIconClick && windowWidth > 768) {

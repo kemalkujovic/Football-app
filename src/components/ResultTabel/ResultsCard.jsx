@@ -8,7 +8,11 @@ import { useDarkMode } from "../../context/DarkModeContext";
 const ResultsCard = () => {
   const selector = useSelector((state) => state.football.leagueResults);
   const { isDarkMode } = useDarkMode();
+
   let sortedData;
+  let sortedDataRound;
+  let currentMatchRound;
+  let previousMatchRound;
 
   if (selector?.length > 0) {
     sortedData = [...selector]?.sort((a, b) => {
@@ -21,7 +25,7 @@ const ResultsCard = () => {
       }
     });
   }
-  let sortedDataRound;
+
   if (selector?.length > 0) {
     sortedDataRound = [...sortedData]?.sort((a, b) => {
       if (a.match_round < b.match_round) return 1;
@@ -29,8 +33,6 @@ const ResultsCard = () => {
     });
   }
 
-  let currentMatchRound;
-  let previousMatchRound;
   return (
     <>
       {selector?.error === 404 ? (

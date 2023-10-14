@@ -10,6 +10,7 @@ const StatisticsStandings = (props) => {
     dispatch(leagueStandings(props.item.league_id));
     dispatch(leagueTopScores(props.item.league_id));
   }, [dispatch]);
+
   return (
     <div>
       <Table

@@ -11,24 +11,29 @@ import { useDarkMode } from "../../context/DarkModeContext";
 const LiveMatchTable = () => {
   const datum = lastDays();
   const initial = datum.danasnjiDatum;
+
   const [active, setActive] = useState(true);
   const [date, setDate] = useState(false);
   const [tableDate, setTableDate] = useState(null);
-  const [lastClickedIndex, setLastClickedIndex] = useState(1);
   const [action, setAction] = useState(initial);
+  const [lastClickedIndex, setLastClickedIndex] = useState(1);
+
+  const { isDarkMode } = useDarkMode();
+  const loading = useSelector((state) => state.football.loadingLive);
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
-  const loading = useSelector((state) => state.football.loadingLive);
-  const { isDarkMode } = useDarkMode();
+
   const handleDatum = () => {
     setDate(!date);
   };
+
   const handlerDay = (datum, index) => {
     setLastClickedIndex(index);
     setTableDate(datum.split("-").slice(1).join("/"));
     setAction(datum);
     setDate(!date);
   };
+
   const handlePreviousDate = () => {
     if (lastClickedIndex > 0) {
       const previousIndex = lastClickedIndex - 1;

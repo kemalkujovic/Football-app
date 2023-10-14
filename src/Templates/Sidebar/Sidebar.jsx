@@ -8,6 +8,7 @@ import Favorites from "../../components/Favorites/Favorites";
 const Sidebar = () => {
   const [country, setCountry] = useState([]);
   const dispatch = useDispatch();
+
   useEffect(() => {
     async function fetchCountrys() {
       const data = await dispatch(getFootball(request.getCountrys));

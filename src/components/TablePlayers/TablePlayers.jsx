@@ -14,6 +14,7 @@ const TablePlayers = (props) => {
   const homeTeam = props["teams"].teams.home;
   const awayTeam = props["teams"].teams.away;
   const selector = useSelector((state) => state.football.leagueTopScores);
+
   let data = selector;
   if (selector.length > 0) {
     data = selector?.slice(0, 10);

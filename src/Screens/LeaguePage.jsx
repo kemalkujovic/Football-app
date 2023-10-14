@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -11,19 +10,20 @@ import {
 import Sidebar from "../Templates/Sidebar/Sidebar";
 import Layout from "../Templates/Layout/Layout";
 import { Grid } from "@mui/material";
-import TopScores from "../components/TablePlayers/TopScores";
 import classes from "./HomePage.module.css";
 import { FavoriteContext } from "../context/FavoriteContext";
 const LeaguePage = () => {
   const { projectsId } = useParams();
   const dispatch = useDispatch();
-  const { addFavorite, removeFavorite } = useContext(FavoriteContext);
+  const { addFavorite } = useContext(FavoriteContext);
+
   useEffect(() => {
     dispatch(leagueResults(projectsId));
     dispatch(leagueStandings(projectsId));
     dispatch(leagueFixtures(projectsId));
     dispatch(leagueTopScores(projectsId));
   }, [projectsId, addFavorite]);
+
   return (
     <div>
       <Grid lg={12} item container direction="row">

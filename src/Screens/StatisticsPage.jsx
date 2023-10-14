@@ -20,6 +20,7 @@ const StatisticsPage = () => {
       clearInterval(intervalId);
     };
   }, [dispatch]);
+
   return (
     <div>
       <StatisticsTabel item={selector} />

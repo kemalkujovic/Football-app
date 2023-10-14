@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./StatisticsTabel.module.css";
 const StastisticsHeader = (props) => {
   const { item } = props;
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.logoWrapper}>

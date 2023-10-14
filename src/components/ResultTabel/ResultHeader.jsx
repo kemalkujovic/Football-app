@@ -2,16 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./ResultHeader.module.css";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import { FavoriteContext } from "../../context/FavoriteContext";
-import { useDispatch } from "react-redux";
 import { Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeContext";
 const ResultHeader = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { item } = props;
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
   const { isDarkMode } = useDarkMode();
-  const dispatch = useDispatch();
+  const { item } = props;
+
   useEffect(() => {
     const matchData = JSON.parse(localStorage.getItem("league"));
     const data = matchData?.find((el) => el?.league_id === item?.league_id);
@@ -22,6 +21,7 @@ const ResultHeader = (props) => {
     addFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
   };
+
   const removeHandleClick = () => {
     removeFavorite(item);
     setIsFavorite((prevIsFavorite) => !prevIsFavorite);
