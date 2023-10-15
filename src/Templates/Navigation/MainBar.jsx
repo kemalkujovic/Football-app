@@ -1,5 +1,5 @@
 import { Grid, Switch } from "@mui/material";
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import classes from "./MainBar.module.css";
 import SearchIcon from "@mui/icons-material/Search";
@@ -18,6 +18,7 @@ import RegisterModal from "../../components/RegisterModal/RegisterModal";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+
 const MainBar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
@@ -25,8 +26,10 @@ const MainBar = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
   const { currentUser } = useContext(AuthContext);
-  const popupRef = useRef(null);
-
+  const buttonRef = useRef();
+  const menuRef = useRef();
+  const hamburgerMenu = useRef();
+  const iconRef = useRef();
   if (isOpen && isSidebarVisible) {
     document.body.style.overflow = "hidden";
   } else {
@@ -50,6 +53,38 @@ const MainBar = () => {
   const handleUserSettings = () => {
     setSettings(!settings);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        (buttonRef.current && buttonRef.current.contains(e.target)) ||
+        (menuRef.current && menuRef.current.contains(e.target))
+      ) {
+        return;
+      }
+      setSettings(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        (iconRef.current && iconRef.current.contains(e.target)) ||
+        (hamburgerMenu.current && hamburgerMenu.current.contains(e.target))
+      ) {
+        return;
+      }
+      setOpen(false);
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -79,6 +114,7 @@ const MainBar = () => {
           <div className={classes.searchIcon}>
             {currentUser ? (
               <div
+                ref={buttonRef}
                 onClick={handleUserSettings}
                 className={classes.loginWrapper}
                 style={{ display: "flex" }}
@@ -97,16 +133,19 @@ const MainBar = () => {
               </div>
             )}
             {settings && (
-              <div ref={popupRef} className={classes["menu-container"]}>
+              <div ref={menuRef} className={classes["menu-container"]}>
                 <div
                   style={{ background: isDarkMode ? "#010a0f" : "" }}
                   className={classes["fade-in-text"]}
                 >
-                  <div className={classes.logoutWrapper}>
-                    <LogoutIcon
-                      style={{ color: "#ff0046" }}
-                      onClick={() => signOut(auth)}
-                    />
+                  <div
+                    onClick={() => {
+                      signOut(auth);
+                      setSettings(!settings);
+                    }}
+                    className={classes.logoutWrapper}
+                  >
+                    <LogoutIcon style={{ color: "#ff0046" }} />
                     <p style={{ color: "#ff0046" }}>Logout</p>
                   </div>
                 </div>
@@ -122,7 +161,10 @@ const MainBar = () => {
             )}
           </div>
 
-          <div className={true ? classes.activeMenu : classes.hamburgerIcon}>
+          <div
+            ref={iconRef}
+            className={true ? classes.activeMenu : classes.hamburgerIcon}
+          >
             <Hamburger
               toggled={isOpen}
               toggle={setOpen}
@@ -130,7 +172,7 @@ const MainBar = () => {
               color="white"
             />
             {isOpen && (
-              <div className={classes["menu-container"]}>
+              <div ref={hamburgerMenu} className={classes["menu-container"]}>
                 <div
                   style={{ background: isDarkMode ? "#010a0f" : "" }}
                   className={classes["fade-in-text"]}
