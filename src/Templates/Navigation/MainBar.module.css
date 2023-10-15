@@ -132,10 +132,22 @@
   align-items: center;
 }
 .logoutWrapper:hover svg {
-  color: #eee !important;
+  color: #0f2d37 !important;
 }
 
 .logoutWrapper:hover p {
+  color: #0f2d37 !important;
+}
+.logoutWrapperDark {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.logoutWrapperDark:hover svg {
+  color: #eee !important;
+}
+
+.logoutWrapperDark:hover p {
   color: #eee !important;
 }
 @media screen and (max-width: 768px) {

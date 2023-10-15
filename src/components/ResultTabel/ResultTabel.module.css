@@ -116,6 +116,9 @@
 .resultLiveWrapper .finalResult p {
   font-weight: 700;
 }
+.darkSnackBar div {
+  background: #000000;
+}
 @media only screen and (max-width: 1200px) {
   .resultsWrapper {
     width: 0px;

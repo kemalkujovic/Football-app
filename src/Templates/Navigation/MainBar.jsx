@@ -145,7 +145,11 @@ const MainBar = () => {
                       signOut(auth);
                       setSettings(!settings);
                     }}
-                    className={classes.logoutWrapper}
+                    className={
+                      isDarkMode
+                        ? classes.logoutWrapperDark
+                        : classes.logoutWrapper
+                    }
                   >
                     <LogoutIcon style={{ color: "#ff0046" }} />
                     <p style={{ color: "#ff0046" }}>Logout</p>

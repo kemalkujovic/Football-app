@@ -50,9 +50,13 @@ const RegisterModal = (props) => {
   }
 
   const handleClickGoogle = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      handleClose();
-    });
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        handleClose();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

@@ -298,7 +298,9 @@ const ResultTabel = (props) => {
           </div>
         </div>
         <Snackbar
-          className={classes.snackbarWrapper}
+          className={`${classes.snackbarWrapper} ${
+            isDarkMode && classes.darkSnackBar
+          }`}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={openSnackbar}
           onClose={handleCloseSnackbar}
