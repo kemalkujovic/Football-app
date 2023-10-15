@@ -30,7 +30,7 @@ const MainBar = () => {
   const menuRef = useRef();
   const hamburgerMenu = useRef();
   const iconRef = useRef();
-  if (isOpen && isSidebarVisible) {
+  if ((isOpen && isSidebarVisible) || (settings && isSidebarVisible)) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "";
@@ -135,8 +135,10 @@ const MainBar = () => {
             {settings && (
               <div ref={menuRef} className={classes["menu-container"]}>
                 <div
-                  style={{ background: isDarkMode ? "#010a0f" : "" }}
-                  className={classes["fade-in-text"]}
+                  style={{
+                    background: isDarkMode ? "#010a0f" : "",
+                  }}
+                  className={`${classes["fade-in-text"]} ${classes.fadeResponsive}`}
                 >
                   <div
                     onClick={() => {

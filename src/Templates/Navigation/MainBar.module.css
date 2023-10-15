@@ -126,6 +126,18 @@
   align-items: center;
   gap: 2px;
 }
+.logoutWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.logoutWrapper:hover svg {
+  color: #eee !important;
+}
+
+.logoutWrapper:hover p {
+  color: #eee !important;
+}
 @media screen and (max-width: 768px) {
   .top-menu {
     display: none;
@@ -158,6 +170,9 @@
     box-shadow: -1px 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
   }
+  .fadeResponsive {
+    height: 100vh;
+  }
 }
 
 @keyframes fadeIn {
@@ -167,9 +182,4 @@
   100% {
     opacity: 1;
   }
-}
-.logoutWrapper {
-  display: flex;
-  gap: 15px;
-  align-items: center;
 }
