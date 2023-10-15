@@ -9,20 +9,23 @@ import { FavoriteContextProvider } from "./context/FavoriteContext";
 import { SidebarProvider } from "./context/SideBarContext";
 import { FavoriteMatchContextProvider } from "./context/FavoriteMatchContext";
 import { DarkModeProvider } from "./context/DarkModeContext";
+import { AuthContextProvider } from "./context/AuthContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <DarkModeProvider>
-      <FavoriteMatchContextProvider>
-        <SidebarProvider>
-          <FavoriteContextProvider>
-            <Provider store={store}>
-              <App />
-            </Provider>
-          </FavoriteContextProvider>
-        </SidebarProvider>
-      </FavoriteMatchContextProvider>
-    </DarkModeProvider>
+    <AuthContextProvider>
+      <DarkModeProvider>
+        <FavoriteMatchContextProvider>
+          <SidebarProvider>
+            <FavoriteContextProvider>
+              <Provider store={store}>
+                <App />
+              </Provider>
+            </FavoriteContextProvider>
+          </SidebarProvider>
+        </FavoriteMatchContextProvider>
+      </DarkModeProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

@@ -19,6 +19,7 @@
   display: flex;
   margin-right: 10px;
   color: white;
+  position: relative;
 }
 .searchIcon:hover {
   color: #6c98a8;
@@ -166,4 +167,9 @@
   100% {
     opacity: 1;
   }
+}
+.logoutWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }

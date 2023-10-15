@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
@@ -15,6 +15,10 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
+import { auth, provider } from "../../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { AuthContext } from "../../context/AuthContext";
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiPaper-root-MuiDialog-paper": {
     margin: theme.spacing(1),
@@ -38,12 +42,19 @@ const RegisterModal = (props) => {
   const [recaptcha, setReceptcha] = useState(null);
   const { openModal, handleClose } = props;
   const { isDarkMode } = useDarkMode();
-
+  const { currentUser } = useContext(AuthContext);
   if (openModal) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "";
   }
+
+  const handleClickGoogle = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      console.log(data);
+    });
+  };
+
   return (
     <div>
       <BootstrapDialog
@@ -113,7 +124,10 @@ const RegisterModal = (props) => {
             <div>
               <Typography variant="h5">Sign up to get more</Typography>
               <div className={classes.buttonWrappers}>
-                <GoogleButton style={{ width: "100%" }} />
+                <GoogleButton
+                  onClick={handleClickGoogle}
+                  style={{ width: "100%" }}
+                />
                 <div
                   onClick={() => setEmail(!email)}
                   className={classes.emailWrapper}
