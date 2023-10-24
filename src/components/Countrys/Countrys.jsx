@@ -39,6 +39,11 @@ const Countrys = () => {
     });
   };
 
+  function handleLoadMore(e) {
+    e.stopPropagation();
+    setMore(!more);
+  }
+
   ////////
   const [more, setMore] = useState(false);
   const selector = useSelector((state) => state.football.footballData);
@@ -100,7 +105,7 @@ const Countrys = () => {
         );
       })}
       {!more ? (
-        <div className={classes.loadWrapper} onClick={() => setMore(!more)}>
+        <div className={classes.loadWrapper} onClick={(e) => handleLoadMore(e)}>
           <span>Load More</span>
           <ExpandMoreIcon />
         </div>
