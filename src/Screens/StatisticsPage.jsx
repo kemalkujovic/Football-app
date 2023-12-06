@@ -9,7 +9,6 @@ const StatisticsPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getStatistics);
-
   useEffect(() => {
     const fetchData = () => {
       dispatch(getStatistics(id));
