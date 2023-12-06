@@ -54,7 +54,7 @@ This comprehensive overview ensures that users have access to all the relevant i
 
 ![match-headtohead](https://github.com/kemalkujovic/Football-app/assets/107282806/734ed413-6245-4fab-bd85-9ed7d69c76d6)
 
-![league-table](https://github.com/kemalkujovic/Football-app/assets/107282806/ca047b30-728c-4dcd-a323-92efa8ee169a)
+![league-standings](https://github.com/kemalkujovic/Football-app/assets/107282806/6b81ed8b-90db-4a4d-b5ed-578d1ec81e65)
 
 
 ## Favorite Matches 
@@ -82,7 +82,7 @@ This comprehensive league view ensures that users have access to all the relevan
 
 ![league-fixture-matches](https://github.com/kemalkujovic/Football-app/assets/107282806/7133054d-3668-4eea-919c-d39683eaeddc)
 
-![league-standings](https://github.com/kemalkujovic/Football-app/assets/107282806/319ae682-4cd1-4a8e-b1a7-c4f344dc590a)
+![league-table](https://github.com/kemalkujovic/Football-app/assets/107282806/411d5a48-f6d5-45f7-b5fb-829b987b1bda)
 
 ![league-topscores](https://github.com/kemalkujovic/Football-app/assets/107282806/07d4c6b8-7adb-445f-ad9f-49fca1d16a4a)
 
