@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
@@ -8,17 +8,18 @@ import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeContext.js";
+import { useSelector } from "react-redux";
 const ResultTabel = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
-
+  const joyrideStepIndex = useSelector((state) => state.joyride.stepIndex);
   const history = useNavigate();
   const { isDarkMode } = useDarkMode();
-  const { item, previousScores } = props;
-
+  const { item, previousScores, isHighlightedMatch } = props;
+  const actionDoneRef = useRef(false);
   let klasa;
   let klasa2;
 
@@ -97,6 +98,15 @@ const ResultTabel = (props) => {
     setOpenSnackbar(false);
   };
 
+  useEffect(() => {
+    if (isHighlightedMatch && !actionDoneRef.current) {
+      addFavorite(item);
+      setIsFavorite(true);
+      setSnackbarMessage("Added to Favorites.");
+      actionDoneRef.current = true;
+    }
+  }, [joyrideStepIndex, item]);
+
   return (
     <div
       onClick={(e) => handleContainerClick(e)}
@@ -119,10 +129,10 @@ const ResultTabel = (props) => {
         className={classes.responsiveContainer}
       >
         <div className={classes.timeLogoWrapper}>
-          <div className={classes.timeZoneWrapper}>
+          <div className={`${classes.timeZoneWrapper}`}>
             {isFavorite ? (
               <Tooltip title="Remove from Favorites" arrow>
-                <div className={classes.starWrapper}>
+                <div className={`${classes.starWrapper} step-7`}>
                   <StarIcon
                     style={{ color: "#ffcd00" }}
                     onClick={() => {
@@ -132,7 +142,7 @@ const ResultTabel = (props) => {
                 </div>
               </Tooltip>
             ) : (
-              <div>
+              <div className="step-7">
                 <Tooltip title="Add to Favorites" arrow>
                   <div className={classes.starWrapper}>
                     <StarBorderIcon

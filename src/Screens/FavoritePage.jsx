@@ -29,10 +29,10 @@ const FavoritePage = () => {
   return (
     <>
       <div>
-        <div className={classes.soundWrapper}>
+        <div className={`${classes.soundWrapper}`}>
           {sound ? (
             <Tooltip title="Turn off sound" arrow>
-              <div>
+              <div className="step-9">
                 <VolumeUpIcon
                   style={{ color: isDarkMode ? "white" : "" }}
                   onClick={() => setSound(!sound)}
@@ -41,7 +41,7 @@ const FavoritePage = () => {
             </Tooltip>
           ) : (
             <Tooltip title="Turn on sound" arrow>
-              <div>
+              <div className="step-9">
                 <VolumeOffIcon
                   style={{ color: isDarkMode ? "white" : "" }}
                   onClick={() => setSound(!sound)}

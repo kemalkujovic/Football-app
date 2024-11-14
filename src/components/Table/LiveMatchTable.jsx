@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllMatches from "../AllMatches/AllMatches";
 import classes from "./Table.module.css";
 import LiveMatch from "../LiveMatch/LiveMatch";
@@ -22,7 +22,7 @@ const LiveMatchTable = () => {
   const loading = useSelector((state) => state.football.loadingLive);
   const today = datum.danasnjiDatum.split("-").slice(1).join("/");
   const data = [datum.prethodniDan, datum.danasnjiDatum, datum.nextDay];
-
+  const joyrideStepIndex = useSelector((state) => state.joyride.stepIndex);
   const handleDatum = () => {
     setDate(!date);
   };
@@ -49,6 +49,18 @@ const LiveMatchTable = () => {
       setDate(false);
     }
   };
+  useEffect(() => {
+    if (joyrideStepIndex === 3) {
+      setActive(false);
+    }
+    if (joyrideStepIndex === 4) {
+      setActive(true);
+    }
+    if (joyrideStepIndex === 2) {
+      setActive(true);
+    }
+  }, [joyrideStepIndex]);
+
   return (
     <section style={{ background: isDarkMode ? "#00141e" : "" }}>
       <div className={classes.mainButtonsWrapper}>
@@ -58,7 +70,7 @@ const LiveMatchTable = () => {
               background: isDarkMode ? "#001e28" : "",
               color: isDarkMode ? "white" : "",
             }}
-            className={active ? classes.active : ""}
+            className={active ? `${classes.active} step-3` : "step-3"}
             onClick={() => setActive(true)}
           >
             ALL
@@ -68,77 +80,81 @@ const LiveMatchTable = () => {
               background: isDarkMode ? "#001e28" : "",
               color: isDarkMode ? "white" : "",
             }}
-            className={!active ? classes.active : ""}
+            className={!active ? `${classes.active} step-4` : "step-4"}
             onClick={() => setActive(false)}
           >
             LIVE
           </button>
         </div>
-        {active ? (
-          <div className={classes.calendarWrapper}>
-            {lastClickedIndex > 0 && (
-              <button
-                style={{
-                  background: isDarkMode ? "#001e28" : "#fff",
-                  color: isDarkMode ? "white" : "",
-                }}
-                className={classes.buttonWrapper}
-                disabled={loading}
-                onClick={handlePreviousDate}
+        <div className="step-5">
+          {active ? (
+            <div className={`${classes.calendarWrapper} step-5`}>
+              {lastClickedIndex > 0 && (
+                <button
+                  style={{
+                    background: isDarkMode ? "#001e28" : "#fff",
+                    color: isDarkMode ? "white" : "",
+                  }}
+                  className={classes.buttonWrapper}
+                  disabled={loading}
+                  onClick={handlePreviousDate}
+                >
+                  <KeyboardArrowLeftIcon />
+                </button>
+              )}
+              <div
+                style={{ display: "flex", alignItems: "center" }}
+                onClick={handleDatum}
               >
-                <KeyboardArrowLeftIcon />
-              </button>
-            )}
-            <div
-              style={{ display: "flex", alignItems: "center" }}
-              onClick={handleDatum}
-            >
-              <CalendarMonthIcon color={isDarkMode ? "white" : "disabled"} />
-              <p style={{ cursor: "pointer" }}>
-                {tableDate ? tableDate : today}
-              </p>
+                <CalendarMonthIcon color={isDarkMode ? "white" : "disabled"} />
+                <p style={{ cursor: "pointer" }}>
+                  {tableDate ? tableDate : today}
+                </p>
+              </div>
+              {date ? (
+                <ul
+                  style={{ background: isDarkMode ? "#010a0f" : "" }}
+                  className={classes.menu}
+                >
+                  {data.map((item, index) => {
+                    return (
+                      <li key={index}>
+                        <button
+                          disabled={loading}
+                          onClick={() => handlerDay(item, index)}
+                          className={
+                            lastClickedIndex === index
+                              ? classes.activeDatum
+                              : ""
+                          }
+                        >
+                          {item.split("-").slice(1).join("/")}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                ""
+              )}
+              {lastClickedIndex >= 0 && lastClickedIndex < 2 && (
+                <button
+                  style={{
+                    background: isDarkMode ? "#001e28" : "#fff",
+                    color: isDarkMode ? "white" : "",
+                  }}
+                  className={classes.buttonWrapper}
+                  disabled={loading}
+                  onClick={handleNextDate}
+                >
+                  <KeyboardArrowRightIcon />
+                </button>
+              )}
             </div>
-            {date ? (
-              <ul
-                style={{ background: isDarkMode ? "#010a0f" : "" }}
-                className={classes.menu}
-              >
-                {data.map((item, index) => {
-                  return (
-                    <li key={index}>
-                      <button
-                        disabled={loading}
-                        onClick={() => handlerDay(item, index)}
-                        className={
-                          lastClickedIndex === index ? classes.activeDatum : ""
-                        }
-                      >
-                        {item.split("-").slice(1).join("/")}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              ""
-            )}
-            {lastClickedIndex >= 0 && lastClickedIndex < 2 && (
-              <button
-                style={{
-                  background: isDarkMode ? "#001e28" : "#fff",
-                  color: isDarkMode ? "white" : "",
-                }}
-                className={classes.buttonWrapper}
-                disabled={loading}
-                onClick={handleNextDate}
-              >
-                <KeyboardArrowRightIcon />
-              </button>
-            )}
-          </div>
-        ) : (
-          ""
-        )}
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       {active ? <AllMatches action={action} /> : <LiveMatch />}
     </section>

@@ -68,7 +68,10 @@ const ResultHeader = (props) => {
               </Tooltip>
             </span>
           ) : (
-            <span className={classes.defaultPinn} onClick={handleClick}>
+            <span
+              className={`${classes.defaultPinn} step-6`}
+              onClick={handleClick}
+            >
               <Tooltip title="Add to Favorite this League" arrow>
                 <PushPinIcon
                   style={{

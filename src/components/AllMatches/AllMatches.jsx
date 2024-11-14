@@ -12,7 +12,7 @@ const AllMatches = (props) => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.football.getAllMatch);
   const { addFavorite, removeFavorite } = useContext(FavoriteContext);
-
+  const joyrideStepIndex = useSelector((state) => state.joyride.stepIndex);
   let updatedLeagues = [];
   let currentLeague;
   let previusLeague;
@@ -50,18 +50,27 @@ const AllMatches = (props) => {
       {data.length > 0 &&
         data?.map((item, index) => {
           currentLeague = item.league_name;
+          const isHighlightedMatch = joyrideStepIndex === 6 && index === 0;
           if (currentLeague !== previusLeague) {
             previusLeague = currentLeague;
             return (
               <React.Fragment key={item.match_id}>
                 <ResultHeader item={item} />
-                <ResultTabel key={item.match_id} item={item} />
+                <ResultTabel
+                  key={item.match_id}
+                  item={item}
+                  isHighlightedMatch={isHighlightedMatch}
+                />
               </React.Fragment>
             );
           } else {
             return (
               <React.Fragment key={index}>
-                <ResultTabel key={item.match_id} item={item} />
+                <ResultTabel
+                  key={item.match_id}
+                  singleItem={data[0]}
+                  item={item}
+                />
               </React.Fragment>
             );
           }

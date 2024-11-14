@@ -20,7 +20,7 @@ const Favorites = () => {
   };
 
   return (
-    <div className={classes.mainContainer}>
+    <div className={`${classes.mainContainer} step-1`}>
       <div className={classes.favouritesWrapper}>
         <TurnedInIcon />
         <p>FAVOURITES</p>

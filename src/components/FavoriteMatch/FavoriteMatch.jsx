@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ResultHeader from "../ResultTabel/ResultHeader";
 import { FavoriteContext } from "../../context/FavoriteContext";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { useNavigate } from "react-router-dom";
 
 const FavoriteMatch = () => {
   const { matchFavorit } = useContext(FavoriteMatchContext);
@@ -58,8 +59,12 @@ const FavoriteMatch = () => {
   }, [dispatch, selector]);
   let currentLeague;
   let previusLeague;
+
   return (
-    <section style={{ background: isDarkMode ? "#00141e" : "" }}>
+    <section
+      className="step-8"
+      style={{ background: isDarkMode ? "#00141e" : "" }}
+    >
       {matchFavorit.length > 0 &&
         matchFavorit?.map((item, index) => {
           currentLeague = item.league_name;
