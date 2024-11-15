@@ -66,11 +66,13 @@
 .hamburgerIcon {
   display: none;
   z-index: 100;
+  position: relative;
 }
 .activeMenu {
   top: 0;
   right: 10px;
   z-index: 100;
+  position: relative;
 }
 .circleWrapper {
   background-color: #eeeeee;
@@ -108,7 +110,7 @@
 }
 .menu-container {
   position: absolute;
-  z-index: 100;
+  z-index: 999;
   display: flex;
   align-items: flex-start;
   top: 55px;

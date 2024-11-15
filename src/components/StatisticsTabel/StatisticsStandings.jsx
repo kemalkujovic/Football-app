@@ -12,7 +12,7 @@ const StatisticsStandings = (props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="step-13">
       <Table
         home={props.item.match_hometeam_name}
         away={props.item.match_awayteam_name}

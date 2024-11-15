@@ -9,7 +9,7 @@ const StatisticsTabel = (props) => {
     <>
       {item?.map((item, index) => {
         return (
-          <main key={index}>
+          <main className="step-10" key={index}>
             <StastisticsHeader item={item} />
             <TabListe item={item} />
           </main>

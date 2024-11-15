@@ -34,7 +34,7 @@ const TableCard = (props) => {
     }
   }
   return (
-    <>
+    <div>
       {selector?.error === 404 ? (
         <p>{selector.message}</p>
       ) : (
@@ -178,7 +178,7 @@ const TableCard = (props) => {
           </Table>
         </TableContainer>
       )}
-    </>
+    </div>
   );
 };
 export default TableCard;

@@ -20,6 +20,7 @@ const MatchTabs = ({ item }) => {
   useEffect(() => {
     dispatch(getLiveComments(item.match_id));
   }, [dispatch, item.match_id]);
+
   return (
     <>
       {item.match_status !== "" && (

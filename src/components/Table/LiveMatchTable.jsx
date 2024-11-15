@@ -53,10 +53,7 @@ const LiveMatchTable = () => {
     if (joyrideStepIndex === 3) {
       setActive(false);
     }
-    if (joyrideStepIndex === 4) {
-      setActive(true);
-    }
-    if (joyrideStepIndex === 2) {
+    if (joyrideStepIndex === 4 || joyrideStepIndex === 2) {
       setActive(true);
     }
   }, [joyrideStepIndex]);

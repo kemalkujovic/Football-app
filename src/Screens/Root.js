@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import Navigation from "../Templates/Navigation/Navigation";
 import classes from "./HomePage.module.css";
@@ -11,18 +11,30 @@ const Root = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const isProbaRoute = location.pathname === `/statistics/${id}`;
-  const { steps, stepIndex, run } = useSelector((state) => state.joyride);
+  const { steps, stepIndex, run, matchId } = useSelector((state) => state.joyride);
+  const [updatedSteps, setUpdatedSteps] = useState(steps);
 
   const handleJoyrideCallback = (data) => {
     const { status, type, action } = data;
     const currentStep = steps[stepIndex];
+    const handleNavigation = (targetRoute) => {
+      if (location.pathname !== targetRoute) {
+        dispatch(stopTour());
+        navigate(targetRoute);
+        setTimeout(() => dispatch(startTour()), 100);
+      }
+    };
+
     if (type === "step:after") {
-      if (action === "next") {
+      if (action === "next" && currentStep?.data?.next) {
+        handleNavigation(currentStep.data.next);
         dispatch(nextStep());
-      } else if (action === "prev") {
+      } else if (action === "prev" && currentStep?.data?.previous) {
+        handleNavigation(currentStep.data.previous);
         dispatch(previousStep());
       }
     }
+
     if (action === "close") {
       dispatch(stopTour());
       dispatch(resetTour());
@@ -32,38 +44,13 @@ const Root = () => {
       dispatch(stopTour());
     }
   };
-  // const handleCallback = (data) => {
-  //   if (data.type === 'step:after') {
-  //    v
-  //     if (data.action === 'next' && currentStep.data?.next) {
-  //       dispatch(stopTour());  // Privremeno zaustavlja vodič
-  //       navigate(currentStep.data.next);  // Navigacija
-  //       setTimeout(() => dispatch(startTour()), 100);  // Nastavlja vodič
-  //     } else if (data.action === 'prev' && currentStep.data?.previous) {
-  //       dispatch(stopTour());
-  //       navigate(currentStep.data.previous);
-  //       setTimeout(() => dispatch(startTour()), 100);
-  //     } else {
-  //       dispatch(data.action === 'next' ? nextStep() : previousStep());
-  //     }
-  //   }
-  // };
-  useEffect(() => {
-    const currentStep = steps[stepIndex];
-    if (stepIndex === 7) {
-      dispatch(stopTour());
-      navigate(currentStep.data.next);
-      setTimeout(() => dispatch(startTour()), 100);
-    }
-
-  }, [stepIndex, navigate]);
 
   return (
     <>
       {!isProbaRoute && <Navigation />}
       <main className={classes.mainContainer}>
         <Joyride
-          steps={steps}
+          steps={updatedSteps}
           stepIndex={stepIndex}
           callback={handleJoyrideCallback}
           continuous
@@ -72,6 +59,13 @@ const Root = () => {
           disableCloseOnEsc
           spotlightPadding
           run={run}
+          scrollOffset={60}
+          isFixed
+          styles={{
+            options: {
+              zIndex: 999,
+            },
+          }}
         />
         <Outlet />
       </main>

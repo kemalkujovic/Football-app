@@ -7,7 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import HeadToHead from "../H2H/HeadToHead";
 import StatisticsStandings from "./StatisticsStandings";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getOddsMatch } from "../../app/footballSlice";
 import MatchTabs from "../MatchDetail/MatchTabs";
 import { useDarkMode } from "../../context/DarkModeContext";
@@ -31,6 +31,7 @@ const TabListe = (props) => {
   const dispatch = useDispatch();
   const { isDarkMode } = useDarkMode();
   const { item } = props;
+  const { stepIndex } = useSelector((state) => state.joyride);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -39,6 +40,18 @@ const TabListe = (props) => {
   useEffect(() => {
     dispatch(getOddsMatch(item.match_id));
   }, [dispatch, item.match_id]);
+
+  useEffect(() => {
+    if (stepIndex === 9) {
+      setValue("1");
+    }
+    if (stepIndex === 10) {
+      setValue("2");
+    }
+    if (stepIndex === 11) {
+      setValue("3");
+    }
+  }, [stepIndex]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -58,20 +71,21 @@ const TabListe = (props) => {
               onChange={handleChange}
               aria-label="lab API tabs example"
             >
+              <Tab label="SUMMARY" value="1" textColor="primary" />
               <Tab
-                style={{ borderBottomColor: "red" }}
-                label="SUMMARY"
-                value="1"
+                className="step-11"
                 textColor="primary"
+                label="H2H"
+                style={{ borderBottomColor: "red" }}
+                value="2"
               />
-              <Tab textColor="primary" label="H2H" value="2" />
-              <Tab label="STANDINGS" value="3" />
+              <Tab label="STANDINGS" value="3" className="step-12" />
             </TabList>
           </Box>
           <TabPanel style={{ padding: "0px" }} value="1">
             <MatchTabs item={item} />
           </TabPanel>
-          <TabPanel style={{ padding: "5px" }} value="2">
+          <TabPanel style={{ padding: "0px" }} value="2">
             <HeadToHead item={item} />
           </TabPanel>
           <TabPanel style={{ padding: "0px" }} value="3">

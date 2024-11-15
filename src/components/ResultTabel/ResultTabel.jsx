@@ -8,7 +8,8 @@ import classes from "./ResultTabel.module.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDarkMode } from "../../context/DarkModeContext.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setMatchId, updateStep } from "../../app/joyrideSlice.js";
 const ResultTabel = (props) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -16,6 +17,7 @@ const ResultTabel = (props) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { addFavorite, removeFavorite } = useContext(FavoriteMatchContext);
   const joyrideStepIndex = useSelector((state) => state.joyride.stepIndex);
+  const dispatch = useDispatch();
   const history = useNavigate();
   const { isDarkMode } = useDarkMode();
   const { item, previousScores, isHighlightedMatch } = props;
@@ -53,8 +55,8 @@ const ResultTabel = (props) => {
     return item.away_fault.length > 0 && item.card === "red card";
   });
 
-  const openPopup = () => {
-    const url = `/statistics/${item.match_id}`;
+  const openPopup = (match_id) => {
+    const url = `/statistics/${match_id}`;
     const windowName = "Popup";
     const windowFeatures = "width=650,height=850";
 
@@ -62,9 +64,9 @@ const ResultTabel = (props) => {
   };
 
   const handleContainerClick = (event) => {
-    const isIconClick = event.target.closest(`.${classes.starWrapper}`);
+    const isIconClick = event?.target?.closest(`.${classes.starWrapper}`);
     if (!isIconClick && windowWidth > 768) {
-      openPopup();
+      openPopup(item.match_id);
     }
     if (!isIconClick && windowWidth < 768) {
       const url = `/statistics/${item.match_id}`;
@@ -105,7 +107,16 @@ const ResultTabel = (props) => {
       setSnackbarMessage("Added to Favorites.");
       actionDoneRef.current = true;
     }
-  }, [joyrideStepIndex, item]);
+    if (joyrideStepIndex === 7) {
+      const firstMatch = JSON?.parse(localStorage.getItem("match"))[0];
+      dispatch(
+        updateStep({
+          target: ".step-9",
+          next: `/statistics/${firstMatch.match_id}`,
+        })
+      );
+    }
+  }, [joyrideStepIndex]);
 
   return (
     <div

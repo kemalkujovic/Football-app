@@ -18,11 +18,13 @@ import RegisterModal from "../../components/RegisterModal/RegisterModal";
 import { AuthContext } from "../../context/AuthContext";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import { useSelector } from "react-redux";
 
 const MainBar = () => {
   const [openModal, setOpenModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [isStepActive, setIsStepActive] = useState(false);
   const { isDarkMode, toggleDarkMode } = useDarkMode();
   const { isOpen, setOpen, isSidebarVisible } = useContext(SidebarContext);
   const { currentUser } = useContext(AuthContext);
@@ -30,6 +32,8 @@ const MainBar = () => {
   const menuRef = useRef();
   const hamburgerMenu = useRef();
   const iconRef = useRef();
+  const { stepIndex } = useSelector((state) => state.joyride);
+
   if ((isOpen && isSidebarVisible) || (settings && isSidebarVisible)) {
     document.body.style.overflow = "hidden";
   } else {
@@ -72,6 +76,7 @@ const MainBar = () => {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
+      // if (stepIndex === 9) return;
       if (
         (iconRef.current && iconRef.current.contains(e.target)) ||
         (hamburgerMenu.current && hamburgerMenu.current.contains(e.target))
@@ -85,6 +90,13 @@ const MainBar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
+  // useEffect(() => {
+  //   if (stepIndex === 9) {
+  //     setIsStepActive(true);
+  //     setOpen(true);
+  //   }
+  // }, [stepIndex]);
 
   return (
     <>
@@ -173,15 +185,23 @@ const MainBar = () => {
           >
             <Hamburger
               toggled={isOpen}
-              toggle={setOpen}
+              toggle={(toggled) => {
+                if (!isStepActive) {
+                  setOpen(toggled);
+                }
+              }}
               duration={0.6}
               color="white"
             />
+            {/* <div className="step-10"> */}
             {isOpen && (
-              <div ref={hamburgerMenu} className={classes["menu-container"]}>
+              <div
+                ref={hamburgerMenu}
+                className={`${classes["menu-container"]}`}
+              >
                 <div
                   style={{ background: isDarkMode ? "#010a0f" : "" }}
-                  className={classes["fade-in-text"]}
+                  className={`${classes["fade-in-text"]}`}
                 >
                   <div className={classes.darkModeWrapper}>
                     <div>
@@ -201,6 +221,7 @@ const MainBar = () => {
               </div>
             )}
           </div>
+          {/* </div> */}
         </Grid>
       </div>
     </>

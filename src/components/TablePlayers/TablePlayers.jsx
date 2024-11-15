@@ -21,7 +21,7 @@ const TablePlayers = (props) => {
   }
 
   return (
-    <>
+    <div className="step-14">
       {selector?.error === 404 ? (
         <p>No TopScores Data</p>
       ) : (
@@ -124,7 +124,7 @@ const TablePlayers = (props) => {
           </Table>
         </TableContainer>
       )}
-    </>
+    </div>
   );
 };
 
