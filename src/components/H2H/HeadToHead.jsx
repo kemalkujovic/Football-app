@@ -31,7 +31,7 @@ const HeadToHead = ({ item }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       {loading ? (
         <div className={classes.circularLoading}>
           <CircularProgress />
@@ -94,7 +94,7 @@ const HeadToHead = ({ item }) => {
           })}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

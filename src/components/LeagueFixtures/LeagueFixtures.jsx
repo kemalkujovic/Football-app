@@ -27,7 +27,7 @@ const LeagueFixtures = () => {
   let currentMatchRound;
   let previousMatchRound;
   return (
-    <div>
+    <div className="step-fixtures">
       {selector.error === 404 ? (
         "No matches found"
       ) : (

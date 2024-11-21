@@ -15,13 +15,31 @@ const initialState = {
             target: ".step-2",
             content: "Ovde možete pronaći sve lige drzava.",
             disableBeacon: true,
-            data: { next: '/', previous: '/' }
+            data: { next: '/league/152', previous: '/' }
+        },
+        {
+            target: ".step-results",
+            content: "Ovde možete od lige zadnje kola rezultate utakmica.",
+            disableBeacon: true,
+            data: { next: '/league/152', previous: '/league/152' }
+        },
+        {
+            target: ".step-fixtures",
+            content: "Ovde možete od lige videti sledece kola matcheva od lige.",
+            disableBeacon: true,
+            data: { next: '/league/152', previous: '/league/152' }
+        },
+        {
+            target: ".step-tableLeague",
+            content: "Ovde možete od lige videti sledece kola matcheva od lige.",
+            disableBeacon: true,
+            data: { next: '/', previous: '/league/152' }
         },
         {
             target: ".step-3",
             content: "Ovde mozete videti sve utakmice za danasnji dan.",
             disableBeacon: true,
-            data: { next: '/', previous: '/' }
+            data: { next: '/', previous: '/league/152' }
         },
         {
             target: ".step-4",
@@ -34,6 +52,24 @@ const initialState = {
             content: "Ovde mozete videti sve utakmice koje se trenutno igraju.",
             disableBeacon: true,
             data: { next: '/', previous: '/' }
+        },
+        {
+            target: ".step-14",
+            disableBeacon: true,
+            content: "Ovde mozete videti zadnje matcheve i head to head matchove ovih ekipa.",
+            data: { previous: `/`, next: '/' }
+        },
+        {
+            target: ".step-15",
+            disableBeacon: true,
+            content: "Ovde mozete videti zadnje matcheve i head to head matchove ovih ekipa.",
+            data: { previous: '/', next: '/' }
+        },
+        {
+            target: ".step-16",
+            disableBeacon: true,
+            content: "Ovde mozete videti tabelu lige i mesto njihovo i top scores iz ove lige.",
+            data: { previous: '/', next: '/' }
         },
         {
             target: ".step-6",
@@ -80,19 +116,7 @@ const initialState = {
         {
             target: ".step-13",
             disableBeacon: true,
-            content: "Ovde mozete videti zadnje matcheve i head to head matchove ovih ekipa.",
-            data: { previous: `/statistics/${null}`, next: `/statistics/${null}` }
-        },
-        {
-            target: ".step-14",
-            disableBeacon: true,
-            content: "Ovde mozete videti zadnje matcheve i head to head matchove ovih ekipa.",
-            data: { previous: `/statistics/${null}`, next: `/statistics/${null}` }
-        },
-        {
-            target: ".step-15",
-            disableBeacon: true,
-            content: "Ovde mozete videti zadnje matcheve i head to head matchove ovih ekipa.",
+            content: "Ovde mozete videti tabelu lige i mesto njihovo i top scores iz ove lige.",
             data: { previous: `/statistics/${null}`, next: `/statistics/${null}` }
         },
     ]

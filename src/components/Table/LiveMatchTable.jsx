@@ -50,10 +50,10 @@ const LiveMatchTable = () => {
     }
   };
   useEffect(() => {
-    if (joyrideStepIndex === 3) {
+    if (joyrideStepIndex === 6) {
       setActive(false);
     }
-    if (joyrideStepIndex === 4 || joyrideStepIndex === 2) {
+    if (joyrideStepIndex === 7 || joyrideStepIndex === 5) {
       setActive(true);
     }
   }, [joyrideStepIndex]);

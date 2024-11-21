@@ -5,14 +5,17 @@ import classes from "./HomePage.module.css";
 import Joyride from "react-joyride";
 import { useDispatch, useSelector } from "react-redux";
 import { resetTour, nextStep, previousStep, stopTour, startTour } from "../app/joyrideSlice";
+import { useDarkMode } from "../context/DarkModeContext";
 const Root = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
   const isProbaRoute = location.pathname === `/statistics/${id}`;
-  const { steps, stepIndex, run, matchId } = useSelector((state) => state.joyride);
+  const { steps, stepIndex, run } = useSelector((state) => state.joyride);
   const [updatedSteps, setUpdatedSteps] = useState(steps);
+  const { isDarkMode } = useDarkMode();
+
 
   const handleJoyrideCallback = (data) => {
     const { status, type, action } = data;
@@ -21,7 +24,7 @@ const Root = () => {
       if (location.pathname !== targetRoute) {
         dispatch(stopTour());
         navigate(targetRoute);
-        setTimeout(() => dispatch(startTour()), 100);
+        setTimeout(() => dispatch(startTour()), 200);
       }
     };
 
@@ -59,11 +62,13 @@ const Root = () => {
           disableCloseOnEsc
           spotlightPadding
           run={run}
-          scrollOffset={60}
+          scrollOffset={200}
           isFixed
           styles={{
             options: {
               zIndex: 999,
+              backgroundColor: isDarkMode ? '#010a0f' : 'white',
+              textColor: isDarkMode ? 'white' : 'black',
             },
           }}
         />

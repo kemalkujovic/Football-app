@@ -21,7 +21,7 @@ const TablePlayers = (props) => {
   }
 
   return (
-    <div className="step-14">
+    <div>
       {selector?.error === 404 ? (
         <p>No TopScores Data</p>
       ) : (

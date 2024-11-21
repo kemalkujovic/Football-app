@@ -50,7 +50,7 @@ const AllMatches = (props) => {
       {data.length > 0 &&
         data?.map((item, index) => {
           currentLeague = item.league_name;
-          const isHighlightedMatch = joyrideStepIndex === 6 && index === 0;
+          const isHighlightedMatch = joyrideStepIndex === 12 && index === 0;
           if (currentLeague !== previusLeague) {
             previusLeague = currentLeague;
             return (

@@ -10,16 +10,19 @@ const Table = (props) => {
   const { stepIndex } = useSelector((state) => state.joyride);
 
   useEffect(() => {
-    if (stepIndex === 13) {
+    if (stepIndex === 19) {
       setActive(false);
     }
-    if (stepIndex === 12) {
+    if (stepIndex === 20) {
       setActive(true);
     }
   }, [stepIndex]);
 
   return (
-    <section style={{ background: isDarkMode ? "#00141e" : "" }}>
+    <section
+      className="step-tableLeague"
+      style={{ background: isDarkMode ? "#00141e" : "" }}
+    >
       <div
         className={
           isDarkMode ? classes.buttonsDarkWrapper : classes.buttonsWrapper

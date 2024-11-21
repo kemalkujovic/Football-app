@@ -39,7 +39,10 @@ const ResultsCard = () => {
         <p>No Data for This League</p>
       ) : (
         <>
-          <section style={{ background: isDarkMode ? "#00141e" : "" }}>
+          <section
+            className="step-results"
+            style={{ background: isDarkMode ? "#00141e" : "" }}
+          >
             <div className={classes.headerTittle}>
               <h1>Last Results</h1>
             </div>

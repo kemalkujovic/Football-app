@@ -107,7 +107,7 @@ const ResultTabel = (props) => {
       setSnackbarMessage("Added to Favorites.");
       actionDoneRef.current = true;
     }
-    if (joyrideStepIndex === 7) {
+    if (joyrideStepIndex === 13) {
       const firstMatch = JSON?.parse(localStorage.getItem("match"))[0];
       dispatch(
         updateStep({

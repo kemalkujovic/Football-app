@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOddsMatch } from "../../app/footballSlice";
 import MatchTabs from "../MatchDetail/MatchTabs";
 import { useDarkMode } from "../../context/DarkModeContext";
+import H2HPage from "../H2H/H2HPage";
 
 const theme = createTheme({
   palette: {
@@ -42,13 +43,13 @@ const TabListe = (props) => {
   }, [dispatch, item.match_id]);
 
   useEffect(() => {
-    if (stepIndex === 9) {
+    if (stepIndex === 15) {
       setValue("1");
     }
-    if (stepIndex === 10) {
+    if (stepIndex === 16) {
       setValue("2");
     }
-    if (stepIndex === 11) {
+    if (stepIndex === 17) {
       setValue("3");
     }
   }, [stepIndex]);
@@ -86,7 +87,9 @@ const TabListe = (props) => {
             <MatchTabs item={item} />
           </TabPanel>
           <TabPanel style={{ padding: "0px" }} value="2">
-            <HeadToHead item={item} />
+            <div>
+              <HeadToHead item={item} />
+            </div>
           </TabPanel>
           <TabPanel style={{ padding: "0px" }} value="3">
             <StatisticsStandings item={item} />

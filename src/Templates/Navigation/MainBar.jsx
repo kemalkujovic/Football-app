@@ -112,7 +112,7 @@ const MainBar = () => {
           </Link>
         </Grid>
         <Grid display="flex" alignItems="center">
-          <div className={classes.searchIcon}>
+          <div className={`${classes.searchIcon} step-16`}>
             <SearchIcon onClick={() => handleClickOpen(!openModal)} />
             {openModal ? (
               <CustomizedModal
@@ -123,7 +123,7 @@ const MainBar = () => {
               ""
             )}
           </div>
-          <div className={classes.searchIcon}>
+          <div className={`${classes.searchIcon} step-15`}>
             {currentUser ? (
               <div
                 ref={buttonRef}
@@ -136,7 +136,7 @@ const MainBar = () => {
               </div>
             ) : (
               <div
-                className={classes.loginWrapper}
+                className={`${classes.loginWrapper}`}
                 style={{ display: "flex" }}
                 onClick={() => handleLoginOpen(!openModal)}
               >
@@ -181,7 +181,9 @@ const MainBar = () => {
 
           <div
             ref={iconRef}
-            className={true ? classes.activeMenu : classes.hamburgerIcon}
+            className={
+              true ? `${classes.activeMenu} step-14` : classes.hamburgerIcon
+            }
           >
             <Hamburger
               toggled={isOpen}
