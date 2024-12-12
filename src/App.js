@@ -5,6 +5,19 @@ import LeaguePage from "./Screens/LeaguePage";
 import FavoritePage from "./Screens/FavoritePage";
 import StatisticsPage from "./Screens/StatisticsPage";
 import PlayerPage from "./Screens/PlayerPage";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#001e28",
+      dark: ''
+    },
+    text: {
+      light: '#FFF',
+      dark: '',
+    }
+  },
+});
 function App() {
   const router = createBrowserRouter([
     {
@@ -27,7 +40,9 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return <ThemeProvider theme={customTheme}>
+    <RouterProvider router={router} />
+  </ThemeProvider>;
 }
 
 export default App;

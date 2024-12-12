@@ -11,10 +11,8 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Postavite currentUser kada korisnik bude prijavljen
         setCurrentUser(user);
       } else {
-        // Ako korisnik nije prijavljen, postavite currentUser na null
         setCurrentUser(null);
       }
     });
